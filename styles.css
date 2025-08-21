@@ -1,165 +1,253 @@
+/* styles.css - polished, mobile-first, recruiter-ready
+   Replace your current styles.css with this exact file. */
+
+/* ========== Variables ========== */
 :root{
-  --bg-1: #05020a;
-  --bg-2: #0a0520;
-  --muted: #aeb7c3;
-  --accent: #9b5cff; /* neon purple */
+  --bg-1: #07040a;
+  --bg-2: #0f0816;
+  --muted: #a8b0bf;
+  --text: #e8eef8;
+  --accent: #a57bff;
   --accent-2: #6ee7b7;
-  --card-glass: rgba(255,255,255,0.012);
-  --radius:14px;
-  --max:1150px;
-  --resume-green: #0f9a63;
-  --resume-green-hover: #0db376;
+  --card-bg: rgba(255,255,255,0.02);
+  --glass-border: rgba(255,255,255,0.03);
+  --radius: 14px;
+  --max-width: 1150px;
+  --gap: 18px;
+
+  /* resume button green tuned for pleasant contrast */
+  --resume-green: #0f9a63;    /* main color */
+  --resume-green-hover: #0db376; /* hover */
+  --elev-shadow: 0 8px 18px rgba(2,6,18,0.38); /* lighter than before for less GPU cost */
 }
 
-/* base */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-  background:
-    radial-gradient(600px 300px at 10% 18%, rgba(155,92,255,0.05), transparent),
-    linear-gradient(180deg,var(--bg-1), var(--bg-2));
-  color:#eaf1ff;
-  display:flex;align-items:center;justify-content:center;padding:28px;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  -webkit-tap-highlight-color: transparent;
+/* ========== Reset & base ========== */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; background-color:var(--bg-1); }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--text);
+  padding: clamp(12px, 3vw, 28px);
+  display:flex;
+  justify-content:center;
+  min-height:100vh;
+
+  /* layered, responsive background so "purple" always covers */
+  background-image:
+    radial-gradient(40vw 30vh at 5% 12%, rgba(165,123,255,0.09), rgba(165,123,255,0.02) 35%, transparent 55%),
+    radial-gradient(28vw 18vh at 92% 86%, rgba(110,231,183,0.06), rgba(110,231,183,0.01) 40%, transparent 70%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  background-repeat:no-repeat;
+  background-size: 40vw 30vh, 28vw 18vh, cover;
+  background-attachment: local;
 }
 
-/* layout */
-.container{width:100%;max-width:var(--max)}
-.card{
+/* ========== Outer container ========== */
+.container {
+  width:100%;
+  max-width: clamp(720px, 92vw, var(--max-width));
+  margin: 0 auto;
+}
+
+/* ========== Main card (mobile-first) ========== */
+.card {
   display:grid;
-  grid-template-columns: 1fr 380px;
-  gap:20px;
-  background: linear-gradient(180deg, var(--card-glass), rgba(255,255,255,0.006));
-  padding:24px;border-radius:var(--radius);
-  box-shadow:0 8px 20px rgba(2,8,30,0.5);
-  border:1px solid rgba(255,255,255,0.03);
-  align-items:start; position:relative;
-  overflow:visible;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  background: linear-gradient(180deg, var(--card-bg), rgba(255,255,255,0.01));
+  border-radius: var(--radius);
+  padding: clamp(14px, 2.5vw, 24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--elev-shadow);
+  min-width: 0;
 }
 
-/* left */
-.left .role{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:0 0 10px}
-.hero-title{font-family:'JetBrains Mono', monospace;font-weight:600;font-size:36px;margin:0;color:inherit;display:flex;align-items:center;gap:10px}
-.subtitle{color:var(--muted);max-width:72%;margin:12px 0 14px;line-height:1.4}
+/* left column */
+.left { min-width: 0; }
+
+/* avatar (optional) */
+.avatar { width:72px; height:72px; border-radius:50%; object-fit:cover; border: 2px solid rgba(255,255,255,0.04); display:block; margin-bottom:12px; }
+
+/* typography */
+.role { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin:0 0 8px 0; }
+.hero-title {
+  font-family: "JetBrains Mono", monospace;
+  font-weight:700;
+  font-size: clamp(20px, 5vw, 38px);
+  margin: 0 0 10px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  line-height:1;
+}
+.cursor {
+  width:8px; height:22px; border-radius:4px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  animation: blink 1s steps(2,start) infinite;
+  display:inline-block;
+}
+@keyframes blink { 50% { opacity:0.25 } 100% { opacity:1 } }
+.subtitle { color:var(--muted); margin:12px 0 18px; max-width:70ch; line-height:1.55; }
 
 /* CTAs */
-.ctas{display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;
-  border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:inherit;font-weight:700;
-  background:transparent;transition:transform .12s ease, box-shadow .12s ease;
-  will-change: transform;
+.ctas { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.btn {
+  display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px;
+  border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text);
+  text-decoration:none; cursor:pointer; font-weight:600; font-size:14px;
 }
-.btn.primary{
-  background:linear-gradient(90deg, rgba(155,92,255,0.12), rgba(96,165,250,0.04));
-  border-color:rgba(155,92,255,0.18);
+.btn.primary {
+  background: linear-gradient(180deg, rgba(165,123,255,0.14), rgba(165,123,255,0.06));
+  border-color: rgba(165,123,255,0.14);
+  transition: transform .12s ease, box-shadow .12s ease;
 }
-.btn.icon-btn{padding:8px 10px}
-.btn:focus{outline:3px solid rgba(155,92,255,0.12);outline-offset:3px}
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(155,92,255,0.06)}
+.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(165,123,255,0.06); }
 
-/* contact box */
-.contact-box{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:8px;border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:inherit;font-weight:600}
-.contact-text{font-size:13px;color:var(--muted)}
-
-/* cursor */
-.cursor{display:inline-block;width:10px;height:26px;background:var(--accent);border-radius:3px;animation:blink 1s steps(2,end) infinite;vertical-align:middle}
-@keyframes blink{50%{opacity:0}}
-
-/* right panel */
-.panel{background:linear-gradient(180deg, rgba(255,255,255,0.006), rgba(255,255,255,0.003));padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
-.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.panel-head h2{margin:0;font-size:16px}
-.panel-head-actions{display:flex;gap:8px;align-items:center}
-
-/* projects */
-.projects-list{display:flex;flex-direction:column;gap:12px}
-.proj{
-  display:flex;justify-content:space-between;align-items:flex-start;padding:12px;border-radius:10px;cursor:pointer;
-  border:1px solid rgba(255,255,255,0.03);
-  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.004));
-  transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease, border-color .18s ease;
-  position:relative; overflow:visible;
-  will-change: transform;
+/* ========== Resume button (green) ========== */
+/* This is tuned to be pleasant and recruiter-friendly; not neon-bright. */
+.btn.green {
+  background: linear-gradient(180deg, rgba(15,154,99,0.12), rgba(15,154,99,0.06));
+  border-color: rgba(15,154,99,0.12);
+  color: var(--text);
+  box-shadow: 0 6px 14px rgba(15,154,99,0.06);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  background-color: var(--resume-green); /* solid green background fallback */
+  background-image: linear-gradient(180deg, var(--resume-green), var(--resume-green-hover));
 }
-.proj:focus, .proj:hover{transform: translateY(-6px); box-shadow: 0 18px 36px rgba(155,92,255,0.08); border-color: rgba(155,92,255,0.16)}
-.proj:active{transform:translateY(-3px) scale(.998)}
-.proj-left{max-width:72%}
-.proj-title{font-weight:800;color:#eaf1ff;text-decoration:none;font-size:14px}
-.proj-desc{color:var(--muted);margin:6px 0 0;font-size:13px;line-height:1.35}
-.proj-mini{color:var(--muted);font-size:12px;margin-top:6px}
-
-/* demo button inside project */
-.proj-actions{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-.demo-btn{
-  appearance:none;border:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02);
-  color:inherit;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,0.03);
-  transition:transform .12s ease, box-shadow .12s ease; will-change: transform;
+.btn.green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(13,179,118,0.12);
+  background-image: linear-gradient(180deg, var(--resume-green-hover), #13c987);
 }
-.demo-btn:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(155,92,255,0.06)}
-.demo-btn:focus{outline:3px solid rgba(155,92,255,0.12);outline-offset:3px}
+
+/* icon / minimal styles */
+.icon-btn { padding:8px 10px; }
+
+/* contact box - prevents overflow on small screens */
+.contact-box { display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:10px; min-width:0; }
+.contact-text { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
+
+/* ========== Right / panel ========== */
+.right { min-width:0; }
+.panel {
+  width:100%;
+  border-radius:12px;
+  padding:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  border:1px solid rgba(255,255,255,0.02);
+}
+
+/* panel head */
+.panel-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.panel-head h2 { margin:0; font-size:16px; }
+.panel-head-actions .icon-btn { background:transparent; border:1px solid rgba(255,255,255,0.02); }
+
+/* projects list & items */
+.projects-list { display:grid; gap:14px; }
+.proj {
+  display:flex; justify-content:space-between; gap:12px; padding:14px;
+  border-radius:12px; background: rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02);
+  transition: transform .09s ease, box-shadow .09s ease; /* snappier but cheaper */
+  min-width:0;
+}
+.proj:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(2,8,30,0.36); }
+.proj-left { min-width:0; flex:1 1 auto; }
+.proj-title { color:var(--text); font-weight:700; text-decoration:none; display:block; margin-bottom:6px; font-size:15px; }
+.proj-desc, .proj-mini { color:var(--muted); margin:6px 0; line-height:1.45; font-size:14px; }
+.demo-btn { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; color:var(--text); cursor:pointer; }
 
 /* tag */
-.tag{background:linear-gradient(90deg, rgba(155,92,255,0.09), rgba(96,165,250,0.03));padding:6px 10px;border-radius:999px;font-size:12px;color:#eaf1ff;font-weight:700}
+.tag { background: linear-gradient(180deg, rgba(165,123,255,0.08), rgba(165,123,255,0.04)); padding:6px 10px; border-radius:20px; font-weight:700; color:var(--text); font-size:13px; }
 
 /* panel foot */
-.panel-foot{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-.skills h3{margin:0 0 6px;font-size:14px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);font-size:12px;color:var(--muted);font-weight:700}
+.panel-foot { margin-top:14px; display:flex; gap:12px; flex-direction:column; }
+.chips { display:flex; gap:8px; flex-wrap:wrap; }
+.chip { background: rgba(255,255,255,0.02); padding:6px 10px; border-radius:12px; font-size:13px; color:var(--muted); }
 
-/* actions row */
-.actions{display:flex;gap:8px;align-items:center}
-.btn.green{
-  background: linear-gradient(90deg, var(--resume-green), var(--resume-green-hover)); color: white; border: none;
-  box-shadow: 0 6px 18px rgba(15,154,99,0.12);
-}
-.btn.green:hover{transform:translateY(-3px)}
+/* video modal */
+.video-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:1200; background: rgba(0,0,0,0.6); padding:20px; -webkit-overflow-scrolling:touch; }
+.video-modal[aria-hidden="false"] { display:flex; }
+.video-wrap { width:100%; max-width:960px; background:transparent; border-radius:10px; position:relative; }
+.video-frame { position:relative; padding-top:56.25%; height:0; border-radius:10px; overflow:hidden; }
+.video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:10px; }
+.video-close { position:absolute; right:-6px; top:-6px; background:rgba(0,0,0,0.6); color:var(--text); border: none; font-size:26px; line-height:1; padding:6px 10px; border-radius:12px; cursor:pointer; }
 
-/* VIDEO MODAL styles */
-.video-modal{
-  position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);z-index:2200;padding:20px;
-}
-.video-modal.open{display:flex}
-.video-wrap{
-  width:100%;max-width:1100px;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 30px 70px rgba(0,0,0,0.6);
-}
-.video-frame{width:100%;height:100%;display:block}
-.video-close{
-  position:absolute;right:12px;top:12px;z-index:10;background:rgba(255,255,255,0.06);border:none;color:#fff;font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer;
-}
-.video-close:focus{outline:3px solid rgba(155,92,255,0.12)}
+/* utilities & overflow safety */
+a, button { font-family:inherit; }
+.container, .card, .panel, .projects-list, .proj-left, .ctas, .chips { max-width:100%; min-width:0; }
 
-/* small screens - responsive */
-@media (max-width:880px){
-  body{padding:18px}
-  .card{grid-template-columns:1fr; padding:16px; gap:14px}
-  .hero-title{font-size:28px}
-  .subtitle{max-width:100%}
-  .projects-list{gap:10px}
-  .proj{padding:12px;border-radius:10px}
-  .contact-text{display:none}
-  .ctas{gap:8px;flex-direction:row;flex-wrap:wrap}
-  .actions{flex-direction:column;align-items:stretch}
-  .btn{width:100%}
-  .btn.icon-btn{width:auto}
-  .panel{padding:12px}
-  .chip{font-size:12px;padding:8px 10px}
-
-  /* modal becomes full-screen-ish on mobile */
-  .video-wrap{max-width:980px;border-radius:10px}
-  .video-modal{padding:10px}
+/* ========== Desktop layout ========== */
+@media (min-width: 900px) {
+  .card { grid-template-columns: minmax(0,1fr) 360px; gap:28px; padding:28px; }
+  .projects-list { gap:18px; }
+  .hero-title { font-size:40px; }
 }
 
-/* reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .cursor{animation: none}
-  .proj, .btn, .demo-btn{transition: none !important; transform: none !important}
+/* ========== Accessibility helpers ========== */
+:focus { outline: 3px solid rgba(165,123,255,0.18); outline-offset:3px; }
+
+/* ========== APPENDED: Mobile & resize responsiveness (end of file) ========== */
+/* Mobile-first: stack left and right sections so content never gets pushed off-screen */
+.card {
+  grid-template-columns: 1fr !important;
+  gap: 16px;
+  padding-inline: clamp(12px, 4vw, 28px);
+  box-sizing: border-box;
 }
 
-a:focus, button:focus, .proj:focus{outline:3px solid rgba(155,92,255,0.12);outline-offset:3px}
+/* Make sure side panel and children shrink properly on small screens */
+.right,
+.panel,
+.panel-head,
+.panel-foot,
+.projects-list,
+.proj,
+.proj-left,
+.proj-right,
+.ctas,
+.chips {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
 
+/* Prevent long inline content from forcing horizontal layout */
+.contact-box,
+.contact-text,
+.proj-title,
+.proj-desc,
+.chip {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* On very small screens, convert project rows into stacked cards for readability */
+@media (max-width: 480px) {
+  .proj {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .proj-left { width: 100%; }
+  .proj-right { width: 100%; display: flex; justify-content: flex-start; margin-top: 6px; }
+  .contact-text { white-space: normal; } /* allow email to wrap if extremely narrow */
+}
+
+/* Restore desktop two-column layout when space is available */
+@media (min-width: 900px) {
+  .card {
+    grid-template-columns: 1fr 380px !important; /* keep side panel width on desktop */
+    gap: 24px;
+  }
+  .proj { flex-direction: row; align-items: center; }
+  .contact-text { white-space: nowrap; }
+}
+
+/* Safety: hide accidental horizontal overflow (keeps visuals tidy while testing) */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

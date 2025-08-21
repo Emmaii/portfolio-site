@@ -1,11 +1,10 @@
-// script.js - small UI helpers: typed headline, smooth scroll, demo modal
-// Replace your current script.js with this exact file.
+// script.js — typed headline, smooth scroll, demo modal
 
 document.addEventListener('DOMContentLoaded', () => {
   // typed headline (simple, non-looping)
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
-  const text = "hi, i'm Emmanuel";
+  const text = "hi, i'm Emmanuel — Prompt Engineer & AI Prototyper";
   let i = 0;
   function type() {
     if (!typedEl) return;
@@ -36,18 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openModal(src) {
     if (!modal || !videoFrame) return;
-    // create iframe only when user clicks (good for perf)
     const iframe = document.createElement('iframe');
     iframe.src = src;
     iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
     iframe.setAttribute('allowfullscreen', '');
     iframe.title = 'Project demo';
-    // clear previous & add
     videoFrame.innerHTML = '';
     videoFrame.appendChild(iframe);
     modal.setAttribute('aria-hidden', 'false');
     document.documentElement.style.overflow = 'hidden';
-    closeBtn && closeBtn.focus();
+    if (closeBtn) closeBtn.focus();
   }
 
   function closeModal() {
@@ -61,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const src = btn.getAttribute('data-video-src');
       if (src) openModal(src);
+      // If it's an <a> with no data-video-src, the default href will handle navigation.
     });
   });
 
@@ -68,13 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-  // small performance helper: debounce window resize (prevents thrash)
+  // small performance helper: debounce window resize (placeholder)
   let resizeTimer = null;
   window.addEventListener('resize', () => {
     if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      // placeholder: if you need to run layout code on resize, do it here.
-      resizeTimer = null;
-    }, 120);
+    resizeTimer = setTimeout(() => { resizeTimer = null; }, 120);
   });
 });

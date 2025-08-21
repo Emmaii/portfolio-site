@@ -1,7 +1,5 @@
-/* styles.css - polished, mobile-first, recruiter-ready
-   Replace your current styles.css with this exact file. */
+/* styles.css - polished, mobile-first, recruiter-ready */
 
-/* ========== Variables ========== */
 :root{
   --bg-1: #07040a;
   --bg-2: #0f0816;
@@ -16,12 +14,12 @@
   --gap: 18px;
 
   /* resume button green tuned for pleasant contrast */
-  --resume-green: #0f9a63;    /* main color */
-  --resume-green-hover: #0db376; /* hover */
-  --elev-shadow: 0 8px 18px rgba(2,6,18,0.38); /* lighter than before for less GPU cost */
+  --resume-green: #0f9a63;
+  --resume-green-hover: #0db376;
+  --elev-shadow: 0 8px 18px rgba(2,6,18,0.38);
 }
 
-/* ========== Reset & base ========== */
+/* Reset & base */
 * { box-sizing: border-box; }
 html,body { height:100%; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; background-color:var(--bg-1); }
 body {
@@ -31,8 +29,6 @@ body {
   display:flex;
   justify-content:center;
   min-height:100vh;
-
-  /* layered, responsive background so "purple" always covers */
   background-image:
     radial-gradient(40vw 30vh at 5% 12%, rgba(165,123,255,0.09), rgba(165,123,255,0.02) 35%, transparent 55%),
     radial-gradient(28vw 18vh at 92% 86%, rgba(110,231,183,0.06), rgba(110,231,183,0.01) 40%, transparent 70%),
@@ -42,14 +38,14 @@ body {
   background-attachment: local;
 }
 
-/* ========== Outer container ========== */
+/* Outer container */
 .container {
   width:100%;
   max-width: clamp(720px, 92vw, var(--max-width));
   margin: 0 auto;
 }
 
-/* ========== Main card (mobile-first) ========== */
+/* Main card (mobile-first) */
 .card {
   display:grid;
   grid-template-columns: 1fr;
@@ -64,9 +60,6 @@ body {
 
 /* left column */
 .left { min-width: 0; }
-
-/* avatar (optional) */
-.avatar { width:72px; height:72px; border-radius:50%; object-fit:cover; border: 2px solid rgba(255,255,255,0.04); display:block; margin-bottom:12px; }
 
 /* typography */
 .role { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin:0 0 8px 0; }
@@ -103,15 +96,14 @@ body {
 }
 .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(165,123,255,0.06); }
 
-/* ========== Resume button (green) ========== */
-/* This is tuned to be pleasant and recruiter-friendly; not neon-bright. */
+/* Resume button (green) */
 .btn.green {
   background: linear-gradient(180deg, rgba(15,154,99,0.12), rgba(15,154,99,0.06));
   border-color: rgba(15,154,99,0.12);
   color: var(--text);
   box-shadow: 0 6px 14px rgba(15,154,99,0.06);
   transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-  background-color: var(--resume-green); /* solid green background fallback */
+  background-color: var(--resume-green);
   background-image: linear-gradient(180deg, var(--resume-green), var(--resume-green-hover));
 }
 .btn.green:hover {
@@ -120,14 +112,14 @@ body {
   background-image: linear-gradient(180deg, var(--resume-green-hover), #13c987);
 }
 
-/* icon / minimal styles */
+/* icons */
 .icon-btn { padding:8px 10px; }
 
-/* contact box - prevents overflow on small screens */
+/* contact box */
 .contact-box { display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:10px; min-width:0; }
 .contact-text { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
 
-/* ========== Right / panel ========== */
+/* Right / panel */
 .right { min-width:0; }
 .panel {
   width:100%;
@@ -147,7 +139,7 @@ body {
 .proj {
   display:flex; justify-content:space-between; gap:12px; padding:14px;
   border-radius:12px; background: rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02);
-  transition: transform .09s ease, box-shadow .09s ease; /* snappier but cheaper */
+  transition: transform .09s ease, box-shadow .09s ease;
   min-width:0;
 }
 .proj:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(2,8,30,0.36); }
@@ -155,6 +147,9 @@ body {
 .proj-title { color:var(--text); font-weight:700; text-decoration:none; display:block; margin-bottom:6px; font-size:15px; }
 .proj-desc, .proj-mini { color:var(--muted); margin:6px 0; line-height:1.45; font-size:14px; }
 .demo-btn { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; color:var(--text); cursor:pointer; }
+
+/* per-project tech chips (re-use .chip look) */
+.proj-tech { display:flex; gap:8px; flex-wrap:wrap; margin: 6px 0 8px; }
 
 /* tag */
 .tag { background: linear-gradient(180deg, rgba(165,123,255,0.08), rgba(165,123,255,0.04)); padding:6px 10px; border-radius:20px; font-weight:700; color:var(--text); font-size:13px; }
@@ -176,18 +171,17 @@ body {
 a, button { font-family:inherit; }
 .container, .card, .panel, .projects-list, .proj-left, .ctas, .chips { max-width:100%; min-width:0; }
 
-/* ========== Desktop layout ========== */
+/* Desktop layout */
 @media (min-width: 900px) {
   .card { grid-template-columns: minmax(0,1fr) 360px; gap:28px; padding:28px; }
   .projects-list { gap:18px; }
   .hero-title { font-size:40px; }
 }
 
-/* ========== Accessibility helpers ========== */
+/* Accessibility helpers */
 :focus { outline: 3px solid rgba(165,123,255,0.18); outline-offset:3px; }
 
-/* ========== APPENDED: Mobile & resize responsiveness (end of file) ========== */
-/* Mobile-first: stack left and right sections so content never gets pushed off-screen */
+/* --- APPENDED: Mobile & resize responsiveness --- */
 .card {
   grid-template-columns: 1fr !important;
   gap: 16px;
@@ -195,7 +189,6 @@ a, button { font-family:inherit; }
   box-sizing: border-box;
 }
 
-/* Make sure side panel and children shrink properly on small screens */
 .right,
 .panel,
 .panel-head,
@@ -224,7 +217,7 @@ a, button { font-family:inherit; }
   white-space: nowrap;
 }
 
-/* On very small screens, convert project rows into stacked cards for readability */
+/* On very small screens, stack project rows */
 @media (max-width: 480px) {
   .proj {
     flex-direction: column;
@@ -233,25 +226,26 @@ a, button { font-family:inherit; }
   }
   .proj-left { width: 100%; }
   .proj-right { width: 100%; display: flex; justify-content: flex-start; margin-top: 6px; }
-  .contact-text { white-space: normal; } /* allow email to wrap if extremely narrow */
+  .contact-text { white-space: normal; }
 }
 
 /* Restore desktop two-column layout when space is available */
 @media (min-width: 900px) {
   .card {
-    grid-template-columns: 1fr 380px !important; /* keep side panel width on desktop */
+    grid-template-columns: 1fr 380px !important;
     gap: 24px;
   }
   .proj { flex-direction: row; align-items: center; }
   .contact-text { white-space: nowrap; }
 }
 
-/* Safety: hide accidental horizontal overflow (keeps visuals tidy while testing) */
+/* Safety: hide accidental horizontal overflow */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
 
+/* Profile picture */
 .profile-pic {
   width: 140px;
   height: 140px;
@@ -260,10 +254,6 @@ html, body {
   margin-bottom: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
-  filter: brightness(0.9) contrast(1.1); /* ↓ brightness, ↑ contrast */
+  filter: brightness(0.9) contrast(1.1);
 }
-
-
-.profile-pic:hover {
-  transform: scale(1.05);
-}
+.profile-pic:hover { transform: scale(1.05); }

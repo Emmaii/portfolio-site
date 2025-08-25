@@ -292,3 +292,34 @@ html, body {
 .proj[data-url="https://github.com/Emmaii/fraud_detection_project"] .proj-tech {
   display: none;
 }
+
+/* --- Added small recruiter-friendly styles and copy-feedback --- */
+
+/* Open-to-work badge */
+.open-to-work {
+  display:inline-block;
+  background: linear-gradient(90deg, rgba(165,123,255,0.08), rgba(110,231,183,0.04));
+  padding:6px 10px;
+  border-radius:10px;
+  font-weight:600;
+  margin: 6px 0 12px 0;
+  color: var(--text);
+  font-size:13px;
+}
+
+/* Tech badges near hero */
+.tech-badges { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+
+/* Case study list for projects */
+.case-study { margin:8px 0 10px; padding-left:18px; color:var(--muted); font-size:13px; }
+.case-study li { margin-bottom:6px; }
+
+/* Stronger visibility for hero chips (helpful for recruiter scanners) */
+.left .chip { background: rgba(255,255,255,0.03); color:var(--text); font-weight:600; padding:6px 8px; }
+
+/* temporary copy feedback (hidden by default) */
+.copy-feedback {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.7); color: var(--text); padding:8px 12px; border-radius:8px; font-size:13px; display:none; z-index:1400;
+}
+.copy-feedback.show { display:block; }

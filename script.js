@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // typed headline (simple, non-looping)
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
-  const text = "hi, i'm Emmanuel — Data Analyst · Prompt Engineer & AI Prototyper";
+  const text = "hi, i'm Emmanuel";
   let i = 0;
   function type() {
     if (!typedEl) return;

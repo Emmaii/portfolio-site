@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Emmanuel — Prompt Engineer & AI Prototyper</title>
-  <meta name="description" content="Prompt engineer and AI prototyper who builds prompt-driven demos, lightweight LLM integrations, and quick-deploy prototypes." />
+
+  <title>Emmanuel — Data Analyst · Prompt Engineer & AI Prototyper</title>
+  <meta name="description" content="Data analyst and prompt engineer — I build data-driven insights, EDA & ML pipelines, plus lightweight LLM prototypes and quick-deploy demos." />
 
   <!-- Social sharing (nice previews) -->
-  <meta property="og:title" content="Emmanuel — Prompt Engineer & AI Prototyper">
-  <meta property="og:description" content="I build small, testable LLM prototypes you can click right now.">
+  <meta property="og:title" content="Emmanuel — Data Analyst · Prompt Engineer & AI Prototyper">
+  <meta property="og:description" content="Data analyst and prompt engineer — I build data-driven insights, EDA & ML pipelines, plus lightweight LLM prototypes and quick-deploy demos.">
   <meta property="og:type" content="website">
   <meta property="twitter:card" content="summary_large_image">
 
@@ -21,15 +22,15 @@
   <main class="container" id="top">
     <article class="card" role="region" aria-labelledby="name-heading">
       <section class="left">
-        <img src="assets/headshot.jpg" alt="Portrait of Emmanuel Silas Kelechi, Prompt Engineer" class="profile-pic">
+        <img src="assets/headshot.jpg" alt="Portrait of Emmanuel Silas Kelechi" class="profile-pic">
 
-        <p class="role">Prompt Engineer · Generative AI Prototyper</p>
+        <p class="role">Data Analyst · Prompt Engineer · AI Prototyper</p>
         <h1 id="name-heading" class="hero-title">
           <span id="typed" aria-live="polite" aria-atomic="true"></span>
           <span class="cursor" aria-hidden="true"></span>
         </h1>
         <p class="subtitle">
-          I build small, testable LLM prototypes you can click right now.
+          I build data-driven insights, EDA & ML pipelines, plus lightweight LLM prototypes and quick-deploy demos.
         </p>
         <div class="ctas">
           <a class="btn primary" href="#projects" id="view-projects">View projects</a>
@@ -55,30 +56,25 @@
           </div>
 
           <div id="projects" class="projects-list">
-            <!-- Project 1 -->
-            <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/mental-health-chatbot">
+            <!-- Project: Fraud Detection (FIRST) -->
+            <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/fraud_detection_project">
               <div class="proj-left">
-                <a class="proj-title" href="https://github.com/Emmaii/mental-health-chatbot" target="_blank" rel="noopener noreferrer">Mental Health Chatbot</a>
-                <p class="proj-desc">Built a retrieval-augmented chat prototype with prompt templates, context-window management, and conversational memory.</p>
-                <p class="proj-mini">Safety guardrails and simple evaluation checks included.</p>
-                <div class="proj-tech">
-                  <span class="chip">Streamlit</span>
-                  <span class="chip">FAISS</span>
-                  <span class="chip">OpenRouter</span>
-                </div>
+                <!-- thumbnail (ensure file exists: assets/fraud-thumb.png) -->
+                <img class="proj-thumb" src="assets/fraud-thumb.png" alt="Fraud detection thumbnail">
+
+                <a class="proj-title" href="https://github.com/Emmaii/fraud_detection_project" target="_blank" rel="noopener noreferrer">Fraud Detection — Transactions</a>
+                <p class="proj-desc">End-to-end fraud detection pipeline using the Kaggle credit card dataset: concise EDA, feature engineering, imbalance handling, model training (Logistic Regression &amp; Random Forest), and reusable pipeline artifacts.</p>
+                <p class="proj-mini">Includes notebooks, trained model artifacts, evaluation plots, and a reproducible pipeline (run_pipeline.py).</p>
+
+                <!-- intentionally no .proj-tech chips here for a cleaner, compact card -->
                 <div class="proj-actions">
-                  <button class="demo-btn" data-video-type="youtube"
-                          data-video-src="https://www.youtube.com/embed/_s7bmz48TWQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
-                          aria-label="Demo: Mental Health Chatbot">Demo</button>
-                  <a class="demo-btn" href="https://mental-health-chatbot-6t2mjdxtgwwqq6lfxlg5h7.streamlit.app/"
-                     target="_blank" rel="noopener noreferrer"
-                     aria-label="Live: Mental Health Chatbot">Live</a>
+                  <a class="demo-btn" href="https://github.com/Emmaii/fraud_detection_project" target="_blank" rel="noopener noreferrer" aria-label="View: Fraud Detection Project">View repo</a>
                 </div>
               </div>
-              <div class="proj-right"><span class="tag">App</span></div>
+              <div class="proj-right"><span class="tag">Data Project</span></div>
             </article>
 
-            <!-- Project 2 -->
+            <!-- Project: Customer Churn (SECOND) -->
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/customer_churn_prediction_model_project">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/customer_churn_prediction_model_project" target="_blank" rel="noopener noreferrer">Customer Churn Model</a>
@@ -101,7 +97,30 @@
               <div class="proj-right"><span class="tag">Model</span></div>
             </article>
 
-            <!-- Project 3 -->
+            <!-- Project: Mental Health Chatbot (THIRD) -->
+            <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/mental-health-chatbot">
+              <div class="proj-left">
+                <a class="proj-title" href="https://github.com/Emmaii/mental-health-chatbot" target="_blank" rel="noopener noreferrer">Mental Health Chatbot</a>
+                <p class="proj-desc">Built a retrieval-augmented chat prototype with prompt templates, context-window management, and conversational memory.</p>
+                <p class="proj-mini">Safety guardrails and simple evaluation checks included.</p>
+                <div class="proj-tech">
+                  <span class="chip">Streamlit</span>
+                  <span class="chip">FAISS</span>
+                  <span class="chip">OpenRouter</span>
+                </div>
+                <div class="proj-actions">
+                  <button class="demo-btn" data-video-type="youtube"
+                          data-video-src="https://www.youtube.com/embed/_s7bmz48TWQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+                          aria-label="Demo: Mental Health Chatbot">Demo</button>
+                  <a class="demo-btn" href="https://mental-health-chatbot-6t2mjdxtgwwqq6lfxlg5h7.streamlit.app/"
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="Live: Mental Health Chatbot">Live</a>
+                </div>
+              </div>
+              <div class="proj-right"><span class="tag">App</span></div>
+            </article>
+
+            <!-- Project: University Math Assistant Bot (FOURTH) -->
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/University-Math-Assistant-Bot">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/University-Math-Assistant-Bot" target="_blank" rel="noopener noreferrer">University Math Assistant Bot</a>
@@ -129,11 +148,13 @@
             <div class="skills">
               <h3>Core skills</h3>
               <div class="chips">
+                <span class="chip">Retrieval-Augmented Generation (FAISS)</span>
+                <span class="chip">Practical Python</span>
+                <span class="chip">Pandas &amp; NumPy</span>
                 <span class="chip">Prompt Engineering</span>
-                <span class="chip">Python</span>
+                <span class="chip">Data Wrangling</span>
                 <span class="chip">LLM Integration</span>
                 <span class="chip">Deployment: GitHub Pages, Streamlit</span>
-                <span class="chip">Prototype → Demo → Handoff</span>
               </div>
             </div>
             <div class="actions">
@@ -142,7 +163,7 @@
                 View GitHub
               </a>
               <a id="download-resume" class="btn green" href="assets/resume.pdf" download="Emmanuel_Silas_Kelechi_Resume.pdf" aria-label="Download resume">
-                <svg class="icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM13 3.5V9h5.5L13 3.5z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1 2-2V4a2 2 0 0 1 2-2zM13 3.5V9h5.5L13 3.5z"/></svg>
                 Resume
               </a>
             </div>

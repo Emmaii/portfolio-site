@@ -154,6 +154,13 @@ body {
 /* tag */
 .tag { background: linear-gradient(180deg, rgba(165,123,255,0.08), rgba(165,123,255,0.04)); padding:6px 10px; border-radius:20px; font-weight:700; color:var(--text); font-size:13px; }
 
+/* Optional: distinct look for Data Project tags */
+.proj-right .tag {
+  /* subtle green tint to hint 'data' */
+  background: linear-gradient(180deg, rgba(110,231,183,0.08), rgba(110,231,183,0.04));
+  color: var(--text);
+}
+
 /* panel foot */
 .panel-foot { margin-top:14px; display:flex; gap:12px; flex-direction:column; }
 .chips { display:flex; gap:8px; flex-wrap:wrap; }
@@ -169,7 +176,7 @@ body {
 
 /* utilities & overflow safety */
 a, button { font-family:inherit; }
-.container, .card, .panel, .projects-list, .proj-left, .ctas, .chips { max-width:100%; min-width:0; }
+.container, .card, .panel, .projects-list, .proj-left, .ctas, .chips { max-width:100%; min-width:0; box-sizing:border-box; }
 
 /* Desktop layout */
 @media (min-width: 900px) {
@@ -257,3 +264,31 @@ html, body {
   filter: brightness(0.9) contrast(1.1);
 }
 .profile-pic:hover { transform: scale(1.05); }
+/* ---------- thumbnail & compact card tweaks for fraud project ---------- */
+/* ensure thumbnail is responsive, not too tall, and cropped cleanly */
+.proj-thumb {
+  width: 100%;
+  max-width: 240px;     /* thumbnail max width */
+  height: auto;         /* preserve ratio */
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* make the project-left column wrap nicely on small cards */
+.proj {
+  align-items: flex-start;
+}
+
+/* cap the description height slightly so the card stays compact */
+.proj-desc {
+  max-height: 4.5em;    /* about 3 lines; adjust if you need more */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* hide .proj-tech spacing if you later re-add, but keep normal for others */
+.proj[data-url="https://github.com/Emmaii/fraud_detection_project"] .proj-tech {
+  display: none;
+}

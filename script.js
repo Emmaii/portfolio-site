@@ -4,7 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // typed headline (rotating phrases)
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
-  const phrases = ["hi, i'm Emmanuel", "Prompt Engineer", "Data Analyst", "AI Prototyper"];
+  const phrases = [
+  "hi, i'm Emmanuel",
+  "Virtual Assistant",
+  "Customer Support Specialist",
+  "Data Entry Specialist"
+];
+
   let pIndex = 0, ch = 0, deleting = false;
 
   function tick() {
@@ -136,12 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function showCopyFeedback(text = 'Copied') {
-    if (!copyFeedback) return;
-    copyFeedback.textContent = text;
-    copyFeedback.classList.add('show');
-    setTimeout(() => { copyFeedback.classList.remove('show'); }, 2000);
-  }
+function showCopyFeedback(text = 'Copied') {
+  if (!copyFeedback) return;
+  copyFeedback.textContent = text;
+  copyFeedback.classList.add('show');
+  copyFeedback.setAttribute('role', 'status');   // announce to screen readers
+  setTimeout(() => { 
+    copyFeedback.classList.remove('show'); 
+  }, 2000);
+}
+
 
   // small performance helper: debounce window resize (placeholder)
   let resizeTimer = null;

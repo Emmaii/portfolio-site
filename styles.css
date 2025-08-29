@@ -323,3 +323,32 @@ html, body {
   background: rgba(0,0,0,0.7); color: var(--text); padding:8px 12px; border-radius:8px; font-size:13px; display:none; z-index:1400;
 }
 .copy-feedback.show { display:block; }
+
+/* --- FIX: allow multi-line project descriptions --- */
+.proj-desc {
+  white-space: normal !important;   /* allow wrapping */
+  overflow: hidden !important;      /* crop if too tall */
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;            /* max 3 lines */
+  line-clamp: 3;                    /* standard property for compatibility */
+  -webkit-box-orient: vertical;
+}
+
+/* --- IMPROVE: Download buttons smaller, balanced --- */
+.btn-download {
+  display: inline-block;
+  background: linear-gradient(180deg, #00cc11, #00a336);
+  color: #fff;
+  padding: 6px 12px;        /* smaller padding */
+  margin: 6px 8px 0 0;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;          /* smaller text */
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+.btn-download:hover {
+  background: linear-gradient(180deg, #00a336, #00992b);
+  transform: translateY(-2px);
+}

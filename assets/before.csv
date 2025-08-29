@@ -1,0 +1,394 @@
+Transaction ID,Item,Quantity,Price Per Unit,Total Spent,Payment Method,Location,Transaction Date
+TXN_1961373,Coffee,2,2,4,Credit Card,Takeaway,9/8/2023
+TXN_4977031,Cake,4,3,12,Cash,In-store,5/16/2023
+TXN_4271903,Cookie,4,1,ERROR,Credit Card,In-store,7/19/2023
+TXN_7034554,Salad,2,5,10,UNKNOWN,UNKNOWN,4/27/2023
+TXN_3160411,Coffee,2,2,4,Digital Wallet,In-store,6/11/2023
+TXN_2602893,Smoothie,5,4,20,Credit Card,,3/31/2023
+TXN_4433211,UNKNOWN,3,3,9,ERROR,Takeaway,10/6/2023
+TXN_6699534,Sandwich,4,4,16,Cash,UNKNOWN,10/28/2023
+TXN_4717867,,5,3,15,,Takeaway,7/28/2023
+TXN_2064365,Sandwich,5,4,20,,In-store,12/31/2023
+TXN_2548360,Salad,5,5,25,Cash,Takeaway,11/7/2023
+TXN_3051279,Sandwich,2,4,8,Credit Card,Takeaway,ERROR
+TXN_7619095,Sandwich,2,4,8,Cash,In-store,5/3/2023
+TXN_9437049,Cookie,5,1,5,,Takeaway,6/1/2023
+TXN_8915701,ERROR,2,1.5,3,,In-store,3/21/2023
+TXN_2847255,Salad,3,5,15,Credit Card,In-store,11/15/2023
+TXN_3765707,Sandwich,1,4,4,,,6/10/2023
+TXN_6769710,Juice,2,3,6,Cash,In-store,2/24/2023
+TXN_8876618,Cake,5,3,15,Cash,ERROR,3/25/2023
+TXN_3709394,Juice,4,3,12,Cash,Takeaway,1/15/2023
+TXN_3522028,Smoothie,ERROR,4,20,Cash,In-store,4/4/2023
+TXN_3567645,Smoothie,4,4,16,Credit Card,Takeaway,3/30/2023
+TXN_5132361,Sandwich,3,4,12,Digital Wallet,Takeaway,12/1/2023
+TXN_2616390,Sandwich,2,4,8,,,9/18/2023
+TXN_9400181,Sandwich,5,4,20,Cash,In-store,6/3/2023
+TXN_7958992,Smoothie,3,4,,UNKNOWN,UNKNOWN,12/13/2023
+TXN_5183041,Cookie,5,1,5,Credit Card,In-store,4/20/2023
+TXN_5695074,Juice,4,3,12,Credit Card,Takeaway,4/10/2023
+TXN_8467949,Smoothie,5,4,20,Credit Card,,3/11/2023
+TXN_7640952,Cake,4,3,12,Digital Wallet,Takeaway,ERROR
+TXN_1736287,,5,2,10,Digital Wallet,,6/2/2023
+TXN_8927252,UNKNOWN,2,1,ERROR,Credit Card,ERROR,11/6/2023
+TXN_9677376,Smoothie,4,4,16,,In-store,8/15/2023
+TXN_7710508,UNKNOWN,5,1,5,Cash,,ERROR
+TXN_8853997,Smoothie,2,4,8,Digital Wallet,Takeaway,10/9/2023
+TXN_9130559,Sandwich,1,4,4,Credit Card,UNKNOWN,5/28/2023
+TXN_6855453,UNKNOWN,4,3,12,,In-store,7/17/2023
+TXN_1080432,Salad,2,5,10,Credit Card,In-store,4/29/2023
+TXN_2655815,Smoothie,4,4,16,,Takeaway,6/8/2023
+TXN_6688524,Coffee,4,2,8,ERROR,,6/29/2023
+TXN_2083138,Smoothie,3,4,12,,In-store,4/17/2023
+TXN_2427584,Sandwich,4,4,16,,Takeaway,12/22/2023
+TXN_6650263,Tea,2,1.5,UNKNOWN,,Takeaway,1/10/2023
+TXN_9620080,Juice,4,3,12,,Takeaway,10/2/2023
+TXN_1491578,Cookie,2,1,2,,,2/23/2023
+TXN_5455792,Salad,3,5,15,Cash,,3/22/2023
+TXN_8078640,Juice,4,3,12,Digital Wallet,In-store,11/3/2023
+TXN_9499313,Juice,5,3,15,,,3/2/2023
+TXN_8201146,Juice,5,3,15,Cash,,6/26/2023
+TXN_8230936,Cake,3,3,9,,ERROR,5/2/2023
+TXN_7742742,Cake,5,3,15,,Takeaway,9/5/2023
+TXN_6342161,Salad,5,5,25,ERROR,Takeaway,1/8/2023
+TXN_8914892,UNKNOWN,5,5,25,Digital Wallet,,3/15/2023
+TXN_3363746,Smoothie,3,4,12,Credit Card,,11/25/2023
+TXN_8614868,Smoothie,5,4,20,Digital Wallet,Takeaway,12/5/2023
+TXN_5522862,Cookie,ERROR,1,2,Credit Card,Takeaway,3/19/2023
+TXN_3578141,Cake,5,,15,,Takeaway,6/27/2023
+TXN_2080895,Cake,UNKNOWN,3,3,Digital Wallet,In-store,4/19/2023
+TXN_6421134,Sandwich,4,4,16,Cash,Takeaway,11/3/2023
+TXN_8813311,Juice,5,3,15,,In-store,10/7/2023
+TXN_9023317,Salad,1,5,5,,,9/30/2023
+TXN_8051289,,1,3,3,,In-store,10/9/2023
+TXN_2537617,Sandwich,1,4,4,Cash,,5/27/2023
+TXN_9099694,UNKNOWN,3,5,15,,Takeaway,11/18/2023
+TXN_9230615,Smoothie,4,4,16,Digital Wallet,,6/1/2023
+TXN_4987129,Sandwich,3,,,,In-store,10/20/2023
+TXN_8501819,Juice,,3,6,Cash,,3/30/2023
+TXN_3068204,Cookie,1,1,1,Credit Card,Takeaway,10/3/2023
+TXN_8427104,Salad,2,ERROR,10,,In-store,10/27/2023
+TXN_8471743,ERROR,5,3,15,Digital Wallet,In-store,4/6/2023
+TXN_2621580,Tea,2,1.5,3,Cash,In-store,3/22/2023
+TXN_4726376,Cake,2,3,6,Credit Card,In-store,1/31/2023
+TXN_6044979,,1,1,1,Cash,In-store,12/8/2023
+TXN_4238417,Salad,2,5,10,,ERROR,6/19/2023
+TXN_1900620,Smoothie,2,4,8,Credit Card,ERROR,12/14/2023
+TXN_6420335,Coffee,1,2,2,Cash,Takeaway,7/16/2023
+TXN_3858209,Sandwich,4,4,16,Cash,,2/22/2023
+TXN_2091733,Salad,1,5,5,,In-store,
+TXN_8735480,Tea,5,1.5,7.5,Cash,,6/2/2023
+TXN_3829165,Juice,4,3,12,Cash,In-store,6/15/2023
+TXN_3748616,Coffee,2,2,4,Credit Card,In-store,12/9/2023
+TXN_1993289,Sandwich,2,4,8,,In-store,4/18/2023
+TXN_2123367,Cookie,2,1,2,,,11/7/2023
+TXN_5266394,Cake,3,3,9,Cash,In-store,10/28/2023
+TXN_5107946,Cake,4,3,12,Credit Card,,12/22/2023
+TXN_8035512,Tea,3,,4.5,Cash,UNKNOWN,10/29/2023
+TXN_8718498,Cake,5,3,15,Credit Card,ERROR,4/30/2023
+TXN_3955361,Cookie,5,1,5,,Takeaway,4/2/2023
+TXN_9487821,ERROR,1,5,5,Digital Wallet,Takeaway,5/24/2023
+TXN_4132730,,5,1,5,,In-store,3/12/2023
+TXN_8976658,Tea,2,1.5,3,Credit Card,In-store,8/16/2023
+TXN_5455936,UNKNOWN,5,3,15,,In-store,10/28/2023
+TXN_2725602,Juice,5,3,15,Credit Card,,9/10/2023
+TXN_3011323,Coffee,3,2,6,Credit Card,,3/7/2023
+TXN_6289610,Juice,3,3,UNKNOWN,Cash,Takeaway,8/7/2023
+TXN_8268061,Salad,3,5,15,ERROR,Takeaway,8/20/2023
+TXN_5220895,Salad,5,5,25,Cash,In-store,6/10/2023
+TXN_3085509,Coffee,4,2,8,Digital Wallet,In-store,4/15/2023
+TXN_9999113,Juice,4,3,12,Cash,Takeaway,5/27/2023
+TXN_8779771,Coffee,4,2,8,Cash,In-store,7/25/2023
+TXN_9517146,,5,5,25,Cash,Takeaway,10/30/2023
+TXN_1621920,Salad,3,5,15,,Takeaway,10/28/2023
+TXN_3808639,Juice,2,3,6,Digital Wallet,Takeaway,12/15/2023
+TXN_7028009,Cake,4,3,12,,Takeaway,ERROR
+TXN_7447872,Juice,2,,6,,,
+TXN_6955416,Salad,4,5,20,ERROR,In-store,2/25/2023
+TXN_3775339,Cookie,3,1,3,Credit Card,UNKNOWN,4/3/2023
+TXN_9547091,Cookie,3,1,3,Credit Card,,10/8/2023
+TXN_4358673,Cookie,5,1,5,Digital Wallet,Takeaway,12/28/2023
+TXN_4174591,Tea,4,1.5,6,Digital Wallet,,8/30/2023
+TXN_3398520,Sandwich,1,4,4,,In-store,2/3/2023
+TXN_6171384,Smoothie,2,4,8,Credit Card,,9/12/2023
+TXN_2530938,Smoothie,5,4,20,,Takeaway,4/27/2023
+TXN_3314971,Juice,3,3,9,Digital Wallet,,5/4/2023
+TXN_3092382,Coffee,5,2,10,Digital Wallet,,2/21/2023
+TXN_1001832,Salad,2,5,10,Cash,Takeaway,UNKNOWN
+TXN_1535311,Juice,3,3,9,Cash,,3/16/2023
+TXN_2148617,Juice,ERROR,3,9,Digital Wallet,UNKNOWN,1/10/2023
+TXN_4633784,ERROR,5,,15,,In-store,2/6/2023
+TXN_4368416,Salad,2,5,10,Credit Card,Takeaway,2/24/2023
+TXN_9790731,Cake,2,3,6,UNKNOWN,,6/2/2023
+TXN_9339456,Coffee,3,2,6,,Takeaway,3/29/2023
+TXN_5179020,Cake,2,3,6,,Takeaway,6/18/2023
+TXN_6258471,Coffee,5,2,10,Digital Wallet,In-store,9/23/2023
+TXN_7945375,Juice,3,3,9,,,1/14/2023
+TXN_4685453,Tea,4,1.5,6,Cash,In-store,9/14/2023
+TXN_9646452,Juice,5,3,15,Credit Card,,9/16/2023
+TXN_9096052,Smoothie,4,4,16,Credit Card,Takeaway,12/28/2023
+TXN_5916991,Juice,2,3,6,Digital Wallet,Takeaway,2/6/2023
+TXN_3407169,Sandwich,2,4,8,Cash,In-store,3/11/2023
+TXN_2277042,Tea,1,1.5,1.5,Cash,,4/8/2023
+TXN_9273729,Tea,1,1.5,1.5,,,12/19/2023
+TXN_2181545,Juice,4,3,12,Credit Card,Takeaway,7/14/2023
+TXN_1150033,Juice,5,3,15,Cash,In-store,4/18/2023
+TXN_1443912,Juice,2,3,6,,,6/8/2023
+TXN_8700451,Tea,5,1.5,7.5,Credit Card,Takeaway,12/12/2023
+TXN_6380550,Coffee,5,2,10,Cash,In-store,1/5/2023
+TXN_4885518,Salad,3,5,15,Credit Card,In-store,6/10/2023
+TXN_3972167,Sandwich,5,4,20,,In-store,1/23/2023
+TXN_4878378,Tea,1,1.5,1.5,Credit Card,,2/20/2023
+TXN_2484241,Cake,3,UNKNOWN,9,Digital Wallet,,7/19/2023
+TXN_2368126,Cake,5,3,15,,In-store,12/6/2023
+TXN_7943008,Coffee,1,2,2,Credit Card,,ERROR
+TXN_8495063,Juice,1,3,UNKNOWN,Cash,,5/31/2023
+TXN_4811133,Salad,2,5,10,Cash,,8/11/2023
+TXN_8729570,Tea,5,1.5,7.5,UNKNOWN,In-store,9/3/2023
+TXN_7623634,Cake,2,3,,Credit Card,In-store,7/11/2023
+TXN_9336980,Salad,4,UNKNOWN,20,Cash,In-store,6/6/2023
+TXN_3424331,Cake,4,3,12,,,1/18/2023
+TXN_5072031,Cake,2,3,6,Cash,Takeaway,3/23/2023
+TXN_8687151,Salad,5,5,25,Cash,,6/10/2023
+TXN_4031509,,4,,16,Credit Card,Takeaway,1/4/2023
+TXN_5265095,Coffee,1,2,2,ERROR,,6/23/2023
+TXN_6541415,UNKNOWN,UNKNOWN,3,12,Cash,In-store,11/25/2023
+TXN_4108138,Coffee,5,2,10,Cash,,8/3/2023
+TXN_1909796,Smoothie,2,4,8,,Takeaway,7/12/2023
+TXN_1928241,Coffee,3,2,6,Cash,In-store,4/30/2023
+TXN_4283157,Salad,5,5,25,Digital Wallet,In-store,11/25/2023
+TXN_8013032,Coffee,2,2,4,Credit Card,,3/7/2023
+TXN_8301424,Juice,2,3,6,,ERROR,6/27/2023
+TXN_1093800,Sandwich,3,4,12,Cash,Takeaway,
+TXN_7965998,Juice,1,UNKNOWN,3,Credit Card,In-store,11/2/2023
+TXN_9238666,Cookie,1,UNKNOWN,1,ERROR,Takeaway,7/31/2023
+TXN_1631695,Tea,2,1.5,3,,In-store,9/19/2023
+TXN_1435086,Cake,5,,15,,ERROR,2/9/2023
+TXN_3226832,UNKNOWN,5,4,20,Cash,UNKNOWN,9/4/2023
+TXN_1648671,Sandwich,3,4,12,Cash,Takeaway,5/21/2023
+TXN_4062737,Cake,3,3,9,Cash,In-store,7/2/2023
+TXN_3494565,,2,4,8,ERROR,,7/10/2023
+TXN_9249507,Cookie,4,1,4,Credit Card,In-store,11/21/2023
+TXN_4689500,Sandwich,4,4,16,,,12/2/2023
+TXN_8989148,Tea,2,1.5,,,,11/25/2023
+TXN_8316826,Coffee,3,2,6,,In-store,4/17/2023
+TXN_9836934,Cookie,3,1,3,Digital Wallet,In-store,3/13/2023
+TXN_8005489,Cake,3,3,9,,In-store,8/12/2023
+TXN_6463132,Cookie,5,1,5,Credit Card,Takeaway,
+TXN_3925836,Cookie,3,1,3,Digital Wallet,In-store,2/16/2023
+TXN_1896955,Salad,ERROR,5,25,,In-store,9/23/2023
+TXN_5075974,Smoothie,ERROR,4,16,Digital Wallet,,4/11/2023
+TXN_3978874,Smoothie,5,4,20,Credit Card,In-store,3/13/2023
+TXN_8955912,Sandwich,1,4,4,,,11/7/2023
+TXN_1136554,Smoothie,3,4,12,UNKNOWN,Takeaway,3/26/2023
+TXN_8007337,Cake,2,3,6,Digital Wallet,Takeaway,11/1/2023
+TXN_8129834,Salad,1,5,5,Cash,,7/22/2023
+TXN_3831848,UNKNOWN,1,4,4,Digital Wallet,Takeaway,11/3/2023
+TXN_5365809,Cake,3,3,9,Cash,In-store,9/14/2023
+TXN_8166407,Smoothie,2,,8,,,7/26/2023
+TXN_6629480,Smoothie,5,4,20,Credit Card,In-store,2/28/2023
+TXN_3833797,Coffee,4,2,8,UNKNOWN,In-store,1/27/2023
+TXN_2643815,Cookie,UNKNOWN,1,3,ERROR,,12/6/2023
+TXN_2996519,Cake,5,3,15,Cash,,1/19/2023
+TXN_8810894,Smoothie,1,4,4,,,2/20/2023
+TXN_7412722,Juice,4,3,12,Cash,In-store,4/7/2023
+TXN_3937509,Smoothie,2,4,8,,In-store,3/20/2023
+TXN_6000201,Cookie,3,1,3,Cash,Takeaway,2/16/2023
+TXN_1714274,Cookie,4,1,4,,In-store,12/27/2023
+TXN_3800182,Tea,2,ERROR,3,Cash,In-store,10/26/2023
+TXN_5115080,,5,3,15,Credit Card,,2/18/2023
+TXN_9788956,Juice,ERROR,3,12,ERROR,,4/11/2023
+TXN_6311602,Juice,3,3,9,Credit Card,,5/15/2023
+TXN_2950680,Coffee,2,2,4,Credit Card,Takeaway,12/10/2023
+TXN_6749847,Cake,2,3,6,Credit Card,,8/15/2023
+TXN_2143187,Smoothie,1,4,4,,In-store,4/21/2023
+TXN_8964522,,3,3,9,Credit Card,Takeaway,10/28/2023
+TXN_4088917,Coffee,3,2,6,Cash,Takeaway,2/4/2023
+TXN_3779366,Cookie,1,1,1,Digital Wallet,In-store,4/15/2023
+TXN_7724048,Smoothie,1,4,4,ERROR,In-store,11/12/2023
+TXN_2698591,Tea,5,1.5,7.5,,,8/5/2023
+TXN_3171373,Smoothie,3,4,12,Credit Card,In-store,5/10/2023
+TXN_4129248,Sandwich,2,4,8,Credit Card,,ERROR
+TXN_6498163,Smoothie,5,4,20,,In-store,7/15/2023
+TXN_6717827,ERROR,3,5,15,Digital Wallet,,11/15/2023
+TXN_9089898,Salad,3,ERROR,15,Credit Card,,1/11/2023
+TXN_8587583,Cake,1,ERROR,3,,,10/1/2023
+TXN_8693704,Salad,ERROR,5,25,Cash,In-store,5/4/2023
+TXN_3857960,Salad,4,5,20,Cash,In-store,4/26/2023
+TXN_3499124,ERROR,4,4,16,Credit Card,,8/25/2023
+TXN_9250710,Salad,1,5,5,Cash,In-store,5/28/2023
+TXN_7058377,Juice,1,3,3,,Takeaway,4/30/2023
+TXN_6766492,Salad,1,5,5,,ERROR,1/14/2023
+TXN_9879996,Coffee,4,2,8,Digital Wallet,In-store,3/1/2023
+TXN_4291940,Cake,3,3,9,Credit Card,In-store,11/13/2023
+TXN_7433461,Cookie,2,1,2,Digital Wallet,,7/9/2023
+TXN_4068262,Salad,2,5,10,Credit Card,,5/13/2023
+TXN_5761073,Cookie,1,1,1,Cash,In-store,UNKNOWN
+TXN_5047447,Salad,1,5,5,Digital Wallet,Takeaway,12/27/2023
+TXN_6623508,Cookie,5,1,5,Digital Wallet,Takeaway,5/18/2023
+TXN_2651216,UNKNOWN,3,4,12,,,4/4/2023
+TXN_9350833,Cake,1,UNKNOWN,3,Cash,Takeaway,1/17/2023
+TXN_8377564,Cake,5,3,15,,In-store,7/14/2023
+TXN_7031118,Salad,1,5,5,Credit Card,ERROR,3/29/2023
+TXN_2230167,Cake,4,3,12,Digital Wallet,Takeaway,9/22/2023
+TXN_6446616,Tea,3,1.5,4.5,ERROR,,9/30/2023
+TXN_1721827,Cake,4,3,12,Digital Wallet,ERROR,8/22/2023
+TXN_6334895,Smoothie,1,4,4,Credit Card,ERROR,7/27/2023
+TXN_7077119,ERROR,1,4,4,Digital Wallet,In-store,12/30/2023
+TXN_8562645,Salad,ERROR,5,UNKNOWN,,In-store,5/18/2023
+TXN_4700144,Coffee,4,2,8,,In-store,12/21/2023
+TXN_5526852,Sandwich,5,4,,Digital Wallet,In-store,9/28/2023
+TXN_6846228,Salad,3,,15,,In-store,11/16/2023
+TXN_8570890,Juice,4,3,12,,,4/14/2023
+TXN_3205009,ERROR,2,1.5,3,Cash,In-store,1/3/2023
+TXN_3786188,Tea,3,1.5,4.5,Credit Card,In-store,10/20/2023
+TXN_4530804,Coffee,4,2,8,,,1/12/2023
+TXN_9642066,Sandwich,3,4,12,Credit Card,In-store,8/31/2023
+TXN_7328294,Juice,2,3,6,Cash,,7/7/2023
+TXN_1908636,Tea,2,1.5,3,,UNKNOWN,
+TXN_9238066,,5,1.5,7.5,Digital Wallet,In-store,9/15/2023
+TXN_5415901,Cake,2,3,6,Digital Wallet,,10/21/2023
+TXN_6714420,ERROR,2,3,6,Credit Card,Takeaway,3/30/2023
+TXN_6616971,Juice,2,3,6,Digital Wallet,Takeaway,9/2/2023
+TXN_7803615,Salad,3,5,15,Cash,In-store,12/13/2023
+TXN_7549542,Cookie,5,1,5,,Takeaway,
+TXN_3544789,Tea,4,1.5,ERROR,UNKNOWN,In-store,7/14/2023
+TXN_1583597,Salad,1,5,5,Cash,In-store,5/10/2023
+TXN_8472308,Cookie,2,1,2,Digital Wallet,Takeaway,8/19/2023
+TXN_1967565,Smoothie,5,4,20,Credit Card,Takeaway,3/31/2023
+TXN_2029497,Sandwich,2,4,8,Cash,Takeaway,1/6/2023
+TXN_8929774,ERROR,3,3,9,Cash,,10/2/2023
+TXN_5003018,Cookie,4,1,UNKNOWN,Digital Wallet,,UNKNOWN
+TXN_7852990,Sandwich,5,4,20,Digital Wallet,Takeaway,7/10/2023
+TXN_2534066,Salad,2,5,10,Cash,,10/13/2023
+TXN_2059647,Tea,1,1.5,1.5,Digital Wallet,In-store,5/29/2023
+TXN_2485183,Smoothie,5,4,20,Cash,In-store,7/7/2023
+TXN_7374846,Sandwich,1,4,4,Credit Card,UNKNOWN,5/29/2023
+TXN_9401522,Sandwich,4,4,16,Digital Wallet,In-store,11/16/2023
+TXN_8250651,Sandwich,4,4,16,Digital Wallet,In-store,3/13/2023
+TXN_7191245,Cake,4,3,12,,Takeaway,5/22/2023
+TXN_8982764,Cake,5,3,15,Digital Wallet,Takeaway,11/23/2023
+TXN_8669422,,4,3,12,Cash,Takeaway,10/15/2023
+TXN_1153869,Smoothie,5,4,20,Credit Card,Takeaway,11/3/2023
+TXN_5043774,Sandwich,3,4,12,Cash,,6/8/2023
+TXN_1746320,Salad,1,5,5,Cash,,11/14/2023
+TXN_1077129,Cookie,1,1,1,,In-store,9/12/2023
+TXN_4865338,Sandwich,UNKNOWN,4,16,,In-store,11/26/2023
+TXN_5616583,Smoothie,1,4,4,,,10/13/2023
+TXN_2078474,Cookie,2,1,2,,Takeaway,11/3/2023
+TXN_2130245,Smoothie,5,4,20,Credit Card,,11/13/2023
+TXN_3229409,Juice,UNKNOWN,3,UNKNOWN,Cash,Takeaway,4/15/2023
+TXN_9076216,Cake,1,3,3,Cash,,12/17/2023
+TXN_6371987,Tea,5,1.5,ERROR,UNKNOWN,Takeaway,3/13/2023
+TXN_9913877,ERROR,2,2,4,Credit Card,,5/9/2023
+TXN_2084377,Smoothie,1,4,4,Credit Card,ERROR,10/22/2023
+TXN_1842675,ERROR,4,1,4,Credit Card,Takeaway,6/23/2023
+TXN_8605813,Cookie,1,1,1,,,6/30/2023
+TXN_9755352,Sandwich,5,4,20,,In-store,5/13/2023
+TXN_7550498,Juice,5,3,15,,In-store,ERROR
+TXN_2305908,Coffee,UNKNOWN,2,8,Cash,,4/25/2023
+TXN_6953697,UNKNOWN,3,4,12,,Takeaway,5/27/2023
+TXN_3495950,,4,ERROR,6,Credit Card,In-store,2/19/2023
+TXN_7557340,Tea,5,1.5,7.5,Credit Card,In-store,12/11/2023
+TXN_1157817,Smoothie,1,4,4,Digital Wallet,In-store,4/25/2023
+TXN_2020318,Tea,3,1.5,4.5,Digital Wallet,In-store,10/12/2023
+TXN_8692094,Coffee,5,2,10,,Takeaway,8/30/2023
+TXN_5307411,Cake,3,3,ERROR,Digital Wallet,Takeaway,10/21/2023
+TXN_9703120,Coffee,3,2,6,Credit Card,,11/2/2023
+TXN_1289133,Juice,1,3,3,Cash,UNKNOWN,9/19/2023
+TXN_2031459,Cake,3,3,9,Cash,Takeaway,7/4/2023
+TXN_1333682,Smoothie,1,4,4,Digital Wallet,,1/28/2023
+TXN_2256622,Cookie,2,,2,Cash,In-store,10/4/2023
+TXN_1623966,Tea,2,1.5,3,Cash,Takeaway,UNKNOWN
+TXN_4912930,Smoothie,3,4,12,Credit Card,In-store,2/26/2023
+TXN_4942692,Coffee,2,2,4,,Takeaway,1/15/2023
+TXN_3723007,Tea,3,1.5,4.5,Digital Wallet,In-store,5/18/2023
+TXN_7922392,Sandwich,3,4,12,,,5/3/2023
+TXN_7498727,Salad,3,5,15,Cash,,11/6/2023
+TXN_1222338,Cookie,1,1,1,,In-store,10/11/2023
+TXN_6878866,Smoothie,3,4,12,Credit Card,,2/25/2023
+TXN_1260335,Cookie,4,1,4,Digital Wallet,In-store,
+TXN_9223242,Smoothie,2,4,8,,,9/10/2023
+TXN_6244211,Smoothie,2,4,8,,,8/11/2023
+TXN_5446858,,1,1,1,Cash,In-store,11/7/2023
+TXN_4612864,Tea,3,1.5,4.5,,,2/14/2023
+TXN_5411381,Cookie,ERROR,1,1,,,4/28/2023
+TXN_3047598,Cookie,1,1,1,,,9/6/2023
+TXN_5754317,Coffee,2,,4,Credit Card,Takeaway,1/10/2023
+TXN_7496926,Sandwich,3,4,12,ERROR,In-store,4/23/2023
+TXN_1726858,Smoothie,3,4,12,Cash,In-store,
+TXN_7559388,Salad,4,5,20,Digital Wallet,Takeaway,2/26/2023
+TXN_8540499,Cookie,3,1,3,Cash,In-store,1/22/2023
+TXN_4225756,Cookie,3,1,3,,In-store,3/10/2023
+TXN_6795640,Cookie,4,1,4,Digital Wallet,Takeaway,1/28/2023
+TXN_6702428,Coffee,5,2,10,Cash,Takeaway,8/11/2023
+TXN_8955259,ERROR,2,4,8,Credit Card,,11/18/2023
+TXN_4639319,Coffee,5,2,10,Cash,,1/9/2023
+TXN_5997803,Coffee,5,2,10,,In-store,12/3/2023
+TXN_1340956,ERROR,4,2,8,,,10/26/2023
+TXN_1259671,Sandwich,UNKNOWN,4,12,Digital Wallet,In-store,10/8/2023
+TXN_8319993,Juice,1,3,3,Digital Wallet,,8/6/2023
+TXN_8894157,Sandwich,4,4,16,Credit Card,,ERROR
+TXN_5523450,Salad,5,5,25,Credit Card,Takeaway,7/2/2023
+TXN_7838964,Sandwich,3,4,12,Credit Card,In-store,6/15/2023
+TXN_2773987,Smoothie,5,4,20,ERROR,,1/11/2023
+TXN_1158829,Tea,1,UNKNOWN,1.5,Credit Card,,10/2/2023
+TXN_2523298,,4,,6,ERROR,In-store,3/25/2023
+TXN_8685737,Smoothie,2,4,8,,In-store,11/2/2023
+TXN_5634135,Cookie,2,UNKNOWN,2,,ERROR,1/27/2023
+TXN_1524626,Smoothie,2,4,8,Digital Wallet,,12/29/2023
+TXN_7275407,Smoothie,2,4,8,Digital Wallet,In-store,10/20/2023
+TXN_2889622,Juice,4,3,12,Credit Card,,11/1/2023
+TXN_6849113,Cookie,ERROR,1,1,Credit Card,,7/14/2023
+TXN_2265316,Cookie,,1,3,Credit Card,In-store,12/29/2023
+TXN_9472241,Salad,3,5,15,Cash,Takeaway,6/30/2023
+TXN_7345414,Salad,1,,5,,UNKNOWN,2/15/2023
+TXN_4473352,Cake,1,3,3,UNKNOWN,In-store,11/16/2023
+TXN_2814363,Tea,2,1.5,3,,,7/2/2023
+TXN_1846004,Juice,3,3,9,Cash,In-store,5/21/2023
+TXN_7140471,Cake,1,3,3,Credit Card,,5/25/2023
+TXN_3119542,Smoothie,1,4,4,Credit Card,,10/31/2023
+TXN_7773968,Sandwich,5,4,20,Digital Wallet,Takeaway,2/24/2023
+TXN_9081088,Tea,2,1.5,3,Cash,Takeaway,2/27/2023
+TXN_8559167,Sandwich,5,4,UNKNOWN,UNKNOWN,Takeaway,12/9/2023
+TXN_1130191,Smoothie,2,4,8,Cash,In-store,4/6/2023
+TXN_5215451,Sandwich,5,4,20,Digital Wallet,,11/2/2023
+TXN_1040764,Coffee,3,2,6,Cash,Takeaway,7/27/2023
+TXN_5457133,Juice,5,3,15,ERROR,In-store,3/3/2023
+TXN_8365478,,3,4,12,Cash,Takeaway,2/6/2023
+TXN_2100697,Coffee,3,2,6,Digital Wallet,Takeaway,9/19/2023
+TXN_7676968,Smoothie,4,4,16,UNKNOWN,In-store,2/21/2023
+TXN_5726998,Cake,3,3,9,Credit Card,,8/12/2023
+TXN_4134594,Sandwich,3,4,12,Digital Wallet,In-store,9/27/2023
+TXN_5079340,Cookie,4,1,4,Cash,In-store,8/18/2023
+TXN_8276635,,4,4,16,Digital Wallet,Takeaway,12/16/2023
+TXN_1380601,Tea,4,1.5,6,Digital Wallet,In-store,3/11/2023
+TXN_3959152,Juice,1,3,3,,In-store,5/21/2023
+TXN_7776739,Tea,2,1.5,3,,Takeaway,2/23/2023
+TXN_7569615,ERROR,2,3,6,Cash,Takeaway,6/7/2023
+TXN_8703771,Cake,5,3,15,,In-store,5/12/2023
+TXN_2052395,Smoothie,3,4,12,Credit Card,In-store,7/6/2023
+TXN_9421441,,2,4,8,Cash,,6/20/2023
+TXN_9065402,UNKNOWN,1,5,5,Cash,Takeaway,12/22/2023
+TXN_3638955,Cookie,2,,2,Cash,Takeaway,9/2/2023
+TXN_2635532,ERROR,4,4,16,Cash,Takeaway,1/14/2023
+TXN_8256593,Salad,2,5,10,Digital Wallet,Takeaway,8/9/2023
+TXN_9271457,Cake,3,3,9,Digital Wallet,In-store,2/27/2023
+TXN_5392603,Coffee,1,2,2,Cash,In-store,5/14/2023
+TXN_6319728,Coffee,,2,4,Credit Card,In-store,7/18/2023
+TXN_9263299,Cookie,2,1,2,Credit Card,Takeaway,10/8/2023
+TXN_2301505,Cake,5,3,15,Digital Wallet,,3/21/2023
+TXN_5895177,Cake,5,3,15,,,8/16/2023
+TXN_8751516,Tea,3,1.5,4.5,Cash,Takeaway,
+TXN_8147357,Tea,5,1.5,7.5,,Takeaway,4/20/2023
+TXN_1436343,Cookie,1,1,1,Credit Card,In-store,11/26/2023
+TXN_2214698,Salad,4,5,20,Credit Card,,10/10/2023
+TXN_7480234,Salad,1,5,5,Cash,Takeaway,5/10/2023
+TXN_3283097,ERROR,5,2,10,Cash,Takeaway,2/28/2023
+TXN_2633602,UNKNOWN,2,3,6,Digital Wallet,In-store,2/2/2023
+TXN_3093219,Juice,5,3,UNKNOWN,Cash,,1/28/2023
+TXN_3515730,,1,1,1,Credit Card,,8/14/2023
+TXN_3665733,Coffee,5,2,10,Cash,Takeaway,UNKNOWN
+TXN_4010658,Tea,5,1.5,7.5,,,9/26/2023
+TXN_1454467,Juice,3,3,9,Cash,In-store,3/15/2023
+TXN_2598728,Cake,2,3,6,Credit Card,,1/13/2023

@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
   const phrases = [
-    "I am Emmanuel",
-    "Customer Support Specialist",
+    "hi I'm Emmanuel,",
+    "A Customer Support Specialist",
     "Virtual Assistant",
     "Data Entry Expert"
   ];
@@ -74,21 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.overflow = '';
   }
 
-  // Add YouTube demo button for scheduler project
-  const schedulerProject = document.querySelector('.proj[data-url="https://schedulerproject.streamlit.app/"]');
-  if (schedulerProject) {
-    const projActions = schedulerProject.querySelector('.proj-actions');
-    if (projActions) {
-      const youtubeBtn = document.createElement('a');
-      youtubeBtn.href = 'https://youtu.be/EUJ9cJUDVno';
-      youtubeBtn.target = '_blank';
-      youtubeBtn.rel = 'noopener noreferrer';
-      youtubeBtn.className = 'demo-btn';
-      youtubeBtn.textContent = 'View Demo';
-      youtubeBtn.style.marginLeft = '8px';
-      projActions.appendChild(youtubeBtn);
-    }
-  }
+  // Removed code that was adding YouTube demo button for scheduler project
 
   document.querySelectorAll('.demo-btn').forEach(btn => {
     btn.addEventListener('click', (ev) => {

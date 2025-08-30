@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
   const phrases = [
-  "hi, i'm Emmanuel",
-  "Virtual Assistant",
-  "Customer Support Specialist",
-  "Data Entry Specialist"
-];
+    "I am Emmanuel",
+    "Customer Support Specialist",
+    "Virtual Assistant",
+    "Data Entry Expert"
+  ];
 
   let pIndex = 0, ch = 0, deleting = false;
 
@@ -19,15 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!deleting) {
       typedEl.textContent = full.slice(0, ch + 1);
       ch++;
-      if (ch === full.length) { deleting = true; setTimeout(tick, 900); return; }
+      if (ch === full.length) { 
+        deleting = true; 
+        setTimeout(tick, 1500); 
+        return; 
+      }
     } else {
       typedEl.textContent = full.slice(0, ch - 1);
       ch--;
-      if (ch === 0) { deleting = false; pIndex = (pIndex + 1) % phrases.length; }
+      if (ch === 0) { 
+        deleting = false; 
+        pIndex = (pIndex + 1) % phrases.length; 
+      }
     }
     setTimeout(tick, deleting ? 45 : 75);
   }
-  tick();
+  
+  // Start the typing animation
+  setTimeout(tick, 500);
 
   // smooth scroll for "View projects"
   const viewProjects = document.getElementById('view-projects');
@@ -63,6 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'true');
     videoFrame.innerHTML = ''; // remove iframe to stop playback
     document.documentElement.style.overflow = '';
+  }
+
+  // Add YouTube demo button for scheduler project
+  const schedulerProject = document.querySelector('.proj[data-url="https://schedulerproject.streamlit.app/"]');
+  if (schedulerProject) {
+    const projActions = schedulerProject.querySelector('.proj-actions');
+    if (projActions) {
+      const youtubeBtn = document.createElement('a');
+      youtubeBtn.href = 'https://youtu.be/EUJ9cJUDVno';
+      youtubeBtn.target = '_blank';
+      youtubeBtn.rel = 'noopener noreferrer';
+      youtubeBtn.className = 'demo-btn';
+      youtubeBtn.textContent = 'View Demo';
+      youtubeBtn.style.marginLeft = '8px';
+      projActions.appendChild(youtubeBtn);
+    }
   }
 
   document.querySelectorAll('.demo-btn').forEach(btn => {
@@ -142,16 +167,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-function showCopyFeedback(text = 'Copied') {
-  if (!copyFeedback) return;
-  copyFeedback.textContent = text;
-  copyFeedback.classList.add('show');
-  copyFeedback.setAttribute('role', 'status');   // announce to screen readers
-  setTimeout(() => { 
-    copyFeedback.classList.remove('show'); 
-  }, 2000);
-}
+  function showCopyFeedback(text = 'Copied') {
+    if (!copyFeedback) return;
+    copyFeedback.textContent = text;
+    copyFeedback.classList.add('show');
+    copyFeedback.setAttribute('role', 'status');
+    setTimeout(() => { 
+      copyFeedback.classList.remove('show'); 
+    }, 2000);
+  }
 
+  // Animate chat messages on page load
+  const chatMessages = document.querySelectorAll('.chat-message');
+  chatMessages.forEach((message, index) => {
+    message.style.animationDelay = `${index * 0.3}s`;
+  });
 
   // small performance helper: debounce window resize (placeholder)
   let resizeTimer = null;

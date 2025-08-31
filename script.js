@@ -176,3 +176,38 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeTimer = setTimeout(() => { resizeTimer = null; }, 120);
   });
 });
+
+// Certificate interaction
+document.querySelectorAll('.certification').forEach(cert => {
+  cert.addEventListener('click', (e) => {
+    // Don't trigger when clicking on interactive elements inside card
+    const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
+    if (interactiveTags.includes(e.target.tagName)) return;
+    
+    const url = cert.querySelector('a').href;
+    if (url) window.open(url, '_blank', 'noopener');
+  });
+  
+  cert.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const url = cert.querySelector('a').href;
+      if (url) window.open(url, '_blank', 'noopener');
+    }
+  });
+});
+
+// Smooth scrolling for certificate button
+const viewCertificates = document.getElementById('view-certificates');
+if (viewCertificates) {
+  viewCertificates.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector('#certifications-heading');
+    if (target) {
+      target.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+}

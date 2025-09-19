@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursorEl = document.querySelector('.cursor');
   const phrases = [
     "hi I'm Emmanuel,",
-    "A Customer Support Specialist",
-    "Virtual Assistant",
-    "Data Entry Expert"
+    "A Prompt Engineer",
+    "AI Prototyper",
+    "LLM Integration Specialist"
   ];
 
   let pIndex = 0, ch = 0, deleting = false;
@@ -74,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.overflow = '';
   }
 
-  // Removed code that was adding YouTube demo button for scheduler project
-
   document.querySelectorAll('.demo-btn').forEach(btn => {
     btn.addEventListener('click', (ev) => {
       // If it's a button with data-video-src, open modal
@@ -114,7 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // contact email: copy to clipboard helper + feedback
   const contactEmail = document.getElementById('contact-email');
-  const copyFeedback = document.getElementById('copy-feedback');
+  const copyFeedback = document.createElement('div');
+  copyFeedback.className = 'copy-feedback';
+  copyFeedback.id = 'copy-feedback';
+  document.body.appendChild(copyFeedback);
+  
   if (contactEmail) {
     contactEmail.addEventListener('click', (e) => {
       // if it's a mailto link, both copy and allow mail client if user holds modifier
@@ -162,12 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
       copyFeedback.classList.remove('show'); 
     }, 2000);
   }
-
-  // Animate chat messages on page load
-  const chatMessages = document.querySelectorAll('.chat-message');
-  chatMessages.forEach((message, index) => {
-    message.style.animationDelay = `${index * 0.3}s`;
-  });
 
   // small performance helper: debounce window resize (placeholder)
   let resizeTimer = null;

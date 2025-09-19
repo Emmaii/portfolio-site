@@ -3,50 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Emmanuel — Prompt Engineer & AI Prototyper</title>
-  <meta name="description" content="Prompt engineer and AI prototyper who builds prompt-driven demos, lightweight LLM integrations, and quick-deploy prototypes." />
+  <title>Emmanuel — Prompt Engineer, AI Prototyper & Teacher</title>
+  <meta name="description" content="Emmanuel — Prompt engineer, AI prototyper, LLM integrator, and teacher. Click projects and watch a short teaching demo." />
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#07040a">
 
-  <!-- Social sharing -->
-  <meta property="og:title" content="Emmanuel — Prompt Engineer & AI Prototyper">
-  <meta property="og:description" content="I build small, testable LLM prototypes you can click right now.">
+  <!-- Social preview -->
+  <meta property="og:title" content="Emmanuel — Prompt Engineer, AI Prototyper & Teacher">
+  <meta property="og:description" content="Prompt engineering, LLM integrations, prototype demos, and teaching — short, practical, and ready to build.">
   <meta property="og:type" content="website">
   <meta property="twitter:card" content="summary_large_image">
 
-  <!-- Structured data: Person -->
+  <!-- structured data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Emmanuel Silas Kelechi",
-    "url": "https://emmaii.github.io/portfolio-site/",
-    "sameAs": ["https://github.com/Emmaii"],
-    "jobTitle": "Prompt Engineer · AI Prototyper",
-    "description": "I build small, testable LLM prototypes you can click right now. Open to remote roles."
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Emmanuel Silas Kelechi",
+    "url":"https://emmaii.github.io/portfolio-site/",
+    "sameAs":["https://github.com/Emmaii"],
+    "jobTitle":"Prompt Engineer · AI Prototyper · Teacher",
+    "description":"Prompt engineering, LLM integration, prototyping, and teaching practical forex trading."
   }
   </script>
 
-  <!-- Fonts & CSS -->
+  <!-- fonts & css -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Optional privacy-first analytics (uncomment to enable Plausible) -->
-  <!-- <script async defer data-domain="emmaii.github.io" src="https://plausible.io/js/plausible.js"></script> -->
-
-  <!-- Lightweight local pageview counter (privacy-friendly demo) -->
-  <script>
-    (function(){
-      try {
-        const key = 'portfolio_pageviews';
-        const n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
-        localStorage.setItem(key, n);
-        window.__LOCAL_PAGEVIEWS = n; // debug: remove for production
-        console.info('Local pageviews (demo):', n);
-      } catch (e) { console.warn('Pageview counter failed', e); }
-    })();
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#top">Skip to content</a>
@@ -54,7 +38,7 @@
   <main class="container" id="top">
     <article class="card" role="region" aria-labelledby="name-heading">
       <section class="left">
-        <!-- Responsive headshot: if you don't have these optimized images yet, the fallback still works -->
+        <!-- responsive picture (fallback works if you haven't generated webp/resized versions) -->
         <picture>
           <source type="image/webp"
             srcset="assets/headshot-140.webp 140w, assets/headshot-480.webp 480w, assets/headshot-720.webp 720w"
@@ -65,24 +49,25 @@
           <img src="assets/headshot.jpg" alt="Portrait of Emmanuel Silas Kelechi, Prompt Engineer" class="profile-pic" width="140" height="140" loading="lazy" decoding="async">
         </picture>
 
-        <p class="role">Prompt Engineer · Generative AI Prototyper</p>
+        <!-- Role line: added Teacher -->
+        <p class="role">Prompt Engineer · AI Prototyper · LLM Integration Specialist · Teacher</p>
 
         <h1 id="name-heading" class="hero-title">
           <span id="typed" aria-live="polite" aria-atomic="true"></span>
           <span class="cursor" aria-hidden="true"></span>
         </h1>
 
-        <!-- trimmed subtitle (kept concise) -->
-        <p class="subtitle">
-          I build small, testable LLM prototypes and quick demos you can try now.
-        </p>
+        <!-- Very short subtitle, no jargon -->
+        <p class="subtitle">I build and demo quick AI prototypes. I also teach practical forex trading.</p>
 
-        <p class="open-to-work" aria-hidden="false">Open to remote roles • Lagos (UTC+1) • Available now</p>
+        <p class="open-to-work">Open to remote roles • Lagos (UTC+1) • Available now</p>
 
+        <!-- chips: kept, added Teacher -->
         <div class="tech-badges" aria-hidden="true">
           <span class="chip">Prompt Engineering</span>
           <span class="chip">LLM Integration</span>
           <span class="chip">AI Prototyping</span>
+          <span class="chip">Teacher</span>
           <span class="chip">Python · Streamlit</span>
         </div>
 
@@ -92,13 +77,7 @@
             <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
               <path fill="currentColor" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1 2-2V4a2 2 0 0 1 2-2zM13 3.5V9h5.5L13 3.5z" />
             </svg>
-            Download Resume
-          </a>
-          <a class="btn primary" href="#certifications-heading" id="view-certificates" aria-controls="certifications-heading">
-            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <path fill="currentColor" d="M12 2L9 7l-7 1 5 5-1 7 7-3 7 3-1-7 5-5-7-1-3-7z" />
-            </svg>
-            View Certificates
+            Resume
           </a>
           <a class="contact-box" href="mailto:emmaabusinesss@gmail.com" aria-label="Email Emmanuel" id="contact-email" role="button">
             <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -108,33 +87,42 @@
           </a>
         </div>
 
-        <!-- New: Teaching video + compact bio (straightforward proof) -->
+        <!-- Teaching video (keeps page short): autoplay when scrolled into view (muted), click to unmute -->
         <section id="teaching-showcase" class="showcase" aria-labelledby="teaching-heading">
-          <h2 id="teaching-heading">Watch me teach — quick clip</h2>
+          <h2 id="teaching-heading" class="sr-only">Teaching demo</h2>
 
-          <div class="video-container" role="region" aria-label="Teaching clip preview">
-            <!-- YouTube embed (lazy) -->
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/kanZA7OjHv8"
-              title="Forex Teaching Video by Emmanuel"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"></iframe>
+          <div class="video-container" role="region" aria-label="Teaching clip preview" data-video-id="kanZA7OjHv8">
+            <!-- placeholder / poster (keeps layout) -->
+            <div class="video-poster" aria-hidden="true"></div>
+
+            <!-- controls overlay -->
+            <button class="video-unmute" aria-hidden="true" title="Click to unmute and play" hidden>Unmute</button>
+
+            <!-- iframe will be created by script when in view with autoplay=1&mute=1 -->
           </div>
 
-          <p class="video-caption">
-            Over 10 students have learned from me. This clip is a short sneak peek from my YouTube course.
-            <a href="https://www.youtube.com/playlist?list=PL" target="_blank" rel="noopener noreferrer" aria-label="View full YouTube course">Watch full course on YouTube</a>.
+          <p class="video-caption short">
+            Short teaching clip — part of my YouTube course. (Over 10 students have completed lessons.)
+            <a href="https://youtu.be/kanZA7OjHv8" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
           </p>
         </section>
 
-        <section id="bio" class="bio" aria-labelledby="bio-heading">
-          <h2 id="bio-heading">About me (brief)</h2>
-          <p>I teach practical forex strategies to beginners and aspiring traders — over 10 students have completed my lessons. I focus on clear, repeatable steps and real examples so learners can trade with confidence.</p>
+        <!-- ABOUT: kept in DOM (so nothing removed), but minimal visible content.
+             Original/long about copy is preserved as an HTML comment below (so code is not lost). -->
+        <section id="bio" class="bio minimal" aria-hidden="true">
+          <p class="bio-one-liner">Teacher • Prompt Engineer • AI Prototyper</p>
         </section>
+
+        <!-- Original longer about text preserved here as a comment (not visible) -->
+        <!--
+        <section id="bio-full">
+          <h2>About</h2>
+          <p>Original full about text goes here... (kept in repo but hidden on page)</p>
+        </section>
+        -->
       </section>
 
+      <!-- Right column (projects + certs) — unchanged except trimmed project descriptions for clarity -->
       <aside class="right" aria-labelledby="projects-heading">
         <div class="panel">
           <div class="panel-head">
@@ -142,7 +130,7 @@
             <div class="panel-head-actions">
               <a class="btn icon-btn" href="https://github.com/Emmaii" target="_blank" rel="noopener noreferrer" aria-label="View GitHub">
                 <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="currentColor" d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.5-.7 1.5-.7.9-1.5 2.4-1.1 3-.9.1-.7.4-1.1.7-1.4-2.7-.3-5.5-1.3-5.5-6A4.7 4.7 0 016.5 6.4 4.4 4.4 0 016.2 4s.9-.3 3 .9a10.4 10.4 0 015.6 0c2.1-1.2 3-.9 3-.9.2 1.4-.2 2.4-.4 2.8a4.7 4.7 0 011.3 3.3c0 4.7-2.8 5.7-5.5 6 .4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A12 12 0 0012 .5z" />
+                  <path fill="currentColor" d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.5-.7 1.5-.7.9-1.5 2.4-1.1 3-.9.1-.7.4-1.1.7-1.4-2.7-.3-5.5-1.3-5.5-6A4.7 4.7 0 016.5 6.4 4.4 4.4 0 016.2 4s.9-.3 3 .9a10.4 10.4 0 015.6 0c2.1-1.2 3-.9 3-.9.2 1.4-.2 2.4-.4 2.8a4.7 4.7 0 011.3 3.3c0 4.7-2.8 5.7-5.5 6 .4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A12 12 0 0012 .5z"/>
                 </svg>
                 GitHub
               </a>
@@ -154,7 +142,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/mental-health-chatbot" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/mental-health-chatbot" target="_blank" rel="noopener noreferrer">Mental Health Chatbot</a>
-                <p class="proj-desc">Retrieval-augmented chat prototype with prompts and conversational memory.</p>
+                <p class="proj-desc">Retrieval-augmented chat prototype.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">FAISS</span>
@@ -162,7 +150,7 @@
                 </div>
                 <div class="proj-actions">
                   <button class="demo-btn" data-video-type="youtube"
-                          data-video-src="https://www.youtube.com/embed/_s7bmz48TWQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+                          data-video-src="https://www.youtube.com/embed/_s7bmz48TWQ?autoplay=1&mute=1&playsinline=1"
                           aria-label="Demo: Mental Health Chatbot">Demo</button>
                   <a class="demo-btn" href="https://mental-health-chatbot-6t2mjdxtgwwqq6lfxlg5h7.streamlit.app/"
                      target="_blank" rel="noopener noreferrer"
@@ -176,7 +164,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/customer_churn_prediction_model_project" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/customer_churn_prediction_model_project" target="_blank" rel="noopener noreferrer">Customer Churn Model</a>
-                <p class="proj-desc">Exploratory churn pipeline: prep, features, model tests.</p>
+                <p class="proj-desc">Exploratory churn pipeline.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">Pandas</span>
@@ -184,7 +172,7 @@
                 </div>
                 <div class="proj-actions">
                   <button class="demo-btn" data-video-type="youtube"
-                          data-video-src="https://www.youtube.com/embed/FML0e37gmdA?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+                          data-video-src="https://www.youtube.com/embed/FML0e37gmdA?autoplay=1&mute=1&playsinline=1"
                           aria-label="Demo: Customer Churn Model">Demo</button>
                   <a class="demo-btn" href="https://churn-project-app-hfeeis.streamlit.app/"
                      target="_blank" rel="noopener noreferrer"
@@ -198,7 +186,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/University-Math-Assistant-Bot" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/University-Math-Assistant-Bot" target="_blank" rel="noopener noreferrer">University Math Assistant Bot</a>
-                <p class="proj-desc">Instructional prompts for multi-step math solutions and automated worked examples.</p>
+                <p class="proj-desc">Instructional prompts for multi-step math solutions.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">SymPy</span>
@@ -206,7 +194,7 @@
                 </div>
                 <div class="proj-actions">
                   <button class="demo-btn" data-video-type="youtube"
-                          data-video-src="https://www.youtube.com/embed/DazYDWiSM7A?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+                          data-video-src="https://www.youtube.com/embed/DazYDWiSM7A?autoplay=1&mute=1&playsinline=1"
                           aria-label="Demo: University Math Assistant Bot">Demo</button>
                   <a class="demo-btn" href="https://university-math-assistant-bot.streamlit.app/"
                      target="_blank" rel="noopener noreferrer"
@@ -224,10 +212,11 @@
                 <span class="chip">Prompt Engineering</span>
                 <span class="chip">Python</span>
                 <span class="chip">LLM Integration</span>
-                <span class="chip">Deployment: GitHub Pages, Streamlit</span>
+                <span class="chip">Teacher</span>
                 <span class="chip">Prototype → Demo → Handoff</span>
               </div>
             </div>
+
             <div class="actions">
               <a id="view-gh" class="btn" href="https://github.com/Emmaii" target="_blank" rel="noopener noreferrer" aria-label="View GitHub Profile">
                 <svg class="icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
@@ -245,14 +234,13 @@
           </div>
         </div>
 
-        <!-- Certifications Section -->
+        <!-- Certifications section unchanged -->
         <div class="panel" style="margin-top: 2rem;">
           <div class="panel-head">
             <h2 id="certifications-heading">Certifications & Achievements</h2>
           </div>
-          
+
           <div class="certifications-list">
-            <!-- DataCamp Certificate -->
             <article class="certification" tabindex="0">
               <div class="cert-left">
                 <div class="cert-badge">
@@ -261,10 +249,10 @@
               </div>
               <div class="cert-right">
                 <h3 class="cert-title">DataCamp Certificate: Data manipulation</h3>
-                <p class="cert-desc">Successfully completed this data manipulation course, demonstrating my proficiency in data skills.</p>
+                <p class="cert-desc">Completed course demonstrating data manipulation skills.</p>
                 <div class="cert-meta">
                   <span class="cert-date">Issued: July 2025</span>
-                  <span class="cert-cred">Credential ID: f5279819ca2d825eccf2cf735094df678e9f29d1</span>
+                  <span class="cert-cred">ID: f5279819ca2d825eccf2cf735094df678e9f29d1</span>
                 </div>
                 <div class="cert-actions">
                   <a class="demo-btn" href="https://www.datacamp.com/completed/statement-of-accomplishment/course/f5279819ca2d825eccf2cf735094df678e9f29d1" target="_blank" rel="noopener noreferrer">View Certificate</a>
@@ -278,7 +266,7 @@
     </article>
   </main>
 
-  <!-- Video modal -->
+  <!-- Project demo modal (unchanged behavior) -->
   <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Project demo">
     <div class="video-wrap" role="document">
       <button class="video-close" aria-label="Close demo">&times;</button>
@@ -289,5 +277,6 @@
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 

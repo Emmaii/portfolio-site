@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#07040a">
 
-  <!-- Social sharing (nice previews) -->
+  <!-- Social sharing -->
   <meta property="og:title" content="Emmanuel — Prompt Engineer & AI Prototyper">
   <meta property="og:description" content="I build small, testable LLM prototypes you can click right now.">
   <meta property="og:type" content="website">
@@ -32,20 +32,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- small inline critical CSS to avoid FOUS (kept minimal) -->
-  <style>
-    /* Prevent layout flash for profile image/loading */
-    .profile-pic { visibility: visible; }
-  </style>
+  <!-- Optional privacy-first analytics (uncomment to enable Plausible) -->
+  <!-- <script async defer data-domain="emmaii.github.io" src="https://plausible.io/js/plausible.js"></script> -->
+
+  <!-- Lightweight local pageview counter (privacy-friendly demo) -->
+  <script>
+    (function(){
+      try {
+        const key = 'portfolio_pageviews';
+        const n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+        localStorage.setItem(key, n);
+        window.__LOCAL_PAGEVIEWS = n; // debug: remove for production
+        console.info('Local pageviews (demo):', n);
+      } catch (e) { console.warn('Pageview counter failed', e); }
+    })();
+  </script>
 </head>
 <body>
-  <!-- Skip link for keyboard users -->
   <a class="skip-link" href="#top">Skip to content</a>
 
   <main class="container" id="top">
     <article class="card" role="region" aria-labelledby="name-heading">
       <section class="left">
-        <img src="assets/headshot.jpg" alt="Portrait of Emmanuel Silas Kelechi, Prompt Engineer" class="profile-pic" width="140" height="140" loading="lazy" decoding="async">
+        <!-- Responsive headshot: if you don't have these optimized images yet, the fallback still works -->
+        <picture>
+          <source type="image/webp"
+            srcset="assets/headshot-140.webp 140w, assets/headshot-480.webp 480w, assets/headshot-720.webp 720w"
+            sizes="(max-width:600px) 120px, 140px">
+          <source type="image/jpeg"
+            srcset="assets/headshot-140.jpg 140w, assets/headshot-480.jpg 480w, assets/headshot-720.jpg 720w"
+            sizes="(max-width:600px) 120px, 140px">
+          <img src="assets/headshot.jpg" alt="Portrait of Emmanuel Silas Kelechi, Prompt Engineer" class="profile-pic" width="140" height="140" loading="lazy" decoding="async">
+        </picture>
 
         <p class="role">Prompt Engineer · Generative AI Prototyper</p>
 
@@ -54,13 +72,13 @@
           <span class="cursor" aria-hidden="true"></span>
         </h1>
 
-        <p class="open-to-work" aria-hidden="false">Open to remote roles • Lagos (UTC+1) • Available now</p>
-
+        <!-- trimmed subtitle (kept concise) -->
         <p class="subtitle">
-          I can build small, testable LLM prototypes you can click right now.
+          I build small, testable LLM prototypes and quick demos you can try now.
         </p>
 
-        <!-- recruiter keywords kept minimal and relevant -->
+        <p class="open-to-work" aria-hidden="false">Open to remote roles • Lagos (UTC+1) • Available now</p>
+
         <div class="tech-badges" aria-hidden="true">
           <span class="chip">Prompt Engineering</span>
           <span class="chip">LLM Integration</span>
@@ -89,6 +107,32 @@
             <span class="contact-text">emmaabusinesss@gmail.com</span>
           </a>
         </div>
+
+        <!-- New: Teaching video + compact bio (straightforward proof) -->
+        <section id="teaching-showcase" class="showcase" aria-labelledby="teaching-heading">
+          <h2 id="teaching-heading">Watch me teach — quick clip</h2>
+
+          <div class="video-container" role="region" aria-label="Teaching clip preview">
+            <!-- YouTube embed (lazy) -->
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/kanZA7OjHv8"
+              title="Forex Teaching Video by Emmanuel"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+
+          <p class="video-caption">
+            Over 10 students have learned from me. This clip is a short sneak peek from my YouTube course.
+            <a href="https://www.youtube.com/playlist?list=PL" target="_blank" rel="noopener noreferrer" aria-label="View full YouTube course">Watch full course on YouTube</a>.
+          </p>
+        </section>
+
+        <section id="bio" class="bio" aria-labelledby="bio-heading">
+          <h2 id="bio-heading">About me (brief)</h2>
+          <p>I teach practical forex strategies to beginners and aspiring traders — over 10 students have completed my lessons. I focus on clear, repeatable steps and real examples so learners can trade with confidence.</p>
+        </section>
       </section>
 
       <aside class="right" aria-labelledby="projects-heading">
@@ -110,8 +154,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/mental-health-chatbot" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/mental-health-chatbot" target="_blank" rel="noopener noreferrer">Mental Health Chatbot</a>
-                <p class="proj-desc">Built a retrieval-augmented chat prototype with prompt templates, context-window management, and conversational memory.</p>
-                <p class="proj-mini">Safety guardrails and simple evaluation checks included.</p>
+                <p class="proj-desc">Retrieval-augmented chat prototype with prompts and conversational memory.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">FAISS</span>
@@ -133,8 +176,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/customer_churn_prediction_model_project" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/customer_churn_prediction_model_project" target="_blank" rel="noopener noreferrer">Customer Churn Model</a>
-                <p class="proj-desc">Created an exploratory churn pipeline: data preparation, feature exploration, and simple model testing.</p>
-                <p class="proj-mini">Produced customer segments and model-backed recommendations.</p>
+                <p class="proj-desc">Exploratory churn pipeline: prep, features, model tests.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">Pandas</span>
@@ -156,8 +198,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/University-Math-Assistant-Bot" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/University-Math-Assistant-Bot" target="_blank" rel="noopener noreferrer">University Math Assistant Bot</a>
-                <p class="proj-desc">Designed instructional prompts for multi-step math solutions and automated worked examples.</p>
-                <p class="proj-mini">Integrated a lightweight tool chain for parsing math input and returning structured answers.</p>
+                <p class="proj-desc">Instructional prompts for multi-step math solutions and automated worked examples.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">SymPy</span>
@@ -245,8 +286,8 @@
     </div>
   </div>
 
-  <!-- lightweight non-blocking script loader -->
   <script src="script.js" defer></script>
 </body>
 </html>
+
 

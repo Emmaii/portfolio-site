@@ -1,4 +1,5 @@
 // script.js — typed headline, smooth scroll, demo modal, keyboard & copy helpers
+// All original behaviour preserved; added modal focus-trap + aria announcements + robust cleanup.
 
 document.addEventListener('DOMContentLoaded', () => {
   // typed headline (rotating phrases)
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let pIndex = 0, ch = 0, deleting = false;
-
+  // Slightly refined timing: type slower, delete a bit quicker
   function tick() {
     if (!typedEl) return;
     const full = phrases[pIndex];
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ch++;
       if (ch === full.length) { 
         deleting = true; 
-        setTimeout(tick, 1500); 
+        setTimeout(tick, 1300); 
         return; 
       }
     } else {
@@ -32,10 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
         pIndex = (pIndex + 1) % phrases.length; 
       }
     }
-    setTimeout(tick, deleting ? 45 : 75);
+    setTimeout(tick, deleting ? 45 : 85);
   }
-  
-  // Start the typing animation
   setTimeout(tick, 500);
 
   // smooth scroll for "View projects"
@@ -45,33 +44,69 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const target = document.querySelector('#projects');
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // announce for screen reader
+      target && target.setAttribute('tabindex', '-1') && target.focus();
     });
   }
 
-  // video modal
+  // video modal: improved focus trap and robust cleanup
   const modal = document.getElementById('video-modal');
   const videoFrame = document.getElementById('video-frame');
   const closeBtn = document.querySelector('.video-close');
 
+  let lastFocused = null;
+
   function openModal(src) {
     if (!modal || !videoFrame) return;
+    lastFocused = document.activeElement;
+    // create iframe safely
     const iframe = document.createElement('iframe');
     iframe.src = src;
     iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
     iframe.setAttribute('allowfullscreen', '');
     iframe.title = 'Project demo';
+    iframe.setAttribute('loading', 'lazy');
     videoFrame.innerHTML = '';
     videoFrame.appendChild(iframe);
     modal.setAttribute('aria-hidden', 'false');
+    modal.style.display = 'flex';
     document.documentElement.style.overflow = 'hidden';
+    // trap focus
+    disablePageTabbing();
     if (closeBtn) closeBtn.focus();
+    // announce
+    modal.setAttribute('aria-live', 'polite');
   }
 
   function closeModal() {
     if (!modal || !videoFrame) return;
     modal.setAttribute('aria-hidden', 'true');
-    videoFrame.innerHTML = ''; // remove iframe to stop playback
+    modal.style.display = 'none';
+    // remove iframe to stop playback
+    videoFrame.innerHTML = '';
     document.documentElement.style.overflow = '';
+    restorePageTabbing();
+    // return focus
+    try { lastFocused && lastFocused.focus(); } catch (e) {}
+  }
+
+  // disable tabbing outside modal
+  const pageTabbables = [];
+  function disablePageTabbing() {
+    const nodes = document.querySelectorAll('a, button, input, textarea, select, [tabindex]');
+    nodes.forEach(n => {
+      if (modal && modal.contains(n)) return;
+      const prev = n.getAttribute('tabindex');
+      pageTabbables.push({ node: n, prev });
+      n.setAttribute('tabindex', '-1');
+    });
+  }
+  function restorePageTabbing() {
+    pageTabbables.forEach(({ node, prev }) => {
+      if (prev === null) node.removeAttribute('tabindex');
+      else node.setAttribute('tabindex', prev);
+    });
+    pageTabbables.length = 0;
   }
 
   document.querySelectorAll('.demo-btn').forEach(btn => {
@@ -83,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(src);
         return;
       }
-      // For anchor links (<a>), let default behavior happen (they open in new tab).
+      // For anchor links (<a>), default behaviour (open in new tab) remains.
     });
   });
 
@@ -91,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-  // keyboard support: Enter on project row opens project (data-url)
+  // ensure Enter/Space on project rows triggers repo open
   document.querySelectorAll('.proj').forEach(proj => {
     proj.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -100,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (url) window.open(url, '_blank', 'noopener');
       }
     });
-    // also support click to open the main repo page if user clicks the card but not the internal buttons/links
     proj.addEventListener('click', (e) => {
       // don't trigger when clicking on interactive elements inside card
       const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
@@ -110,27 +144,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // contact email: copy to clipboard helper + feedback
+  // contact email: copy to clipboard helper + feedback (improved)
   const contactEmail = document.getElementById('contact-email');
-  const copyFeedback = document.createElement('div');
-  copyFeedback.className = 'copy-feedback';
-  copyFeedback.id = 'copy-feedback';
-  document.body.appendChild(copyFeedback);
-  
+  let copyFeedback = document.getElementById('copy-feedback');
+  if (!copyFeedback) {
+    copyFeedback = document.createElement('div');
+    copyFeedback.className = 'copy-feedback';
+    copyFeedback.id = 'copy-feedback';
+    document.body.appendChild(copyFeedback);
+  }
+
   if (contactEmail) {
     contactEmail.addEventListener('click', (e) => {
-      // if it's a mailto link, both copy and allow mail client if user holds modifier
+      // prefer to copy; still allow mail client fallback if copy fails
       e.preventDefault();
       const mail = 'emmaabusinesss@gmail.com';
+      function fallbackMail() { window.location.href = 'mailto:' + mail; }
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(mail).then(() => {
           showCopyFeedback('Email copied to clipboard');
         }).catch(() => {
-          // fallback: open mailto if clipboard fails
-          window.location.href = 'mailto:' + mail;
+          fallbackMail();
         });
       } else {
-        // fallback using a temporary textarea
         const ta = document.createElement('textarea');
         ta.value = mail;
         ta.style.position = 'fixed';
@@ -141,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
           document.execCommand('copy');
           showCopyFeedback('Email copied to clipboard');
         } catch (err) {
-          window.location.href = 'mailto:' + mail;
+          fallbackMail();
         }
         document.body.removeChild(ta);
       }
@@ -173,22 +209,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Certificate interaction
+// Certificate interaction — keep original behaviour but safer checks
 document.querySelectorAll('.certification').forEach(cert => {
   cert.addEventListener('click', (e) => {
-    // Don't trigger when clicking on interactive elements inside card
     const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
     if (interactiveTags.includes(e.target.tagName)) return;
-    
-    const url = cert.querySelector('a').href;
-    if (url) window.open(url, '_blank', 'noopener');
+    const anchor = cert.querySelector('a');
+    if (anchor && anchor.href) window.open(anchor.href, '_blank', 'noopener');
   });
   
   cert.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if ((e.key === 'Enter' || e.key === ' ') && cert.querySelector('a')) {
       e.preventDefault();
-      const url = cert.querySelector('a').href;
-      if (url) window.open(url, '_blank', 'noopener');
+      const anchor = cert.querySelector('a');
+      if (anchor && anchor.href) window.open(anchor.href, '_blank', 'noopener');
     }
   });
 });
@@ -204,6 +238,9 @@ if (viewCertificates) {
         behavior: 'smooth',
         block: 'start'
       });
+      target.setAttribute('tabindex', '-1');
+      target.focus();
     }
   });
 }
+

@@ -1,5 +1,5 @@
 // script.js — typed headline, smooth scroll, demo modal, keyboard & copy helpers
-// All original behaviour preserved; added modal focus-trap + aria announcements + robust cleanup.
+// Preserves original behaviour; added modal focus-trap + aria announcements + robust cleanup.
 
 document.addEventListener('DOMContentLoaded', () => {
   // typed headline (rotating phrases)
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let pIndex = 0, ch = 0, deleting = false;
-  // Slightly refined timing: type slower, delete a bit quicker
   function tick() {
     if (!typedEl) return;
     const full = phrases[pIndex];
@@ -44,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const target = document.querySelector('#projects');
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // announce for screen reader
       target && target.setAttribute('tabindex', '-1') && target.focus();
     });
   }
@@ -59,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal(src) {
     if (!modal || !videoFrame) return;
     lastFocused = document.activeElement;
-    // create iframe safely
     const iframe = document.createElement('iframe');
     iframe.src = src;
     iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
@@ -71,22 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'false');
     modal.style.display = 'flex';
     document.documentElement.style.overflow = 'hidden';
-    // trap focus
     disablePageTabbing();
     if (closeBtn) closeBtn.focus();
-    // announce
-    modal.setAttribute('aria-live', 'polite');
   }
 
   function closeModal() {
     if (!modal || !videoFrame) return;
     modal.setAttribute('aria-hidden', 'true');
     modal.style.display = 'none';
-    // remove iframe to stop playback
     videoFrame.innerHTML = '';
     document.documentElement.style.overflow = '';
     restorePageTabbing();
-    // return focus
     try { lastFocused && lastFocused.focus(); } catch (e) {}
   }
 
@@ -111,14 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.demo-btn').forEach(btn => {
     btn.addEventListener('click', (ev) => {
-      // If it's a button with data-video-src, open modal
       const src = btn.getAttribute('data-video-src');
       if (src && btn.tagName.toLowerCase() === 'button') {
         ev.preventDefault();
         openModal(src);
         return;
       }
-      // For anchor links (<a>), default behaviour (open in new tab) remains.
     });
   });
 
@@ -126,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-  // ensure Enter/Space on project rows triggers repo open
+  // Enter/Space on project row opens repo
   document.querySelectorAll('.proj').forEach(proj => {
     proj.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -136,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     proj.addEventListener('click', (e) => {
-      // don't trigger when clicking on interactive elements inside card
       const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
       if (interactiveTags.includes(e.target.tagName)) return;
       const url = proj.getAttribute('data-url');
@@ -144,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // contact email: copy to clipboard helper + feedback (improved)
+  // contact email: copy to clipboard helper + feedback
   const contactEmail = document.getElementById('contact-email');
   let copyFeedback = document.getElementById('copy-feedback');
   if (!copyFeedback) {
@@ -156,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (contactEmail) {
     contactEmail.addEventListener('click', (e) => {
-      // prefer to copy; still allow mail client fallback if copy fails
       e.preventDefault();
       const mail = 'emmaabusinesss@gmail.com';
       function fallbackMail() { window.location.href = 'mailto:' + mail; }
@@ -201,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   }
 
-  // small performance helper: debounce window resize (placeholder)
+  // debounce window resize (placeholder)
   let resizeTimer = null;
   window.addEventListener('resize', () => {
     if (resizeTimer) clearTimeout(resizeTimer);
@@ -209,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Certificate interaction — keep original behaviour but safer checks
+// Certificate interaction — safer checks
 document.querySelectorAll('.certification').forEach(cert => {
   cert.addEventListener('click', (e) => {
     const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
@@ -243,4 +231,5 @@ if (viewCertificates) {
     }
   });
 }
+
 

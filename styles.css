@@ -770,24 +770,18 @@ a.btn:focus, .demo-btn:focus, .proj:focus, .contact-box:focus {
    =========================== */
 
 /* Make the inline book link look like a small rectangular CTA (matches View Certificates) */
-.book-link-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 1;
-  vertical-align: middle;
+.book-link {
+  font-style: italic;
+  color: #3a86ff;          /* welcoming light blue */
+  font-weight: 500;
   text-decoration: none;
-  margin-left: 8px; /* keep sentence spacing neat */
-  height: 34px;
+  transition: color 0.3s ease;
 }
 
-/* Slight visual tweak so it sits nicely within the sentence on small screens */
-@media (max-width: 480px) {
-  .book-link-btn { padding: 6px 8px; font-size: 12px; margin-left: 6px; height: 30px; }
+.book-link:hover,
+.book-link:focus {
+  color: #265d9b;          /* slightly darker blue when hovered */
+  text-decoration: underline;
 }
 
 /* Book panel polish */

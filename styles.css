@@ -772,14 +772,14 @@ a.btn:focus, .demo-btn:focus, .proj:focus, .contact-box:focus {
 /* Make the inline book link look like a small rectangular CTA (matches View Certificates) */
 .book-link {
   font-style: italic;
-  color: #6ec5ff;   /* soft, welcoming light blue */
+  color: #55efc4;   /* soft, welcoming light blue */
   font-weight: 500;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .book-link:hover {
-  color: #4aa3e0;   /* a bit deeper, but still gentle */
+  color: #00b894;   /* a bit deeper, but still gentle */
   text-decoration: underline;
 }
 

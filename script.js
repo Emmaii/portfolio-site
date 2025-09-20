@@ -1,5 +1,6 @@
 // script.js — typed headline, smooth scroll, demo modal, keyboard & copy helpers
-// All original behaviour preserved; added modal focus-trap + aria announcements + robust cleanup.
+// All original behaviour preserved; added modal focus-trap + aria announcements + robust cleanup,
+// plus "Author" in rotation and book-link smooth-scroll + focus.
 
 document.addEventListener('DOMContentLoaded', () => {
   // typed headline (rotating phrases)
@@ -9,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "hi I'm Emmanuel,",
     "A Prompt Engineer",
     "AI Prototyper",
-    "LLM Integration Specialist"
+    "LLM Integration Specialist",
+    "Author" // ADDED: include Author in rotation
   ];
 
   let pIndex = 0, ch = 0, deleting = false;
@@ -43,9 +45,29 @@ document.addEventListener('DOMContentLoaded', () => {
     viewProjects.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector('#projects');
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // announce for screen reader
-      target && target.setAttribute('tabindex', '-1') && target.focus();
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ensure focus (separate calls so focus actually runs)
+        target.setAttribute('tabindex', '-1');
+        try { target.focus(); } catch (err) {}
+        // remove tabindex after short delay to keep DOM tidy
+        setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
+      }
+    });
+  }
+
+  // NEW: smooth scroll + focus for the book link (keeps things accessible)
+  const bookLink = document.getElementById('book-link');
+  if (bookLink) {
+    bookLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector('#book-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.setAttribute('tabindex', '-1');
+        try { target.focus({ preventScroll: true }); } catch (err) {}
+        setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
+      }
     });
   }
 
@@ -55,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.querySelector('.video-close');
 
   let lastFocused = null;
+
+  // container for elements we temporarily change tabindex for
+  const pageTabbables = [];
 
   function openModal(src) {
     if (!modal || !videoFrame) return;
@@ -74,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // trap focus
     disablePageTabbing();
     if (closeBtn) closeBtn.focus();
-    // announce
+    // announce (assistive tech)
     modal.setAttribute('aria-live', 'polite');
   }
 
@@ -91,20 +116,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // disable tabbing outside modal
-  const pageTabbables = [];
   function disablePageTabbing() {
     const nodes = document.querySelectorAll('a, button, input, textarea, select, [tabindex]');
     nodes.forEach(n => {
+      // skip nodes inside modal
       if (modal && modal.contains(n)) return;
-      const prev = n.getAttribute('tabindex');
+      // skip elements that are inert or already hidden
+      if (n.getAttribute('aria-hidden') === 'true') return;
+      const prev = n.getAttribute('tabindex'); // null if not present
       pageTabbables.push({ node: n, prev });
-      n.setAttribute('tabindex', '-1');
+      try { n.setAttribute('tabindex', '-1'); } catch(e) {}
     });
   }
   function restorePageTabbing() {
     pageTabbables.forEach(({ node, prev }) => {
-      if (prev === null) node.removeAttribute('tabindex');
-      else node.setAttribute('tabindex', prev);
+      try {
+        if (prev === null) node.removeAttribute('tabindex');
+        else node.setAttribute('tabindex', prev);
+      } catch(e) {}
     });
     pageTabbables.length = 0;
   }
@@ -124,7 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', (e) => { 
+    if (e.key === 'Escape') {
+      // only close if modal is visible
+      if (modal && modal.getAttribute('aria-hidden') === 'false') closeModal();
+    }
+  });
 
   // ensure Enter/Space on project rows triggers repo open
   document.querySelectorAll('.proj').forEach(proj => {
@@ -239,8 +273,10 @@ if (viewCertificates) {
         block: 'start'
       });
       target.setAttribute('tabindex', '-1');
-      target.focus();
+      try { target.focus(); } catch (err) {}
+      setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
     }
   });
 }
+
 

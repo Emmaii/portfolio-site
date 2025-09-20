@@ -1,6 +1,6 @@
 // script.js — typed headline, smooth scroll, demo modal, keyboard & copy helpers
 // All original behaviour preserved; added modal focus-trap + aria announcements + robust cleanup,
-// plus "Author" in rotation and book-link smooth-scroll + focus.
+// include "Author" in rotation, book-link smooth scroll and Notify CTA wiring.
 
 document.addEventListener('DOMContentLoaded', () => {
   // typed headline (rotating phrases)
@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "hi I'm Emmanuel,",
     "A Prompt Engineer",
     "AI Prototyper",
-    "Author",
-    "LLM Integration Specialist"// ADDED: include Author in rotation
+    "LLM Integration Specialist",
+    "Author" // ADDED: include Author in rotation
   ];
 
   let pIndex = 0, ch = 0, deleting = false;
@@ -47,16 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector('#projects');
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // ensure focus (separate calls so focus actually runs)
         target.setAttribute('tabindex', '-1');
         try { target.focus(); } catch (err) {}
-        // remove tabindex after short delay to keep DOM tidy
         setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
       }
     });
   }
 
-  // NEW: smooth scroll + focus for the book link (keeps things accessible)
+  // smooth scroll + focus for the book link (accessible)
   const bookLink = document.getElementById('book-link');
   if (bookLink) {
     bookLink.addEventListener('click', (e) => {
@@ -77,8 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.querySelector('.video-close');
 
   let lastFocused = null;
-
-  // container for elements we temporarily change tabindex for
   const pageTabbables = [];
 
   function openModal(src) {
@@ -119,11 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function disablePageTabbing() {
     const nodes = document.querySelectorAll('a, button, input, textarea, select, [tabindex]');
     nodes.forEach(n => {
-      // skip nodes inside modal
       if (modal && modal.contains(n)) return;
-      // skip elements that are inert or already hidden
       if (n.getAttribute('aria-hidden') === 'true') return;
-      const prev = n.getAttribute('tabindex'); // null if not present
+      const prev = n.getAttribute('tabindex');
       pageTabbables.push({ node: n, prev });
       try { n.setAttribute('tabindex', '-1'); } catch(e) {}
     });
@@ -155,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { 
     if (e.key === 'Escape') {
-      // only close if modal is visible
       if (modal && modal.getAttribute('aria-hidden') === 'false') closeModal();
     }
   });
@@ -225,6 +218,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Notify button: open mailto and attempt to copy email to clipboard as a helpful fallback
+  document.querySelectorAll('.notify-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = btn.getAttribute('href');
+      const mail = 'emmaabusinesss@gmail.com';
+      // Try open mail client (this will usually open mail app)
+      try { window.location.href = href; } catch (err) {}
+      // Also attempt to copy email to clipboard for convenience
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(mail).then(() => {
+          showCopyFeedback('Email copied to clipboard');
+        }).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = mail;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showCopyFeedback('Email copied to clipboard');
+        } catch (err) {}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
   function showCopyFeedback(text = 'Copied') {
     if (!copyFeedback) return;
     copyFeedback.textContent = text;
@@ -278,5 +300,6 @@ if (viewCertificates) {
     }
   });
 }
+
 
 

@@ -60,6 +60,12 @@
           I can build small, testable LLM prototypes you can click right now.
         </p>
 
+        <!-- NEW (succinct author line) -->
+        <p class="subtitle extra-author" aria-hidden="false" style="margin-top:0.6rem;">
+          I’m also an <strong>author</strong> — currently preparing a short book on
+          <a href="#book-section" id="book-link">Building a mental health chatbot</a>.
+        </p>
+
         <!-- recruiter keywords kept minimal and relevant -->
         <div class="tech-badges" aria-hidden="true">
           <span class="chip">Prompt Engineering</span>
@@ -110,8 +116,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/mental-health-chatbot" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/mental-health-chatbot" target="_blank" rel="noopener noreferrer">Mental Health Chatbot</a>
-                <p class="proj-desc">Built a retrieval-augmented chat prototype with prompt templates, context-window management, and conversational memory.</p>
-                <p class="proj-mini">Safety guardrails and simple evaluation checks included.</p>
+                <p class="proj-desc">A retrieval-augmented chat prototype with prompt templates, context-window management, and conversational memory.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">FAISS</span>
@@ -133,8 +138,7 @@
             <article class="proj" tabindex="0" data-url="https://github.com/Emmaii/customer_churn_prediction_model_project" role="button" aria-pressed="false">
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/customer_churn_prediction_model_project" target="_blank" rel="noopener noreferrer">Customer Churn Model</a>
-                <p class="proj-desc">Created an exploratory churn pipeline: data preparation, feature exploration, and simple model testing.</p>
-                <p class="proj-mini">Produced customer segments and model-backed recommendations.</p>
+                <p class="proj-desc">Here is an exploratory churn pipeline: data preparation, feature exploration, and simple model testing.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">Pandas</span>
@@ -157,7 +161,6 @@
               <div class="proj-left">
                 <a class="proj-title" href="https://github.com/Emmaii/University-Math-Assistant-Bot" target="_blank" rel="noopener noreferrer">University Math Assistant Bot</a>
                 <p class="proj-desc">Designed instructional prompts for multi-step math solutions and automated worked examples.</p>
-                <p class="proj-mini">Integrated a lightweight tool chain for parsing math input and returning structured answers.</p>
                 <div class="proj-tech">
                   <span class="chip">Streamlit</span>
                   <span class="chip">SymPy</span>
@@ -200,6 +203,30 @@
                 </svg>
                 Resume
               </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW: Book panel (succinct, business-focused) -->
+        <div class="panel book-panel" id="book-section" aria-labelledby="book-heading" style="margin-top: 1.5rem;">
+          <div class="panel-head">
+            <h2 id="book-heading">Book — (Currently preparing)</h2>
+          </div>
+
+          <div class="book-content" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <div class="book-cover-wrap" style="flex:0 0 120px;">
+              <!-- You will add assets/book_cover.jpg in your repo -->
+              <img src="assets/book_cover.jpg" alt="Book cover — Building a mental health chatbot" class="book-cover" width="120" height="170" loading="lazy" decoding="async" style="border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,0.35);object-fit:cover;">
+            </div>
+
+            <div style="flex:1; min-width:0;">
+              <p style="margin:0 0 8px;color:var(--muted);font-weight:600;">
+                A good practical guide to creating your very own mental-health chat bot.
+              </p>
+
+              <p style="margin:0;color:var(--muted);font-size:0.95rem;">
+                Focus: straightforward and practical teachings.
+              </p>
             </div>
           </div>
         </div>
@@ -249,5 +276,3 @@
   <script src="script.js" defer></script>
 </body>
 </html>
-
-

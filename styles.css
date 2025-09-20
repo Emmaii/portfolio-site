@@ -668,4 +668,99 @@ html {
 html {
   scroll-padding-top: 20px;
 }
+/* ===========================
+   Additions — Book UI polish, truncation, micro-interactions
+   Paste this at the end of styles.css (no deletion required)
+   =========================== */
 
+/* Book panel polish */
+.book-panel {
+  border-left: 3px solid rgba(165,123,255,0.14);
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.book-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(2,6,18,0.36);
+  border-left-color: rgba(165,123,255,0.22);
+}
+
+/* Book cover image */
+.book-panel .book-cover {
+  width: 120px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 10px 26px rgba(2,6,18,0.45);
+  transition: transform .18s ease, box-shadow .18s ease;
+  display:block;
+}
+.book-panel .book-cover:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Compact book text */
+.book-panel p { margin: 0; color: var(--muted); line-height: 1.35; font-size: 0.98rem; }
+.book-panel .book-content { gap: 14px; align-items: center; }
+
+/* Optional small CTA inside book panel (use class .notify-btn on an <a> or <button>) */
+.book-panel .notify-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  background: linear-gradient(180deg, rgba(165,123,255,0.16), rgba(165,123,255,0.1));
+  border: 1px solid rgba(165,123,255,0.12);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.book-panel .notify-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(165,123,255,0.12); }
+.book-panel .notify-btn:focus { outline: 3px solid rgba(165,123,255,0.22); outline-offset: 3px; }
+
+/* Keep project descriptions short visually (clamp lines, still accessible) */
+.proj-desc, .proj-mini {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Desktop: show up to 3 lines; mobile: 2 */
+@media (min-width: 720px) {
+  .proj-desc { -webkit-line-clamp: 3; max-height: calc(1.5em * 3); }
+}
+@media (max-width: 719px) {
+  .proj-desc { -webkit-line-clamp: 2; max-height: calc(1.5em * 2); }
+}
+
+/* Slightly stronger contrast for chips on dark backgrounds */
+.chip { color: var(--muted); background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.04); }
+
+/* Project title micro-interaction */
+.proj-title { transition: color .12s ease, transform .12s ease; }
+.proj-title:hover { transform: translateY(-2px); color: var(--accent-2); text-decoration: none; }
+
+/* Give focusable interactive elements a consistent ring (visible for keyboard users) */
+a.btn:focus, .demo-btn:focus, .proj:focus, .contact-box:focus {
+  box-shadow: 0 0 0 6px rgba(165,123,255,0.08);
+  transform: translateY(-2px);
+}
+
+/* Stack book content nicely on narrow screens */
+@media (max-width: 720px) {
+  .book-content { flex-direction: column; align-items: center; text-align: center; }
+  .book-cover { width: 100px; height: 140px; }
+  .book-panel { padding: 12px; }
+}
+
+/* Small accessibility / print-friendly tweak */
+@media print {
+  .video-modal, .profile-pic, .demo-btn { display: none !important; }
+  body { background: #fff; color: #111; }
+}

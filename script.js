@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "hi I'm Emmanuel,",
     "A Prompt Engineer",
     "AI Prototyper",
-    "LLM Integration Specialist",
-    "Author" // ADDED: include Author in rotation
+    "Author",
+    "LLM Integration Specialist"// ADDED: include Author in rotation
   ];
 
   let pIndex = 0, ch = 0, deleting = false;

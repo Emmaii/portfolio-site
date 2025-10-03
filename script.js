@@ -1,179 +1,104 @@
-// script.js - Portfolio interactions and animations
-document.addEventListener('DOMContentLoaded', function() {
-    // Continuous typing animation for hero section
-    const typedEl = document.getElementById('typed');
-    if (typedEl) {
-        const phrases = [
-            "Mathematics Educator — Grade 1-12",
-            "GCSE & A-Level Specialist", 
-            "Curriculum Developer & Tutor",
-            "Exam-Focused Lesson Creator"
-        ];
-        
-        let pIndex = 0;
-        let ch = 0;
-        let deleting = false;
-        let typingPaused = false;
+// script.js — lightweight, looping typing, lazy-friendly interactions
+document.addEventListener('DOMContentLoaded', () => {
+  /* Typing animation: loops indefinitely, no pause-on-click */
+  const typedEl = document.getElementById('typed');
+  if (typedEl) {
+    const phrases = [
+      "Mathematics Educator — Grade 1-12",
+      "GCSE & A-Level Specialist",
+      "Curriculum Developer & Tutor",
+      "Prompt Engineering & EdTech"
+    ];
+    let pIndex = 0, ch = 0, deleting = false;
 
-        function typeAnimation() {
-            if (typingPaused || !typedEl) return;
-            
-            const fullText = phrases[pIndex];
-            
-            if (!deleting) {
-                // Typing forward
-                typedEl.textContent = fullText.slice(0, ch + 1);
-                ch++;
-                
-                if (ch === fullText.length) {
-                    // Pause at end of word
-                    deleting = true;
-                    setTimeout(typeAnimation, 1500);
-                    return;
-                }
-            } else {
-                // Deleting
-                typedEl.textContent = fullText.slice(0, ch - 1);
-                ch--;
-                
-                if (ch === 0) {
-                    deleting = false;
-                    pIndex = (pIndex + 1) % phrases.length;
-                }
-            }
-            
-            setTimeout(typeAnimation, deleting ? 40 : 70);
+    function tick() {
+      const full = phrases[pIndex];
+      if (!deleting) {
+        typedEl.textContent = full.slice(0, ch + 1);
+        ch++;
+        if (ch === full.length) {
+          deleting = true;
+          setTimeout(tick, 1000); // pause at full phrase
+          return;
         }
-        
-        // Start the animation
-        typeAnimation();
-        
-        // Pause typing when user interacts with important elements
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.btn') || e.target.closest('.contact-box')) {
-                typingPaused = true;
-                typedEl.textContent = "Mathematics Educator — Grade 1-12";
-            }
-        });
+      } else {
+        typedEl.textContent = full.slice(0, ch - 1);
+        ch--;
+        if (ch === 0) {
+          deleting = false;
+          pIndex = (pIndex + 1) % phrases.length;
+        }
+      }
+      setTimeout(tick, deleting ? 40 : 70);
     }
+    tick();
+  }
 
-    // Copy email to clipboard functionality
-    const copyEmailBtn = document.getElementById('copy-email');
-    if (copyEmailBtn) {
-        copyEmailBtn.addEventListener('click', async function(e) {
-            e.preventDefault();
-            const email = 'emmaabusinesss@gmail.com';
-            
-            try {
-                await navigator.clipboard.writeText(email);
-                showCopyFeedback('📧 Email copied to clipboard');
-            } catch (err) {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = email;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-999999px';
-                textArea.style.top = '-999999px';
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                
-                try {
-                    document.execCommand('copy');
-                    showCopyFeedback('📧 Email copied to clipboard');
-                } catch (err) {
-                    showCopyFeedback('❌ Copy failed - please copy manually');
-                }
-                
-                document.body.removeChild(textArea);
-            }
-        });
-    }
-
-    // Copy feedback notification
-    function showCopyFeedback(message) {
-        const feedbackEl = document.getElementById('copy-feedback');
-        if (!feedbackEl) return;
-        
-        feedbackEl.textContent = message;
-        feedbackEl.classList.add('show');
-        
-        // Announce to screen readers
-        const srAnnouncement = document.createElement('div');
-        srAnnouncement.setAttribute('aria-live', 'polite');
-        srAnnouncement.className = 'sr-only';
-        srAnnouncement.textContent = message;
-        document.body.appendChild(srAnnouncement);
-        
-        setTimeout(() => {
-            feedbackEl.classList.remove('show');
-            document.body.removeChild(srAnnouncement);
-        }, 3000);
-    }
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+  /* Copy email to clipboard */
+  const copyEmail = document.getElementById('copy-email');
+  if (copyEmail) {
+    copyEmail.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const mail = 'emmaabusinesss@gmail.com';
+      try {
+        await navigator.clipboard.writeText(mail);
+        showCopyFeedback('📧 Email copied to clipboard');
+      } catch (err) {
+        // fallback: open mail client
+        window.location.href = `mailto:${mail}?subject=Teaching%20Inquiry`;
+      }
     });
+  }
 
-    // Project card click interactions
-    document.querySelectorAll('.proj[data-url]').forEach(project => {
-        project.addEventListener('click', function(e) {
-            if (e.target.closest('a') || e.target.closest('button')) return;
-            
-            const url = this.getAttribute('data-url');
-            if (url) {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
-        });
-        
-        // Keyboard accessibility
-        project.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const url = this.getAttribute('data-url');
-                if (url) {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                }
-            }
-        });
+  /* Show copy feedback (SR-friendly) */
+  const fb = document.getElementById('copy-feedback');
+  function showCopyFeedback(msg) {
+    if (!fb) return;
+    fb.textContent = msg;
+    fb.classList.add('show');
+    fb.style.display = 'flex';
+    const sr = document.createElement('div');
+    sr.className = 'sr-only';
+    sr.setAttribute('aria-live', 'polite');
+    sr.textContent = msg;
+    document.body.appendChild(sr);
+    setTimeout(() => {
+      fb.classList.remove('show');
+      fb.style.display = 'none';
+      document.body.removeChild(sr);
+    }, 2600);
+  }
+
+  // Light button loading state — short, non-blocking
+  document.querySelectorAll('.btn[href], .btn-download[href]').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      if (!this.href || this.href.startsWith('#')) return;
+      const original = this.innerHTML;
+      this.innerHTML = '⏳ Loading...';
+      this.style.opacity = '0.85';
+      setTimeout(() => {
+        this.innerHTML = original;
+        this.style.opacity = '1';
+      }, 900);
     });
+  });
 
-    // Loading states for buttons
-    document.querySelectorAll('.btn[href], .btn-download[href]').forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (!this.href || this.href.startsWith('#')) return;
-            
-            const originalHtml = this.innerHTML;
-            this.innerHTML = '⏳ Loading...';
-            this.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                this.innerHTML = originalHtml;
-                this.style.opacity = '1';
-            }, 1500);
-        });
+  // Minimal IntersectionObserver for the few project cards (keeps paint cost low)
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'translateY(0)';
+          obs.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.proj').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(10px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      io.observe(el);
     });
-
-    // Mobile menu toggle (if needed in future)
-    let mobileMenuToggler = null;
-    
-    function initMobileMenu() {
-        // This can be expanded if you add a navigation menu later
-        console.log('Mobile menu ready for future implementation');
-    }
-
-    // Initialize all functionality
-    initMobileMenu();
-    
-    console.log('Portfolio website loaded successfully!');
+  }
 });

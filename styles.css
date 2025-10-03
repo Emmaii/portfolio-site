@@ -1,4 +1,4 @@
-/* styles.css — CTA sizing + mobile alignment tweaks included */
+/* styles.css — Dark glassmorphic, mobile consistency fixed */
 
 :root{
   --bg-1:#07040a;
@@ -9,8 +9,8 @@
   --accent-2:#6ee7b7;
   --cta-primary:#10b981;
   --cta-primary-hover:#059669;
-  --card-bg:rgba(255,255,255,0.02);
-  --glass-border:rgba(255,255,255,0.03);
+  --card-bg:rgba(20,20,28,0.85);   /* <<< CHANGED: darker, more solid */
+  --glass-border:rgba(255,255,255,0.05); /* more visible edge */
   --radius:12px;
   --max-width:1200px;
   --right-width:380px;
@@ -24,7 +24,17 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .container{width:100%;max-width:clamp(720px,92vw,var(--max-width));margin:0 auto}
 
 /* Card */
-.card{display:grid;grid-template-columns:1fr;gap:var(--gap);background:linear-gradient(180deg,var(--card-bg),rgba(255,255,255,0.01));padding:clamp(14px,2vw,24px);border-radius:var(--radius);border:1px solid var(--glass-border);box-shadow:0 8px 22px rgba(2,6,18,0.28);backdrop-filter:blur(6px)}
+.card{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--gap);
+  background:var(--card-bg); /* <<< more opaque glass effect */
+  padding:clamp(14px,2vw,24px);
+  border-radius:var(--radius);
+  border:1px solid var(--glass-border);
+  box-shadow:0 8px 22px rgba(2,6,18,0.28);
+  backdrop-filter:blur(6px)
+}
 
 /* Hero grid */
 .hero-grid{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start}
@@ -42,37 +52,49 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .subtitle{color:var(--muted);margin:10px 0 14px;font-size:15px}
 
 /* Credentials area */
-.credentials{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0;padding:8px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+.credentials{
+  display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;align-items:center;
+  margin:8px 0;padding:8px;border-radius:10px;
+  background:rgba(255,255,255,0.015); /* <<< faint, blends into card */
+  border:1px solid rgba(255,255,255,0.03)
+}
 .credential-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
 .credential-item strong{color:var(--text);font-weight:700}
 .credential-item.badge{background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.02);color:var(--text)}
 
-/* CTAs: cta-row ensures both items same visual size (middle length) */
+/* CTAs */
 .ctas{display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .cta-row{display:flex;gap:12px;align-items:center;justify-content:flex-start;flex-wrap:wrap}
 .cta-item{flex:0 1 280px;min-width:220px;max-width:320px;display:inline-flex;align-items:center;justify-content:center}
 
-/* buttons */
+/* Buttons */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);text-decoration:none;cursor:pointer;font-weight:600;font-size:14px;transition:transform .18s ease,opacity .18s ease}
 .btn.primary{background:linear-gradient(135deg,var(--cta-primary),var(--cta-primary-hover));color:#fff;border-color:rgba(16,185,129,0.2);box-shadow:0 8px 18px rgba(16,185,129,0.08)}
 .btn.primary:hover{transform:translateY(-3px)}
 .btn.secondary{background:linear-gradient(135deg,rgba(165,123,255,0.08),rgba(165,123,255,0.04))}
 
-/* contact box styled to look like a button but share CTA size */
-.contact-box{display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:inherit}
+/* Contact box */
+.contact-box{display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:inherit}
 .contact-box:hover{transform:translateY(-2px)}
 .response-time{font-size:12px;color:var(--muted)}
 
 /* Right panel */
-.panel{width:100%;border-radius:12px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,0.005),rgba(255,255,255,0.002));border:1px solid rgba(255,255,255,0.02);backdrop-filter:blur(4px)}
-@media(min-width:900px){.card{grid-template-columns:1fr var(--right-width);gap:28px}.panel{position:sticky;top:26px;height:calc(100vh - 52px);overflow-y:auto;padding-right:10px}}
+.panel{
+  width:100%;border-radius:12px;padding:16px;
+  background:rgba(255,255,255,0.01); /* <<< faint, so it merges into darker card */
+  border:1px solid rgba(255,255,255,0.02);
+  backdrop-filter:blur(4px)
+}
+@media(min-width:900px){
+  .card{grid-template-columns:1fr var(--right-width);gap:28px}
+  .panel{position:sticky;top:26px;height:calc(100vh - 52px);overflow-y:auto;padding-right:10px}
+}
 
 /* Projects */
 .projects-list{display:grid;gap:14px}
-.proj{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.005);border:1px solid rgba(255,255,255,0.02);transition:transform .18s ease,box-shadow .18s ease}
+.proj{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.012);border:1px solid rgba(255,255,255,0.02);transition:transform .18s ease,box-shadow .18s ease}
 .proj:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(2,8,30,0.28);border-color:rgba(255,255,255,0.06)}
-.proj.featured{border-left:4px solid var(--accent);padding-left:12px;background:rgba(139,92,246,0.02)}
-.proj-badge{position:absolute;top:-8px;left:14px;background:var(--accent);color:#fff;padding:4px 10px;border-radius:18px;font-size:11px;font-weight:700;text-transform:uppercase}
+.proj.featured{border-left:4px solid var(--accent);padding-left:12px;background:rgba(139,92,246,0.04)}
 .proj-left{flex:1 1 auto;min-width:0}
 .proj-title{color:var(--text);font-weight:700;margin-bottom:8px;font-size:15px}
 .proj-desc{color:var(--muted);margin:6px 0;font-size:14px;line-height:1.45}

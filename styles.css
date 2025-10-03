@@ -1,4 +1,4 @@
-/* styles.css — refined: precise mobile alignment, removed worksheet area, compact book size */
+/* styles.css — CTA sizing + mobile alignment tweaks included */
 
 :root{
   --bg-1:#07040a;
@@ -47,15 +47,19 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .credential-item strong{color:var(--text);font-weight:700}
 .credential-item.badge{background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.02);color:var(--text)}
 
-/* CTAs: desktop stacked, mobile centered and full-width for consistent alignment */
+/* CTAs: cta-row ensures both items same visual size (middle length) */
 .ctas{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.cta-row{display:flex;gap:12px;align-items:center;justify-content:flex-start;flex-wrap:wrap}
+.cta-item{flex:0 1 280px;min-width:220px;max-width:320px;display:inline-flex;align-items:center;justify-content:center}
+
+/* buttons */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);text-decoration:none;cursor:pointer;font-weight:600;font-size:14px;transition:transform .18s ease,opacity .18s ease}
 .btn.primary{background:linear-gradient(135deg,var(--cta-primary),var(--cta-primary-hover));color:#fff;border-color:rgba(16,185,129,0.2);box-shadow:0 8px 18px rgba(16,185,129,0.08)}
 .btn.primary:hover{transform:translateY(-3px)}
 .btn.secondary{background:linear-gradient(135deg,rgba(165,123,255,0.08),rgba(165,123,255,0.04))}
 
-.contact-actions{display:flex;flex-direction:column;gap:8px}
-.contact-box{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:inherit}
+/* contact box styled to look like a button but share CTA size */
+.contact-box{display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:inherit}
 .contact-box:hover{transform:translateY(-2px)}
 .response-time{font-size:12px;color:var(--muted)}
 
@@ -73,11 +77,11 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .proj-title{color:var(--text);font-weight:700;margin-bottom:8px;font-size:15px}
 .proj-desc{color:var(--muted);margin:6px 0;font-size:14px;line-height:1.45}
 
-/* Embedded video (responsive) */
+/* Video */
 .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:12px 0;border-radius:10px}
 .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:10px}
 
-/* Book display (compact) */
+/* Book */
 .book-display{display:flex;flex-direction:column;gap:12px;align-items:flex-start;margin:12px 0}
 .book-cover{width:160px;max-width:40%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,0.25)}
 .book-features{display:flex;flex-direction:column;gap:8px;margin-left:8px}
@@ -102,7 +106,7 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .copy-feedback.show{display:flex;align-items:center;gap:8px;animation:slideUp .28s ease}
 @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
-/* Mobile alignment fixes — ensures CV button and email box align and are same width */
+/* Mobile alignment: CTA items same width and centered */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:16px;text-align:center}
   .hero-media{align-items:center}
@@ -111,7 +115,8 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
   .book-cover{width:150px}
   .credentials{justify-content:center}
   .ctas{align-items:center}
-  .btn, .contact-box { width: 100%; max-width: 340px; display: inline-flex; justify-content:center; margin: 0 auto; }
+  .cta-row{justify-content:center}
+  .cta-item{width:100%;max-width:360px;flex:0 1 100%}
 }
 
 /* Very small screens */

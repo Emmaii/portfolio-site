@@ -1,6 +1,6 @@
-// script.js - refined interactions for hire-focused portfolio
+// script.js - updated to loop typing indefinitely and simplified interactions
 document.addEventListener('DOMContentLoaded', () => {
-  // Typed headline
+  // Typing headline — loops indefinitely without pausing on click
   const typedEl = document.getElementById('typed');
   const phrases = [
     "Mathematics Educator — Grade 1-12",
@@ -8,49 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
     "Curriculum Developer & Tutor",
     "Exam-Focused Lesson Creator"
   ];
-  let pIndex = 0, ch = 0, deleting = false, paused = false;
+  let pIndex = 0, ch = 0, deleting = false;
 
   function tick(){
-    if (!typedEl || paused) return;
+    if (!typedEl) return;
     const full = phrases[pIndex];
     if (!deleting){
       typedEl.textContent = full.slice(0, ch + 1);
       ch++;
-      if (ch === full.length){ deleting = true; setTimeout(tick, 1200); return; }
+      if (ch === full.length){
+        deleting = true;
+        setTimeout(tick, 1000);
+        return;
+      }
     } else {
       typedEl.textContent = full.slice(0, ch - 1);
       ch--;
-      if (ch === 0){ deleting = false; pIndex = (pIndex + 1) % phrases.length; }
+      if (ch === 0){
+        deleting = false;
+        pIndex = (pIndex + 1) % phrases.length;
+      }
     }
     setTimeout(tick, deleting ? 40 : 70);
   }
-  // Pause typing when user clicks anywhere (keeps UX stable)
-  document.addEventListener('click', () => { if (!paused){ paused = true; typedEl.textContent = "Mathematics Educator — Grade 1-12"; }});
   tick();
-
-  // Copy plain CV to clipboard
-  const copyCvBtn = document.getElementById('copy-cv');
-  if (copyCvBtn){
-    copyCvBtn.addEventListener('click', async () => {
-      const pre = document.getElementById('plain-cv');
-      if (!pre) return;
-      const text = pre.textContent.trim();
-      try {
-        await navigator.clipboard.writeText(text);
-        showCopyFeedback('✅ CV text copied — paste into application forms');
-      } catch (err) {
-        // fallback
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed'; ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); showCopyFeedback('✅ CV text copied (fallback)'); }
-        catch { showCopyFeedback('❌ Copy failed — select & copy manually'); }
-        document.body.removeChild(ta);
-      }
-    });
-  }
 
   // Copy email to clipboard
   const copyEmail = document.getElementById('copy-email');
@@ -67,27 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Copy feedback UI & SR announcement
-  const copyFeedback = document.getElementById('copy-feedback');
-  function showCopyFeedback(msg = 'Copied to clipboard'){
-    if (!copyFeedback) return;
-    copyFeedback.textContent = msg;
-    copyFeedback.classList.add('show');
-    copyFeedback.style.display = 'flex';
-    // screen reader announcement
-    const sr = document.createElement('div');
-    sr.setAttribute('aria-live','polite');
-    sr.className = 'sr-only';
-    sr.textContent = msg;
-    document.body.appendChild(sr);
-    setTimeout(() => {
-      copyFeedback.classList.remove('show');
-      copyFeedback.style.display = 'none';
-      document.body.removeChild(sr);
-    }, 2800);
-  }
-
-  // Project card interactions (open data-url)
+  // Single project interactions (open links)
   document.querySelectorAll('.proj').forEach(proj => {
     proj.addEventListener('click', (e) => {
       if (e.target.closest('a') || e.target.closest('button')) return;
@@ -103,43 +64,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // IntersectionObserver: subtle reveal
+  // View Live Demo action — opens a small prompt that enables you to email for demo access
+  const viewLive = document.getElementById('view-live');
+  if (viewLive){
+    viewLive.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ok = confirm('Request access to the live demo? Click OK to open your email client.');
+      if (ok) window.location.href = 'mailto:emmaabusinesss@gmail.com?subject=Live%20Demo%20Request';
+    });
+  }
+
+  // IntersectionObserver: subtle reveal for the lone card
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(en => {
-        if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'translateY(0)'; obs.unobserve(en.target); }
+        if (en.isIntersecting) {
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'translateY(0)';
+          obs.unobserve(en.target);
+        }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
     document.querySelectorAll('.proj').forEach(el => {
-      el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       io.observe(el);
     });
   }
 
-  // Outbound link click log (placeholder for analytics)
-  document.querySelectorAll('a[target="_blank"]').forEach(a => {
-    a.addEventListener('click', () => { console.log('Outbound link:', a.href); });
-  });
+  // Copy feedback UI
+  const copyFeedback = document.getElementById('copy-feedback');
+  function showCopyFeedback(msg = 'Copied to clipboard'){
+    if (!copyFeedback) return;
+    copyFeedback.textContent = msg;
+    copyFeedback.classList.add('show');
+    copyFeedback.style.display = 'flex';
+    const sr = document.createElement('div');
+    sr.setAttribute('aria-live','polite');
+    sr.className = 'sr-only';
+    sr.textContent = msg;
+    document.body.appendChild(sr);
+    setTimeout(() => {
+      copyFeedback.classList.remove('show');
+      copyFeedback.style.display = 'none';
+      document.body.removeChild(sr);
+    }, 2600);
+  }
 
-  // Minimal loading state for buttons (prevents double-click confusion)
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function(e){
-      if (this.href && !this.href.startsWith('#') && !this.classList.contains('btn-download')) {
-        const original = this.innerHTML;
-        this.innerHTML = '⏳ Loading...';
-        setTimeout(() => { this.innerHTML = original; }, 1200);
-      }
-    });
-  });
-
-  // simple resize debounce placeholder
-  let resizeTimer;
-  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(()=>{}, 250); });
+  // Add tiny accessibility helper style for SR only nodes
+  const style = document.createElement('style');
+  style.textContent = `.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}`;
+  document.head.appendChild(style);
 });
-
-// SR utility CSS injection
-const style = document.createElement('style');
-style.textContent = `
-  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-`;
-document.head.appendChild(style);

@@ -1,90 +1,71 @@
-// script.js — typed headline, smooth scroll, demo modal, keyboard & copy helpers
+// script.js — Enhanced for tutoring business conversion
 
 document.addEventListener('DOMContentLoaded', () => {
-  // typed headline (rotating phrases)
+  // Enhanced typed headline with teaching focus
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
   const phrases = [
-  "Emmanuel Silas Kelechi",
-  "Mathematics Educator",
-  "A-Level & GCSE Tutor",
-  "EdTech Innovator",
-  "Creator — Math Assistant Bot"
-];
+    "Transform Maths Anxiety into Confidence",
+    "GCSE & A-Level Specialist",
+    "5-Minute Lesson Expert", 
+    "EdTech Innovator",
+    "Book Your Free Trial Lesson"
+  ];
 
-  let pIndex = 0, ch = 0, deleting = false;
+  let pIndex = 0, ch = 0, deleting = false, typingPaused = false;
 
   function tick() {
-    if (!typedEl) return;
+    if (!typedEl || typingPaused) return;
     const full = phrases[pIndex];
     if (!deleting) {
       typedEl.textContent = full.slice(0, ch + 1);
       ch++;
-      if (ch === full.length) { deleting = true; setTimeout(tick, 900); return; }
+      if (ch === full.length) { 
+        deleting = true; 
+        setTimeout(tick, 1500); // Longer pause at full phrase
+        return; 
+      }
     } else {
       typedEl.textContent = full.slice(0, ch - 1);
       ch--;
-      if (ch === 0) { deleting = false; pIndex = (pIndex + 1) % phrases.length; }
+      if (ch === 0) { 
+        deleting = false; 
+        pIndex = (pIndex + 1) % phrases.length; 
+      }
     }
-    setTimeout(tick, deleting ? 45 : 75);
+    setTimeout(tick, deleting ? 40 : 70);
   }
+
+  // Pause typing when user interacts
+  document.addEventListener('click', () => { typingPaused = true; });
   tick();
 
-  // smooth scroll for "View projects"
+  // Enhanced smooth scroll with offset for fixed headers
   const viewProjects = document.getElementById('view-projects');
   if (viewProjects) {
     viewProjects.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector('#projects');
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }
-
-  // video modal
-  const modal = document.getElementById('video-modal');
-  const videoFrame = document.getElementById('video-frame');
-  const closeBtn = document.querySelector('.video-close');
-
-  function openModal(src) {
-    if (!modal || !videoFrame) return;
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.title = 'Project demo';
-    videoFrame.innerHTML = '';
-    videoFrame.appendChild(iframe);
-    modal.setAttribute('aria-hidden', 'false');
-    document.documentElement.style.overflow = 'hidden';
-    if (closeBtn) closeBtn.focus();
-  }
-
-  function closeModal() {
-    if (!modal || !videoFrame) return;
-    modal.setAttribute('aria-hidden', 'true');
-    videoFrame.innerHTML = ''; // remove iframe to stop playback
-    document.documentElement.style.overflow = '';
-  }
-
-  document.querySelectorAll('.demo-btn').forEach(btn => {
-    btn.addEventListener('click', (ev) => {
-      // If it's a button with data-video-src, open modal
-      const src = btn.getAttribute('data-video-src');
-      if (src && btn.tagName.toLowerCase() === 'button') {
-        ev.preventDefault();
-        openModal(src);
-        return;
+      if (target) {
+        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 20;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
       }
-      // For anchor links (<a>), let default behavior happen (they open in new tab).
     });
-  });
+  }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-  // keyboard support: Enter on project row opens project (data-url)
+  // Enhanced project card interactions
   document.querySelectorAll('.proj').forEach(proj => {
+    // Click to open main link if available
+    proj.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      
+      const url = proj.getAttribute('data-url');
+      if (url) {
+        window.open(url, '_blank', 'noopener');
+      }
+    });
+
+    // Keyboard navigation
     proj.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -92,33 +73,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (url) window.open(url, '_blank', 'noopener');
       }
     });
-    // also support click to open the main repo page if user clicks the card but not the internal buttons/links
-    proj.addEventListener('click', (e) => {
-      // don't trigger when clicking on interactive elements inside card
-      const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
-      if (interactiveTags.includes(e.target.tagName)) return;
-      const url = proj.getAttribute('data-url');
-      if (url) window.open(url, '_blank', 'noopener');
-    });
   });
 
-  // contact email: copy to clipboard helper + feedback
+  // Enhanced email copy with better UX
   const contactEmail = document.getElementById('contact-email');
   const copyFeedback = document.getElementById('copy-feedback');
+  
   if (contactEmail) {
     contactEmail.addEventListener('click', (e) => {
-      // if it's a mailto link, both copy and allow mail client if user holds modifier
       e.preventDefault();
       const mail = 'emmaabusinesss@gmail.com';
+      
+      // Enhanced copy with fallback
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(mail).then(() => {
-          showCopyFeedback('Email copied to clipboard');
+          showCopyFeedback('📧 Email copied! Ready to help with maths questions.');
         }).catch(() => {
-          // fallback: open mailto if clipboard fails
-          window.location.href = 'mailto:' + mail;
+          window.location.href = 'mailto:' + mail + '?subject=Maths%20Tutoring%20Inquiry&body=Hi%20Emmanuel,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20learn%20more%20about%20your%20tutoring.';
         });
       } else {
-        // fallback using a temporary textarea
+        // Fallback with textarea
         const ta = document.createElement('textarea');
         ta.value = mail;
         ta.style.position = 'fixed';
@@ -127,9 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ta.select();
         try {
           document.execCommand('copy');
-          showCopyFeedback('Email copied to clipboard');
+          showCopyFeedback('📧 Email copied! Ready to help with maths questions.');
         } catch (err) {
-          window.location.href = 'mailto:' + mail;
+          window.location.href = 'mailto:' + mail + '?subject=Maths%20Tutoring%20Inquiry&body=Hi%20Emmanuel,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20learn%20more%20about%20your%20tutoring.';
         }
         document.body.removeChild(ta);
       }
@@ -143,21 +117,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-function showCopyFeedback(text = 'Copied') {
-  if (!copyFeedback) return;
-  copyFeedback.textContent = text;
-  copyFeedback.classList.add('show');
-  copyFeedback.setAttribute('role', 'status');   // announce to screen readers
-  setTimeout(() => { 
-    copyFeedback.classList.remove('show'); 
-  }, 2000);
-}
+  function showCopyFeedback(text = 'Copied!') {
+    if (!copyFeedback) return;
+    copyFeedback.textContent = text;
+    copyFeedback.classList.add('show');
+    copyFeedback.setAttribute('role', 'status');
+    
+    // Enhanced screen reader announcement
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('class', 'sr-only');
+    announcement.textContent = text;
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => { 
+      copyFeedback.classList.remove('show');
+      document.body.removeChild(announcement);
+    }, 3000);
+  }
 
+  // Track outbound links for analytics (placeholder)
+  document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Here you would send to Google Analytics
+      console.log('Outbound link clicked:', link.href);
+    });
+  });
 
-  // small performance helper: debounce window resize (placeholder)
-  let resizeTimer = null;
+  // Performance optimization
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { resizeTimer = null; }, 120);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Recalculate any layout-dependent values
+    }, 250);
+  });
+
+  // Add loading state for buttons
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      if (this.href && !this.href.startsWith('#')) {
+        const originalText = this.innerHTML;
+        this.innerHTML = '🎯 Loading...';
+        setTimeout(() => {
+          this.innerHTML = originalText;
+        }, 1500);
+      }
+    });
   });
 });
+
+// Add intersection observer for animations (optional enhancement)
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  });
+
+  document.querySelectorAll('.proj').forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    observer.observe(card);
+  });
+}

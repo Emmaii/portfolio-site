@@ -1,4 +1,4 @@
-/* styles.css — refined: formal layout, consistent background, performance-friendly */
+/* styles.css — refined: precise mobile alignment, removed worksheet area, compact book size */
 
 :root{
   --bg-1:#07040a;
@@ -47,7 +47,7 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .credential-item strong{color:var(--text);font-weight:700}
 .credential-item.badge{background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.02);color:var(--text)}
 
-/* CTAs */
+/* CTAs: desktop stacked, mobile centered and full-width for consistent alignment */
 .ctas{display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);text-decoration:none;cursor:pointer;font-weight:600;font-size:14px;transition:transform .18s ease,opacity .18s ease}
 .btn.primary{background:linear-gradient(135deg,var(--cta-primary),var(--cta-primary-hover));color:#fff;border-color:rgba(16,185,129,0.2);box-shadow:0 8px 18px rgba(16,185,129,0.08)}
@@ -102,7 +102,7 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
 .copy-feedback.show{display:flex;align-items:center;gap:8px;animation:slideUp .28s ease}
 @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
-/* Responsive adjustments */
+/* Mobile alignment fixes — ensures CV button and email box align and are same width */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:16px;text-align:center}
   .hero-media{align-items:center}
@@ -110,7 +110,11 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
   .book-display{align-items:center}
   .book-cover{width:150px}
   .credentials{justify-content:center}
+  .ctas{align-items:center}
+  .btn, .contact-box { width: 100%; max-width: 340px; display: inline-flex; justify-content:center; margin: 0 auto; }
 }
+
+/* Very small screens */
 @media(max-width:468px){
   .proj-actions{flex-direction:column;align-items:stretch}
   .btn, .btn-download{width:100%}

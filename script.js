@@ -1,30 +1,28 @@
-// script.js — typed headline, smooth scroll, demo modal, keyboard & copy helpers
-// All original behaviour preserved; added modal focus-trap + aria announcements + robust cleanup,
-// include "Author" in rotation, book-link smooth scroll and Notify CTA wiring.
+// script.js - Enhanced for Mathematics Educator Portfolio
 
 document.addEventListener('DOMContentLoaded', () => {
-  // typed headline (rotating phrases)
+  // Enhanced typed headline with teaching focus
   const typedEl = document.getElementById('typed');
   const cursorEl = document.querySelector('.cursor');
   const phrases = [
-    "hi I'm Emmanuel,",
-    "A Prompt Engineer",
-    "AI Prototyper",
-    "Author",
-    "LLM Integration Specialist" // ADDED: include Author in rotation
+    "Mathematics Educator — Grade 1-12",
+    "GCSE & A-Level Specialist", 
+    "Curriculum Developer & Tutor",
+    "Available for Teaching Roles",
+    "Exam-Focused Lesson Creator"
   ];
 
-  let pIndex = 0, ch = 0, deleting = false;
-  // Slightly refined timing: type slower, delete a bit quicker
+  let pIndex = 0, ch = 0, deleting = false, typingPaused = false;
+
   function tick() {
-    if (!typedEl) return;
+    if (!typedEl || typingPaused) return;
     const full = phrases[pIndex];
     if (!deleting) {
       typedEl.textContent = full.slice(0, ch + 1);
       ch++;
       if (ch === full.length) { 
         deleting = true; 
-        setTimeout(tick, 1300); 
+        setTimeout(tick, 1500); // Longer pause at full phrase
         return; 
       }
     } else {
@@ -35,126 +33,114 @@ document.addEventListener('DOMContentLoaded', () => {
         pIndex = (pIndex + 1) % phrases.length; 
       }
     }
-    setTimeout(tick, deleting ? 45 : 85);
+    setTimeout(tick, deleting ? 40 : 70);
   }
-  setTimeout(tick, 500);
 
-  // smooth scroll for "View projects"
+  // Pause typing when user interacts with important elements
+  document.addEventListener('click', () => { 
+    if (!typingPaused) {
+      typingPaused = true;
+      if (typedEl) typedEl.textContent = "Mathematics Educator — Grade 1-12, GCSE & A-Level";
+    }
+  });
+  
+  tick();
+
+  // Enhanced smooth scroll with offset for fixed headers
   const viewProjects = document.getElementById('view-projects');
   if (viewProjects) {
     viewProjects.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector('#projects');
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        target.setAttribute('tabindex', '-1');
-        try { target.focus(); } catch (err) {}
-        setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
+        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 20;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
       }
     });
   }
 
-  // smooth scroll + focus for the book link (accessible)
-  const bookLink = document.getElementById('book-link');
-  if (bookLink) {
-    bookLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector('#book-section');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        target.setAttribute('tabindex', '-1');
-        try { target.focus({ preventScroll: true }); } catch (err) {}
-        setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
-      }
-    });
-  }
-
-  // video modal: improved focus trap and robust cleanup
-  const modal = document.getElementById('video-modal');
-  const videoFrame = document.getElementById('video-frame');
-  const closeBtn = document.querySelector('.video-close');
-
-  let lastFocused = null;
-  const pageTabbables = [];
-
-  function openModal(src) {
-    if (!modal || !videoFrame) return;
-    lastFocused = document.activeElement;
-    // create iframe safely
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.title = 'Project demo';
-    iframe.setAttribute('loading', 'lazy');
-    videoFrame.innerHTML = '';
-    videoFrame.appendChild(iframe);
-    modal.setAttribute('aria-hidden', 'false');
-    modal.style.display = 'flex';
-    document.documentElement.style.overflow = 'hidden';
-    // trap focus
-    disablePageTabbing();
-    if (closeBtn) closeBtn.focus();
-    // announce (assistive tech)
-    modal.setAttribute('aria-live', 'polite');
-  }
-
-  function closeModal() {
-    if (!modal || !videoFrame) return;
-    modal.setAttribute('aria-hidden', 'true');
-    modal.style.display = 'none';
-    // remove iframe to stop playback
-    videoFrame.innerHTML = '';
-    document.documentElement.style.overflow = '';
-    restorePageTabbing();
-    // return focus
-    try { lastFocused && lastFocused.focus(); } catch (e) {}
-  }
-
-  // disable tabbing outside modal
-  function disablePageTabbing() {
-    const nodes = document.querySelectorAll('a, button, input, textarea, select, [tabindex]');
-    nodes.forEach(n => {
-      if (modal && modal.contains(n)) return;
-      if (n.getAttribute('aria-hidden') === 'true') return;
-      const prev = n.getAttribute('tabindex');
-      pageTabbables.push({ node: n, prev });
-      try { n.setAttribute('tabindex', '-1'); } catch(e) {}
-    });
-  }
-  function restorePageTabbing() {
-    pageTabbables.forEach(({ node, prev }) => {
+  // Copy plain CV to clipboard (for Indeed and application forms)
+  const copyCvBtn = document.getElementById('copy-cv');
+  if (copyCvBtn) {
+    copyCvBtn.addEventListener('click', async () => {
+      const pre = document.getElementById('plain-cv');
+      if (!pre) return;
+      const text = pre.textContent.trim();
       try {
-        if (prev === null) node.removeAttribute('tabindex');
-        else node.setAttribute('tabindex', prev);
-      } catch(e) {}
+        await navigator.clipboard.writeText(text);
+        showCopyFeedback('✅ CV text copied — ready to paste into application forms');
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          showCopyFeedback('✅ CV text copied — ready to paste into application forms');
+        } catch (fallbackErr) {
+          showCopyFeedback('❌ Copy failed — please select and copy the text manually');
+        }
+        document.body.removeChild(textArea);
+      }
     });
-    pageTabbables.length = 0;
   }
 
-  document.querySelectorAll('.demo-btn').forEach(btn => {
-    btn.addEventListener('click', (ev) => {
-      // If it's a button with data-video-src, open modal
-      const src = btn.getAttribute('data-video-src');
-      if (src && btn.tagName.toLowerCase() === 'button') {
-        ev.preventDefault();
-        openModal(src);
-        return;
+  // Copy email to clipboard
+  const copyEmail = document.getElementById('copy-email');
+  if (copyEmail) {
+    copyEmail.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const mail = 'emmaabusinesss@gmail.com';
+      try {
+        await navigator.clipboard.writeText(mail);
+        showCopyFeedback('📧 Email copied to clipboard');
+      } catch (err) {
+        // Fallback: open mail client
+        window.location.href = 'mailto:' + mail + '?subject=Mathematics%20Teaching%20Inquiry';
       }
-      // For anchor links (<a>), default behaviour (open in new tab) remains.
     });
-  });
+  }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { 
-    if (e.key === 'Escape') {
-      if (modal && modal.getAttribute('aria-hidden') === 'false') closeModal();
-    }
-  });
+  // Enhanced copy feedback with accessibility
+  const copyFeedback = document.getElementById('copy-feedback');
+  function showCopyFeedback(msg = 'Copied to clipboard') {
+    if (!copyFeedback) return;
+    
+    copyFeedback.textContent = msg;
+    copyFeedback.style.display = 'block';
+    copyFeedback.setAttribute('aria-live', 'assertive');
+    
+    // Enhanced screen reader announcement
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('class', 'sr-only');
+    announcement.textContent = msg;
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => { 
+      copyFeedback.style.display = 'none';
+      copyFeedback.removeAttribute('aria-live');
+      document.body.removeChild(announcement);
+    }, 3000);
+  }
 
-  // ensure Enter/Space on project rows triggers repo open
+  // Project card interactions
   document.querySelectorAll('.proj').forEach(proj => {
+    // Click to open main link if available
+    proj.addEventListener('click', (e) => {
+      // Don't trigger if user clicked on interactive elements
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      
+      const url = proj.getAttribute('data-url');
+      if (url) {
+        window.open(url, '_blank', 'noopener');
+      }
+    });
+
+    // Keyboard navigation support
     proj.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -162,141 +148,75 @@ document.addEventListener('DOMContentLoaded', () => {
         if (url) window.open(url, '_blank', 'noopener');
       }
     });
-    proj.addEventListener('click', (e) => {
-      // don't trigger when clicking on interactive elements inside card
-      const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
-      if (interactiveTags.includes(e.target.tagName)) return;
-      const url = proj.getAttribute('data-url');
-      if (url) window.open(url, '_blank', 'noopener');
-    });
   });
 
-  // contact email: copy to clipboard helper + feedback (improved)
-  const contactEmail = document.getElementById('contact-email');
-  let copyFeedback = document.getElementById('copy-feedback');
-  if (!copyFeedback) {
-    copyFeedback = document.createElement('div');
-    copyFeedback.className = 'copy-feedback';
-    copyFeedback.id = 'copy-feedback';
-    document.body.appendChild(copyFeedback);
-  }
-
-  if (contactEmail) {
-    contactEmail.addEventListener('click', (e) => {
-      // prefer to copy; still allow mail client fallback if copy fails
-      e.preventDefault();
-      const mail = 'emmaabusinesss@gmail.com';
-      function fallbackMail() { window.location.href = 'mailto:' + mail; }
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(mail).then(() => {
-          showCopyFeedback('Email copied to clipboard');
-        }).catch(() => {
-          fallbackMail();
-        });
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = mail;
-        ta.style.position = 'fixed';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        try {
-          document.execCommand('copy');
-          showCopyFeedback('Email copied to clipboard');
-        } catch (err) {
-          fallbackMail();
+  // IntersectionObserver for subtle scroll animations
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
-        document.body.removeChild(ta);
-      }
-    });
-
-    contactEmail.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        contactEmail.click();
-      }
-    });
-  }
-
-  // Notify button: open mailto and attempt to copy email to clipboard as a helpful fallback
-  document.querySelectorAll('.notify-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = btn.getAttribute('href');
-      const mail = 'emmaabusinesss@gmail.com';
-      // Try open mail client (this will usually open mail app)
-      try { window.location.href = href; } catch (err) {}
-      // Also attempt to copy email to clipboard for convenience
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(mail).then(() => {
-          showCopyFeedback('Email copied to clipboard');
-        }).catch(() => {});
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = mail;
-        ta.style.position = 'fixed';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        try {
-          document.execCommand('copy');
-          showCopyFeedback('Email copied to clipboard');
-        } catch (err) {}
-        document.body.removeChild(ta);
-      }
-    });
-  });
-
-  function showCopyFeedback(text = 'Copied') {
-    if (!copyFeedback) return;
-    copyFeedback.textContent = text;
-    copyFeedback.classList.add('show');
-    copyFeedback.setAttribute('role', 'status');
-    setTimeout(() => { 
-      copyFeedback.classList.remove('show'); 
-    }, 2000);
-  }
-
-  // small performance helper: debounce window resize (placeholder)
-  let resizeTimer = null;
-  window.addEventListener('resize', () => {
-    if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { resizeTimer = null; }, 120);
-  });
-});
-
-// Certificate interaction — keep original behaviour but safer checks
-document.querySelectorAll('.certification').forEach(cert => {
-  cert.addEventListener('click', (e) => {
-    const interactiveTags = ['A', 'BUTTON', 'SVG', 'PATH'];
-    if (interactiveTags.includes(e.target.tagName)) return;
-    const anchor = cert.querySelector('a');
-    if (anchor && anchor.href) window.open(anchor.href, '_blank', 'noopener');
-  });
-  
-  cert.addEventListener('keydown', (e) => {
-    if ((e.key === 'Enter' || e.key === ' ') && cert.querySelector('a')) {
-      e.preventDefault();
-      const anchor = cert.querySelector('a');
-      if (anchor && anchor.href) window.open(anchor.href, '_blank', 'noopener');
-    }
-  });
-});
-
-// Smooth scrolling for certificate button
-const viewCertificates = document.getElementById('view-certificates');
-if (viewCertificates) {
-  viewCertificates.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector('#certifications-heading');
-    if (target) {
-      target.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
       });
-      target.setAttribute('tabindex', '-1');
-      try { target.focus(); } catch (err) {}
-      setTimeout(() => { target.removeAttribute('tabindex'); }, 1200);
-    }
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.proj').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  }
+
+  // Track outbound links for analytics (placeholder for future implementation)
+  document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Here you would send to Google Analytics
+      console.log('Outbound link clicked:', link.href);
+    });
   });
-}
+
+  // Loading states for better UX
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      if (this.href && !this.href.startsWith('#')) {
+        const originalText = this.innerHTML;
+        this.innerHTML = '⏳ Loading...';
+        setTimeout(() => {
+          this.innerHTML = originalText;
+        }, 1500);
+      }
+    });
+  });
+
+  // Performance optimization: debounced resize handler
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Future layout adjustments on resize
+    }, 250);
+  });
+});
+
+// Screen reader only utility class
+const style = document.createElement('style');
+style.textContent = `
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+`;
+document.head.appendChild(style);

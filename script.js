@@ -1,6 +1,6 @@
-// script.js — lightweight, looping typing, lazy-friendly interactions
+// script.js — minimal, looping typing, email copy, light interactions
 document.addEventListener('DOMContentLoaded', () => {
-  /* Typing animation: loops indefinitely, no pause-on-click */
+  // Typing animation — loops indefinitely
   const typedEl = document.getElementById('typed');
   if (typedEl) {
     const phrases = [
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
       "Prompt Engineering & EdTech"
     ];
     let pIndex = 0, ch = 0, deleting = false;
-
     function tick() {
       const full = phrases[pIndex];
       if (!deleting) {
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ch++;
         if (ch === full.length) {
           deleting = true;
-          setTimeout(tick, 1000); // pause at full phrase
+          setTimeout(tick, 1000);
           return;
         }
       } else {
@@ -34,23 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
-  /* Copy email to clipboard */
+  // Copy email to clipboard
   const copyEmail = document.getElementById('copy-email');
-  if (copyEmail) {
-    copyEmail.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const mail = 'emmaabusinesss@gmail.com';
-      try {
-        await navigator.clipboard.writeText(mail);
-        showCopyFeedback('📧 Email copied to clipboard');
-      } catch (err) {
-        // fallback: open mail client
-        window.location.href = `mailto:${mail}?subject=Teaching%20Inquiry`;
-      }
-    });
-  }
-
-  /* Show copy feedback (SR-friendly) */
   const fb = document.getElementById('copy-feedback');
   function showCopyFeedback(msg) {
     if (!fb) return;
@@ -69,7 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2600);
   }
 
-  // Light button loading state — short, non-blocking
+  if (copyEmail) {
+    copyEmail.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const mail = 'emmaabusinesss@gmail.com';
+      try {
+        await navigator.clipboard.writeText(mail);
+        showCopyFeedback('📧 Email copied to clipboard');
+      } catch (err) {
+        window.location.href = `mailto:${mail}?subject=Teaching%20Inquiry`;
+      }
+    });
+  }
+
+  // Small button loading feedback (non-blocking)
   document.querySelectorAll('.btn[href], .btn-download[href]').forEach(btn => {
     btn.addEventListener('click', function (e) {
       if (!this.href || this.href.startsWith('#')) return;
@@ -79,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         this.innerHTML = original;
         this.style.opacity = '1';
-      }, 900);
+      }, 800);
     });
   });
 
-  // Minimal IntersectionObserver for the few project cards (keeps paint cost low)
+  // Light IntersectionObserver for project cards
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(en => {
@@ -96,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.12 });
     document.querySelectorAll('.proj').forEach(el => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(10px)';
+      el.style.transform = 'translateY(8px)';
       el.style.transition = 'opacity .5s ease, transform .5s ease';
       io.observe(el);
     });

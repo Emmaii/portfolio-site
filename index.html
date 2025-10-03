@@ -39,16 +39,23 @@
 
             <p class="subtitle">Clear explanations, worked examples and targeted practice to improve understanding and results.</p>
 
+            <!-- CTA row: Download CV + Email (same visual size/middle length) -->
             <div class="ctas">
-              <a id="download-teaching-cv" class="btn primary" href="assets/resume.pdf" download="Emmanuel_Silas_Kelechi_Teaching_CV.pdf" title="Download Teaching CV">
-                📄 Download Teaching CV
-              </a>
+              <div class="cta-row">
+                <!-- Download CV -->
+                <a id="download-teaching-cv" class="btn primary cta-item" href="assets/resume.pdf" download="Emmanuel_Silas_Kelechi_Teaching_CV.pdf" title="Download Teaching CV">
+                  📄 Download Teaching CV
+                </a>
 
-              <div class="contact-actions">
-                <a class="contact-box" href="#" id="copy-email" aria-label="Copy email to clipboard">
+                <!-- Email copy box (keeps same size as CV button) -->
+                <a class="contact-box cta-item" href="#" id="copy-email" aria-label="Copy email to clipboard">
                   <svg class="icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11zM4.5 6a.5.5 0 0 0-.5.5v.55l8 4.5 8-4.5V6.5a.5.5 0 0 0-.5-.5h-15z"/></svg>
                   <span class="contact-text">emmaabusinesss@gmail.com</span>
                 </a>
+              </div>
+
+              <div class="contact-actions compact">
+                <span class="response-time">Typically replies within 2 hours</span>
               </div>
             </div>
           </div>
@@ -74,7 +81,7 @@
                   <iframe loading="lazy" src="https://www.youtube.com/embed/EwKu29PlsZQ" title="A-Level Differentiation lesson" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
-                <!-- NOTE: Worksheet & Solutions box removed as requested -->
+                <!-- Worksheet box removed per your request -->
               </div>
             </article>
 
@@ -105,7 +112,7 @@
             <article class="proj featured" tabindex="0" aria-label="Book: Preparing Your Own Mathematics Bots">
               <div class="proj-left">
                 <div class="proj-badge">Published Work</div>
-                <a class="proj-title" href="#" onclick="alert('Book available soon — email for updates.'); return false;">Preparing Your Own Mathematics Bots: A Practical Guide</a>
+                <a class="proj-title" href="mailto:emmaabusinesss@gmail.com?subject=Book%20Availability%20Inquiry" onclick="return false;">Preparing Your Own Mathematics Bots: A Practical Guide</a>
                 <p class="proj-desc">A practical guide for educators on building math-focused educational bots and applying prompt engineering in the classroom.</p>
 
                 <div class="book-display">
@@ -117,8 +124,13 @@
                   </div>
                 </div>
 
+                <!-- Notify as mailto with prefilled subject & body -->
                 <div class="proj-actions">
-                  <button class="btn secondary" onclick="alert('Book available soon! Contact for updates.');">📖 Notify When Available</button>
+                  <a class="btn secondary"
+                     href="mailto:emmaabusinesss@gmail.com?subject=Notify%20Me%20—%20Book%20Availability&body=Hello%20Emmanuel%2C%0A%0AI%20would%20like%20to%20be%20notified%20when%20%27Preparing%20Your%20Own%20Mathematics%20Bots%27%20is%20available.%0A%0AName%3A%20%0AEmail%3A%20%0AMessage%3A%20%0A%0AThank%20you%2C%0A"
+                     title="Notify me when the book is available">
+                    📖 Notify When Available
+                  </a>
                 </div>
               </div>
             </article>

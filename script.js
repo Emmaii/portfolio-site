@@ -1,4 +1,4 @@
-// script.js — minimal, looping typing, email copy, light interactions
+// script.js — keep it light: looping typing + copy-email + small UI cues
 document.addEventListener('DOMContentLoaded', () => {
   // Typing animation — loops indefinitely
   const typedEl = document.getElementById('typed');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
-  // Copy email to clipboard
+  // Copy email to clipboard and show feedback
   const copyEmail = document.getElementById('copy-email');
   const fb = document.getElementById('copy-feedback');
   function showCopyFeedback(msg) {
@@ -61,12 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
         await navigator.clipboard.writeText(mail);
         showCopyFeedback('📧 Email copied to clipboard');
       } catch (err) {
+        // fallback to opening mail client if clipboard unavailable
         window.location.href = `mailto:${mail}?subject=Teaching%20Inquiry`;
       }
     });
   }
 
-  // Small button loading feedback (non-blocking)
+  // Lightweight button loading cue
   document.querySelectorAll('.btn[href], .btn-download[href]').forEach(btn => {
     btn.addEventListener('click', function (e) {
       if (!this.href || this.href.startsWith('#')) return;
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Light IntersectionObserver for project cards
+  // IntersectionObserver (low cost)
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(en => {
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.proj').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(8px)';
-      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      el.style.transition = 'opacity .45s ease, transform .45s ease';
       io.observe(el);
     });
   }

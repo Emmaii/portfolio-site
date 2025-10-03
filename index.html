@@ -17,7 +17,6 @@
       <section class="left">
         <div class="hero-grid">
           <div class="hero-media">
-            <!-- left-aligned circular headshot on desktop; centered on mobile -->
             <img src="assets/headshot.jpg" alt="Professional portrait of Emmanuel Silas Kelechi" class="profile-pic" width="180" height="180" loading="lazy" decoding="async">
           </div>
 
@@ -29,12 +28,10 @@
               <span class="cursor" aria-hidden="true"></span>
             </h1>
 
-            <!-- Credentials & Availability (concise) -->
             <div class="credentials credentials-inline" aria-hidden="false">
               <div class="credential-item"><span class="credential-icon">🎓</span><strong>B.Sc. Mathematics Education</strong></div>
               <div class="credential-item"><span class="credential-icon">🕒</span><span>3+ years tutoring</span></div>
               <div class="credential-item"><span class="credential-icon">🌍</span><span>Available: UK, Nigeria, South Africa & Remote</span></div>
-              <!-- subtle prompt engineering badge to show you prompted content -->
               <div class="credential-item badge"><span class="credential-icon">🤖</span><span>Prompt Engineering & EdTech</span></div>
             </div>
 
@@ -42,7 +39,6 @@
 
             <p class="subtitle">Clear explanations, worked examples and targeted practice to improve understanding and results.</p>
 
-            <!-- Primary CTA: single download -->
             <div class="ctas">
               <a id="download-teaching-cv" class="btn primary" href="assets/resume.pdf" download="Emmanuel_Silas_Kelechi_Teaching_CV.pdf" title="Download Teaching CV">
                 📄 Download Teaching CV
@@ -53,14 +49,13 @@
                   <svg class="icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11zM4.5 6a.5.5 0 0 0-.5.5v.55l8 4.5 8-4.5V6.5a.5.5 0 0 0-.5-.5h-15z"/></svg>
                   <span class="contact-text">emmaabusinesss@gmail.com</span>
                 </a>
-                <span class="response-time">Typically replies within 2 hours</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- RIGHT: TEACHING PORTFOLIO & PROJECTS (kept content, trimmed duplicates) -->
+      <!-- RIGHT: TEACHING PORTFOLIO & PROJECTS -->
       <aside class="right" aria-labelledby="projects-heading">
         <div class="panel">
           <div class="panel-head">
@@ -68,7 +63,7 @@
           </div>
 
           <div id="projects" class="projects-list">
-            <!-- Only the teaching demonstration (embedded) -->
+            <!-- Teaching demonstration (video) -->
             <article class="proj featured" tabindex="0" aria-label="Teaching demonstration video">
               <div class="proj-left">
                 <div class="proj-badge">Teaching Demonstration</div>
@@ -76,20 +71,17 @@
                 <p class="proj-desc">15–16 minute lesson showcasing explanation clarity, worked examples and student scaffolding.</p>
 
                 <div class="video-container">
-                  <!-- lazy load iframe for performance -->
                   <iframe loading="lazy" src="https://www.youtube.com/embed/EwKu29PlsZQ" title="A-Level Differentiation lesson" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
-                <div class="proj-actions">
-                  <a href="assets/worksheet-differentiation.pdf" class="btn-download" download>📥 Worksheet & Solutions</a>
-                </div>
+                <!-- NOTE: Worksheet & Solutions box removed as requested -->
               </div>
             </article>
 
-            <!-- EdTech / Live demo (kept, live view link) -->
+            <!-- EdTech / Live demo & codes -->
             <article class="proj" tabindex="0" aria-label="EdTech live demo">
               <div class="proj-left">
-                <a class="proj-title" href="https://your-live-demo-link.com" target="_blank" rel="noopener noreferrer">Mathematics Assistant Bot — Live Demo</a>
+                <a class="proj-title" href="https://university-math-assistant-bot.streamlit.app/" target="_blank" rel="noopener noreferrer">Mathematics Assistant Bot — Live Demo</a>
                 <p class="proj-desc">An adaptive practice tool that generates step-by-step explanations and practice problems — showcases prompt engineering and practical EdTech skills.</p>
 
                 <div class="tech-stack">
@@ -100,7 +92,8 @@
                 </div>
 
                 <div class="proj-actions">
-                  <a href="https://your-live-demo-link.com" class="btn primary" target="_blank" rel="noopener noreferrer">View Live Demo</a>
+                  <a href="https://university-math-assistant-bot.streamlit.app/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live Demo</a>
+                  <a href="https://github.com/Emmaii/University-Math-Assistant-Bot" class="btn secondary" target="_blank" rel="noopener noreferrer">View Codes</a>
                 </div>
               </div>
               <div class="proj-right">
@@ -108,7 +101,7 @@
               </div>
             </article>
 
-            <!-- Book section (resized and kept compact) -->
+            <!-- Book section (resized compact) -->
             <article class="proj featured" tabindex="0" aria-label="Book: Preparing Your Own Mathematics Bots">
               <div class="proj-left">
                 <div class="proj-badge">Published Work</div>
@@ -131,16 +124,14 @@
             </article>
           </div>
 
-          <!-- Panel foot (compact; removed Submit Application per request) -->
           <div class="panel-foot" style="border-top:none;margin-top:16px;">
-            <p class="muted-center">Remote lessons and international availability. Contact for lesson materials or demo access.</p>
+            <p class="muted-center">Remote lessons and international availability.</p>
           </div>
         </div>
       </aside>
     </article>
   </main>
 
-  <!-- Copy Feedback Element -->
   <div class="copy-feedback" id="copy-feedback" role="status" aria-live="polite" style="display:none;">
     Text copied to clipboard successfully
   </div>

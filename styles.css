@@ -157,7 +157,7 @@ body{padding:clamp(12px,3vw,24px);display:flex;justify-content:center;min-height
   top: 0;
   left: 0;
   display: inline-block;
-  margin-bottom: 10px;       /* adds breathing space below badge */
+  margin-bottom: 20px;       /* adds breathing space below badge */
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff;
   padding: 5px 12px;

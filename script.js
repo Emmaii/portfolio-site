@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isEnd = false;
 
     function type() {
+        if (!typedText) return;
+        
         const currentWord = words[wordIndex];
         const displayText = isDeleting 
             ? currentWord.substring(0, charIndex--)
@@ -35,47 +37,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Start typing animation after a delay
-    setTimeout(type, 1000);
+    if (typedText) {
+        setTimeout(type, 1000);
+    }
 
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
     
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.right = '0';
-            navLinks.style.backgroundColor = 'var(--bg-secondary)';
-            navLinks.style.padding = '1rem';
-            navLinks.style.gap = '1rem';
-            navLinks.style.borderTop = '1px solid var(--border-color)';
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
 
         // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        navLinksItems.forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinks.style.display = 'none';
-                }
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
         });
 
         // Handle window resize
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 navLinks.style.display = 'flex';
-                navLinks.style.position = 'static';
-                navLinks.style.backgroundColor = 'transparent';
-                navLinks.style.padding = '0';
-                navLinks.style.gap = '2rem';
-                navLinks.style.borderTop = 'none';
-                navLinks.style.flexDirection = 'row';
             } else {
-                navLinks.style.display = 'none';
+                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
             }
         });
     }
@@ -103,6 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                // Close mobile menu if open
+                if (navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
@@ -123,33 +132,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
-            // In a real application, you would send this data to a server
-            // For now, we'll simulate a successful submission
-            console.log('Form submitted:', data);
-            
             // Show success message
-            toast.classList.add('show');
-            
-            // Hide toast after 3 seconds
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            if (toast) {
+                toast.classList.add('show');
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
             
             // Reset form
             this.reset();
+            
+            // Log for debugging
+            console.log('Form submitted:', data);
         });
     }
 
-    // Add hover effects to project cards
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
+    // Add hover effects to project cards (only on non-touch devices)
+    if (window.matchMedia("(hover: hover)").matches) {
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
         });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
+    }
 
     // Intersection Observer for animations
     const observerOptions = {
@@ -179,24 +191,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 const email = this.href.replace('mailto:', '');
                 navigator.clipboard.writeText(email).then(() => {
                     // Show copied notification
-                    toast.textContent = 'Email copied to clipboard!';
-                    toast.style.background = 'var(--accent-blue)';
-                    toast.classList.add('show');
-                    
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                        toast.textContent = 'Message sent successfully!';
-                        toast.style.background = 'var(--success)';
-                    }, 2000);
+                    if (toast) {
+                        toast.textContent = 'Email copied to clipboard!';
+                        toast.style.background = 'var(--accent-blue)';
+                        toast.classList.add('show');
+                        
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            toast.textContent = 'Message sent successfully!';
+                            toast.style.background = 'var(--success)';
+                        }, 2000);
+                    }
+                }).catch(err => {
+                    console.error('Failed to copy email:', err);
+                    // Fallback: open email client
+                    window.location.href = `mailto:${email}`;
                 });
             }
         });
+    });
+
+    // Prevent form zoom on iOS
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.fontSize = '16px';
+        });
+    });
+
+    // Improve performance on mobile
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        document.body.classList.add('resize-animation-stopper');
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            document.body.classList.remove('resize-animation-stopper');
+        }, 400);
     });
 });
 
 // Add CSS for animations
 const style = document.createElement('style');
 style.textContent = `
+    .resize-animation-stopper * {
+        animation: none !important;
+        transition: none !important;
+    }
+
     .animate-in {
         animation: fadeInUp 0.6s ease-out forwards;
         opacity: 0;

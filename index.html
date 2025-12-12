@@ -3,146 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathematics Educator | GCSE & A-Level Tutor | Grade 1-12 — Emmanuel Silas Kelechi</title>
-    <meta name="description" content="Emmanuel Silas Kelechi — Professional Mathematics Educator for Grade 1-12, GCSE & A-Level. Exam-focused instruction, teaching demonstrations, and educational technology." />
+    <title>Emmanuel Silas Kelechi | Aspiring AI & Data Intern</title>
+    <meta name="description" content="Aspiring AI & Data Intern with practical experience in ML and LLM projects. Seeking internship roles to grow in real engineering environments." />
+    <meta property="og:title" content="Emmanuel Silas Kelechi | AI & Data Portfolio">
+    <meta property="og:description" content="ML Engineer & LLM Enthusiast building intelligent systems with clean, reproducible implementations.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="styles.css">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
 </head>
 <body>
-    <main class="container" id="top">
-        <article class="card">
-            <!-- LEFT: HERO & TEACHING PROFILE -->
-            <section class="left">
-                <div class="hero-grid">
-                    <div class="hero-media">
-                        <img src="assets/headshot.jpg" alt="Professional portrait of Emmanuel Silas Kelechi" class="profile-pic" width="180" height="180">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">ESK</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Aspiring AI & Data Intern</p>
+                    <h1 class="hero-title">
+                        <span id="typed-text">Emmanuel Silas Kelechi</span>
+                        <span class="cursor">|</span>
+                    </h1>
+                    <p class="hero-description">
+                        I build machine learning and LLM-powered systems with clean implementations and reproducible workflows. 
+                        Turning raw data into intelligent solutions.
+                    </p>
+                    <div class="hero-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lagos, Nigeria</span>
                     </div>
-
-                    <div class="hero-text">
-                        <p class="role">Mathematics Educator • Grade 1-12 • GCSE & A-Level</p>
-                        <h1 id="name-heading" class="hero-title">
-                            <span id="typed" aria-live="polite">Emmanuel Silas Kelechi</span>
-                            <span class="cursor" aria-hidden="true"></span>
-                        </h1>
-
-                        <!-- Credentials & Availability -->
-                        <div class="credentials credentials-inline">
-                            <div class="credential-item"><span class="credential-icon">🎓</span><strong>B.Sc. Mathematics Education</strong></div>
-                            <div class="credential-item"><span class="credential-icon">🕒</span><span>3+ years tutoring • Exam-focused mindset</span></div>
-                            <div class="credential-item"><span class="credential-icon">🌍</span><span>Available: UK, Nigeria, South Africa & Remote</span></div>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-code"></i> View Projects
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-paper-plane"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-container">
+                        <img src="assets/headshot.jpg" alt="Emmanuel Silas Kelechi" class="profile-img">
+                        <div class="tech-badge">
+                            <i class="fas fa-brain"></i> ML
                         </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-robot"></i> AI
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-database"></i> Data
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <p class="hero-tagline">I help students build exam-ready skills and confidence through clear explanations, worked examples, and measurable progress in GCSE & A-Level preparation.</p>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm an entry-level AI and Data enthusiast with strong practical experience building 
+                        <span class="highlight">machine-learning</span> and <span class="highlight">LLM-powered projects</span>. 
+                        I focus on clean implementations, reproducible workflows, and turning raw data into intelligent systems.
+                    </p>
+                    <p>
+                        Currently seeking <span class="highlight">internship roles</span> to grow in a real engineering environment 
+                        where I can contribute to meaningful projects and learn from experienced professionals.
+                    </p>
+                    <div class="skills">
+                        <h3>Technical Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">LLMs</span>
+                            <span class="skill-tag">scikit-learn</span>
+                            <span class="skill-tag">Hugging Face</span>
+                            <span class="skill-tag">Streamlit</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NumPy</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Code Quality Focus</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">ML</div>
+                        <div class="stat-label">End-to-End Pipelines</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <!-- Primary Call-to-Actions -->
-                        <div class="ctas">
-                            <a id="download-teaching-cv" class="btn primary" href="assets/resume.pdf" download="Emmanuel_Silas_Kelechi_Teaching_CV.pdf">
-                                📄 Download Teaching CV
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle">Practical implementations showcasing ML and LLM expertise</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-badge">Machine Learning</div>
+                        <img src="assets/churn-preview.jpg" alt="Customer Churn Prediction Model" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Customer Churn Prediction Model</h3>
+                        <p class="project-description">
+                            Built a complete end-to-end machine learning pipeline to predict customer churn. 
+                            Includes data cleaning, preprocessing, feature engineering, and model training 
+                            using scikit-learn. Tested multiple classification models with strong performance metrics.
+                        </p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>scikit-learn</span>
+                            <span>Streamlit</span>
+                            <span>Pandas</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Emmaii/customer_churn_prediction_model_project" 
+                               class="btn-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Code
                             </a>
+                            <a href="https://churn-predict1.streamlit.app/" 
+                               class="btn-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-                            <div class="contact-actions">
-                                <a class="contact-box" href="#" id="copy-email">
-                                    <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
-                                        <path fill="currentColor" d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11zM4.5 6a.5.5 0 0 0-.5.5v.55l8 4.5 8-4.5V6.5a.5.5 0 0 0-.5-.5h-15z"/>
-                                    </svg>
-                                    <span class="contact-text">emmaabusinesss@gmail.com</span>
-                                </a>
-                                <span class="response-time">Typically replies within 2 hours</span>
-                            </div>
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-badge">LLM / AI</div>
+                        <img src="assets/chatbot-preview.jpg" alt="Mental Health Chatbot" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mental Health Chatbot</h3>
+                        <p class="project-description">
+                            Developed a conversational chatbot powered by a lightweight LLM using Hugging Face Inference API.
+                            Implemented a modular system for prompts, memory, context, safety filters, and message routing.
+                            Added semantic reasoning elements to improve response quality.
+                        </p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Hugging Face</span>
+                            <span>LLMs</span>
+                            <span>Streamlit</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Emmaii/mental-health-chatbot" 
+                               class="btn-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://mental-health-chatbot-6t2mjdxtgwwqq6lfxlg5h7.streamlit.app/" 
+                               class="btn-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle">Looking for AI/Data internship opportunities</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <a href="mailto:emmaabusinesss@gmail.com" class="contact-link">
+                                emmaabusinesss@gmail.com
+                            </a>
+                            <p class="contact-note">Typically replies within 2 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>GitHub</h3>
+                            <a href="https://github.com/Emmaii" class="contact-link" target="_blank" rel="noopener noreferrer">
+                                github.com/Emmaii
+                            </a>
+                            <p class="contact-note">View all my projects and code</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p class="contact-link">Lagos, Nigeria</p>
+                            <p class="contact-note">Open to remote positions</p>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- RIGHT: TEACHING PORTFOLIO & PROJECTS -->
-            <aside class="right">
-                <div class="panel">
-                    <div class="panel-head">
-                        <h2 id="projects-heading">Teaching Portfolio & Demonstrations</h2>
-                    </div>
-
-                    <div id="projects" class="projects-list">
-                        <!-- Featured Teaching Lesson -->
-                        <article class="proj featured">
-                            <div class="proj-left">
-                                <div class="proj-badge">Featured Lesson</div>
-                                <h3 class="proj-title">A-Level: Differentiation — Power Rule & Worked Examples</h3>
-                                <p class="proj-desc">
-                                    15-minute comprehensive lesson demonstrating teaching methodology, covering integer, fractional and negative powers with worked examples and exam technique.
-                                </p>
-
-                                <!-- Embedded Video -->
-                                <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/EwKu29PlsZQ" title="A-Level Differentiation lesson" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-
-                                <div class="proj-actions">
-                                    <a href="assets/worksheet-differentiation.pdf" class="btn-download" download>📥 Worksheet & Solutions</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- EdTech Project -->
-                        <article class="proj">
-                            <div class="proj-left">
-                                <h3 class="proj-title">Mathematics Assistant Bot — Educational Tool</h3>
-                                <p class="proj-desc">An adaptive practice tool demonstrating technical proficiency and prompt engineering skills, generating step-by-step explanations and practice problems to reinforce lesson objectives.</p>
-
-                                <div class="tech-stack">
-                                    <span class="tech-item">Python</span>
-                                    <span class="tech-item">Streamlit</span>
-                                    <span class="tech-item">LaTeX</span>
-                                    <span class="tech-item">Prompt Engineering</span>
-                                </div>
-
-                                <div class="proj-actions">
-                                    <a href="https://your-live-demo-link.com" class="btn primary" target="_blank" rel="noopener noreferrer">View Live Demo</a>
-                                </div>
-                            </div>
-                            <div class="proj-right"><span class="tag edtech">EdTech</span></div>
-                        </article>
-
-                        <!-- BOOK SECTION -->
-                        <article class="proj featured">
-                            <div class="proj-left">
-                                <div class="proj-badge">Published Work</div>
-                                <h3 class="proj-title">Preparing Your Own Mathematics Bots: A Practical Guide</h3>
-                                <p class="proj-desc">
-                                    Currently preparing a comprehensive guide on creating educational mathematics bots. This book will help revolutionize mathematics instruction through accessible AI tools and prompt engineering techniques for the education sector.
-                                </p>
-                                
-                                <!-- Book Cover -->
-                                <div class="book-display">
-                                    <img src="assets/book_cover.jpg" alt="Preparing Your Own Mathematics Bots book cover" class="book-cover">
-                                    <div class="book-features">
-                                        <div class="feature"><span class="feature-icon">📚</span><span>Practical guide for educators</span></div>
-                                        <div class="feature"><span class="feature-icon">🤖</span><span>AI and bot development</span></div>
-                                        <div class="feature"><span class="feature-icon">🎯</span><span>Prompt engineering for math education</span></div>
-                                    </div>
-                                </div>
-
-                                <div class="proj-actions">
-                                    <button class="btn secondary" onclick="alert('Book available soon! Contact for updates.');">📖 Notify When Available</button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="panel-foot">
-                        <div class="actions">
-                            <a id="apply-via-email" class="btn green" href="mailto:emmaabusinesss@gmail.com?subject=Teaching%20Position%20Application">📧 Submit Application</a>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
                 </div>
-            </aside>
-        </article>
-    </main>
+            </div>
+        </div>
+    </section>
 
-    <!-- Copy Feedback Element -->
-    <div class="copy-feedback" id="copy-feedback" role="status" aria-live="polite" style="display:none;">
-        Text copied to clipboard successfully
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ESK</div>
+                <p class="footer-text">Building intelligent systems with clean code and data</p>
+                <div class="footer-social">
+                    <a href="https://github.com/Emmaii" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:emmaabusinesss@gmail.com" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="footer-copyright">
+                    © 2024 Emmanuel Silas Kelechi. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Success Message -->
+    <div class="toast" id="toast">Message sent successfully!</div>
 
     <script src="script.js"></script>
 </body>

@@ -1,6 +1,8 @@
 // DOM Ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Typing Animation
+    // ============================================
+    // FIXED TYPING ANIMATION - Complete each word
+    // ============================================
     const typedText = document.getElementById('typed-text');
     const words = [
         'Emmanuel Silas Kelechi',
@@ -8,58 +10,102 @@ document.addEventListener('DOMContentLoaded', function() {
         'ML Engineer',
         'LLM Enthusiast'
     ];
+    
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let isEnd = false;
+    let typingSpeed = 100; // typing speed in ms
+    let deletingSpeed = 50; // deleting speed in ms
+    let pauseDuration = 2000; // pause at the end of each word
 
     function type() {
         if (!typedText) return;
         
         const currentWord = words[wordIndex];
-        const displayText = isDeleting 
-            ? currentWord.substring(0, charIndex--)
-            : currentWord.substring(0, charIndex++);
-
-        typedText.textContent = displayText;
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            isEnd = true;
-            isDeleting = true;
-            setTimeout(type, 2000);
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            setTimeout(type, 500);
-        } else {
-            setTimeout(type, isDeleting ? 50 : 100);
+        
+        // If we're typing
+        if (!isDeleting) {
+            // Type the next character
+            typedText.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            
+            // If word is complete
+            if (charIndex === currentWord.length) {
+                // Pause at the end of the word
+                setTimeout(() => {
+                    isDeleting = true;
+                    type();
+                }, pauseDuration);
+                return;
+            }
+        } 
+        // If we're deleting
+        else {
+            // Delete the last character
+            typedText.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            
+            // If word is completely deleted
+            if (charIndex === 0) {
+                isDeleting = false;
+                // Move to next word
+                wordIndex = (wordIndex + 1) % words.length;
+                // Small pause before starting next word
+                setTimeout(type, 500);
+                return;
+            }
         }
+        
+        // Calculate speed
+        const speed = isDeleting ? deletingSpeed : typingSpeed;
+        
+        // Call next iteration
+        setTimeout(type, speed);
     }
 
-    // Start typing animation after a delay
+    // Start typing animation after a short delay
     if (typedText) {
         setTimeout(type, 1000);
     }
 
-    // Mobile Menu Toggle
+    // ============================================
+    // FIXED MOBILE MENU - Proper alignment
+    // ============================================
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const navLinksItems = document.querySelectorAll('.nav-links a');
+    const body = document.body;
     
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
+            
+            // Toggle menu
             navLinks.classList.toggle('active');
-            menuToggle.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            menuToggle.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            // Update icon
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.className = navLinks.classList.contains('active') 
+                    ? 'fas fa-times' 
+                    : 'fas fa-bars';
+            }
         });
 
         // Close menu when clicking on a link
         navLinksItems.forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+                
+                // Reset icon
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-bars';
+                }
             });
         });
 
@@ -67,7 +113,29 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
                 navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+                
+                // Reset icon
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-bars';
+                }
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+                
+                // Reset icon
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-bars';
+                }
             }
         });
 
@@ -75,10 +143,24 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+                
+                // Reset icon
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-bars';
+                }
+                
+                // Ensure nav-links is visible on desktop
                 navLinks.style.display = 'flex';
             } else {
-                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+                // Hide nav-links on mobile when not active
+                if (!navLinks.classList.contains('active')) {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                }
             }
         });
     }
@@ -109,7 +191,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Close mobile menu if open
                 if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    menuToggle.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    
+                    // Reset icon
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.className = 'fas fa-bars';
+                    }
                 }
                 
                 window.scrollTo({

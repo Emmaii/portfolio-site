@@ -74,6 +74,7 @@ h1, h2, h3, h4 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
 }
 
 .nav-links {
@@ -119,6 +120,86 @@ h1, h2, h3, h4 {
     cursor: pointer;
     padding: 0.5rem;
     z-index: 1001;
+    position: relative;
+}
+
+/* Mobile Menu - FIXED */
+@media (max-width: 768px) {
+    .nav-container {
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 2rem;
+        overflow: hidden;
+    }
+    
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .nav-links a {
+        font-size: 1.25rem;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
+        border-radius: var(--radius);
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    .nav-links a:hover {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--accent-blue);
+        transform: translateX(5px);
+    }
+    
+    .nav-links a::after {
+        display: none;
+    }
+    
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+    
+    /* Menu toggle animation */
+    .menu-toggle i {
+        transition: transform 0.3s ease;
+    }
+    
+    .menu-toggle.active i {
+        transform: rotate(90deg);
+    }
 }
 
 /* Hero Section */
@@ -177,6 +258,7 @@ h1, h2, h3, h4 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1.1;
+    min-height: 1.2em; /* Ensure consistent height */
 }
 
 .cursor {
@@ -712,7 +794,7 @@ section {
     opacity: 0;
     visibility: hidden;
     transition: var(--transition);
-    z-index: 999;
+    z-index: 998;
 }
 
 .back-to-top.visible {
@@ -738,7 +820,7 @@ section {
     font-weight: 500;
     opacity: 0;
     transition: var(--transition);
-    z-index: 1001;
+    z-index: 999;
     text-align: center;
     max-width: 90%;
     font-size: clamp(0.9rem, 1.2vw, 1rem);
@@ -796,43 +878,6 @@ section {
 
 /* Small Mobile */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
-    }
-    
-    .nav-container {
-        padding: 0.75rem 1rem;
-        justify-content: space-between;
-    }
-    
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.98);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        z-index: 999;
-        display: none;
-    }
-    
-    .nav-links.active {
-        display: flex;
-    }
-    
-    .nav-links a {
-        font-size: 1.25rem;
-        padding: 0.5rem 1rem;
-    }
-    
-    .menu-toggle {
-        display: block;
-    }
-    
     .hero {
         padding: 7rem 0 3rem;
         min-height: auto;
@@ -840,6 +885,7 @@ section {
     
     .hero-title {
         font-size: 2.5rem;
+        min-height: 1.5em; /* Ensure space for typing animation */
     }
     
     .hero-description {
@@ -934,6 +980,7 @@ section {
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
+        min-height: 1.5em; /* Ensure space for typing animation */
     }
     
     .hero-description {
@@ -1042,3 +1089,25 @@ html, body {
         font-size: 16px; /* Prevents zoom on iOS */
     }
 }
+
+/* Add some animation for the menu links */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-links.active a {
+    animation: slideInDown 0.3s ease forwards;
+    opacity: 0;
+}
+
+.nav-links.active a:nth-child(1) { animation-delay: 0.1s; }
+.nav-links.active a:nth-child(2) { animation-delay: 0.2s; }
+.nav-links.active a:nth-child(3) { animation-delay: 0.3s; }
+.nav-links.active a:nth-child(4) { animation-delay: 0.4s; }

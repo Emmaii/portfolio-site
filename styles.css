@@ -69,16 +69,8 @@ h1, h2, h3, h4 {
     margin: 0 auto;
     padding: 1rem 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-}
-
-.nav-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent-blue);
-    text-decoration: none;
 }
 
 .nav-links {
@@ -336,7 +328,7 @@ section {
 .section-line {
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-blue), var(--accent-light));
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-light);
     margin: 0 auto 1rem;
     border-radius: 2px;
 }
@@ -361,38 +353,6 @@ section {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     line-height: 1.8;
-}
-
-.skills {
-    margin-top: 3rem;
-}
-
-.skills h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.skill-tag {
-    background: var(--bg-card);
-    color: var(--text-primary);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.skill-tag:hover {
-    border-color: var(--accent-blue);
-    transform: translateY(-2px);
 }
 
 .about-stats {
@@ -635,14 +595,6 @@ section {
     text-align: center;
 }
 
-.footer-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--accent-blue);
-    margin-bottom: 1rem;
-}
-
 .footer-text {
     color: var(--text-secondary);
     max-width: 500px;
@@ -783,6 +735,10 @@ section {
     section {
         padding: 3rem 0;
     }
+    
+    .nav-container {
+        justify-content: space-between;
+    }
 }
 
 @media (max-width: 480px) {
@@ -800,5 +756,9 @@ section {
     
     .project-card {
         max-width: 100%;
+    }
+    
+    .nav-container {
+        padding: 1rem 15px;
     }
 }

@@ -1001,6 +1001,10 @@ section {
         text-align: center;
     }
     
+    .hero-location {
+        justify-content: center;  /* centers the location on mobile */
+    }
+    
     .image-container {
         width: 250px;
         height: 250px;
